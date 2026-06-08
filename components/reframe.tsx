@@ -15,6 +15,9 @@ export function Reframe() {
         <div className="mb-[30px] font-mono text-[11px] uppercase tracking-[0.28em] text-accent-dim">
           {t.reframe.eyebrow}
         </div>
+        <p className="mb-6 max-w-[32ch] font-serif text-[clamp(24px,3vw,40px)] font-medium leading-[1.1] tracking-tight text-bone">
+          {t.reframe.thesis}
+        </p>
         <h2
           id="reframe-heading"
           className="font-serif text-[clamp(30px,4.6vw,62px)] font-medium leading-[1.08] tracking-tight"

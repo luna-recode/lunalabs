@@ -85,7 +85,7 @@ California residents (CCPA): You have the right to know what personal informatio
 
 EU/UK residents (GDPR): Our legal basis for processing contact form data is legitimate interest (responding to your enquiry). Our legal basis for email marketing is your explicit consent at the point of subscription.
 
-To exercise any of these rights, email us at lunarecode@gmail.com. We will respond within 30 days.`,
+To exercise any of these rights, email us at hello@bylunalabs.com. We will respond within 30 days.`,
       },
       {
         id: "security",
@@ -113,7 +113,7 @@ For significant changes, we will make reasonable efforts to notify subscribers v
 
 Luna Labs
 Orange County, CA
-lunarecode@gmail.com
+hello@bylunalabs.com
 
 If you are an EU resident and believe we have not adequately addressed your concern, you have the right to lodge a complaint with your local data protection authority.`,
       },
@@ -228,7 +228,7 @@ Luna Labs may terminate immediately and without notice in cases of client non-pa
 
 Luna Labs
 Orange County, CA
-lunarecode@gmail.com`,
+hello@bylunalabs.com`,
       },
     ],
   },
@@ -264,7 +264,7 @@ Accessibility is an ongoing effort. We review this site regularly and update it 
 • Screen reader support — semantic headings and landmarks, form labels, required-field cues, and live regions for form errors and success messages.
 • Color and contrast — body and muted text colors adjusted to meet WCAG AA contrast ratios on our dark background.
 • Motion — animations and autoplay video respect the prefers-reduced-motion setting; content remains visible without relying on motion.
-• Tables — ROI comparison data uses semantic HTML tables with captions and scoped headers.
+• Content structure — proof, work, and pricing sections use semantic headings, landmarks, and accessible labels where visual placeholders appear.
 • FAQ accordion — expand/collapse controls use proper ARIA attributes and keyboard support.`,
       },
       {
@@ -272,24 +272,24 @@ Accessibility is an ongoing effort. We review this site regularly and update it 
         title: "Known Limitations",
         body: `Some third-party content is not fully under our control and may present accessibility barriers:
 
-• Cal.com booking widget — the "Book a revenue audit" button opens a Cal.com scheduling modal. Keyboard and screen reader behavior inside the modal depends on Cal.com's embed. We have tested basic keyboard access (see checklist below) and will work with Cal.com or provide an alternative booking path if issues are reported.
+• Cal.com booking widget — the "Book a free consult" button opens a Cal.com scheduling modal. Keyboard and screen reader behavior inside the modal depends on Cal.com's embed. We have tested basic keyboard access (see checklist below) and will work with Cal.com or provide an alternative booking path if issues are reported.
 • Google Analytics — analytics scripts do not affect page content but may set cookies. See our Privacy Policy for details.
 
 The hero background video is decorative only. All meaningful information appears in the overlaid text and is available without playing the video.`,
       },
       {
-        id: "cal-audit",
-        title: "Cal.com Keyboard Audit Checklist",
-        body: `We manually tested the Cal.com embed ("Book a revenue audit") with keyboard-only navigation. Use this checklist if you verify accessibility on your device:
+        id: "cal-consult",
+        title: "Cal.com Keyboard Consult Checklist",
+        body: `We manually tested the Cal.com embed ("Book a free consult") with keyboard-only navigation. Use this checklist if you verify accessibility on your device:
 
-1. Tab to trigger — Tab through the page until focus reaches the "Book a revenue audit" button.
+1. Tab to trigger — Tab through the page until focus reaches the "Book a free consult" button.
 2. Open modal — Press Enter or Space on the focused button. The Cal.com scheduling dialog should open.
 3. Focus inside modal — Tab should move focus into the modal, not behind it to the page underneath.
 4. Operate controls — All date, time, and form fields inside the modal should be reachable and operable with Tab, Shift+Tab, Enter, Space, and arrow keys where applicable.
-5. Close modal — Press Escape. The modal should close and focus should return to the "Book a revenue audit" button (or remain on a logical close control).
+5. Close modal — Press Escape. The modal should close and focus should return to the "Book a free consult" button (or remain on a logical close control).
 6. Complete booking — If you proceed through the flow, confirm required fields announce errors and the submit action is keyboard-accessible.
 
-If any step fails on your browser or assistive technology, please report it using the contact information below. You can also email lunarecode@gmail.com directly to schedule an audit without using the embed.`,
+If any step fails on your browser or assistive technology, please report it using the contact information below. You can also email hello@bylunalabs.com directly to schedule a consult without using the embed.`,
       },
       {
         id: "compatibility",
@@ -303,7 +303,7 @@ Older browsers or unsupported assistive technology combinations may not render a
         title: "Feedback & Reporting Issues",
         body: `We welcome your feedback on the accessibility of this website. If you encounter a barrier or have suggestions for improvement, please contact us:
 
-Email: lunarecode@gmail.com
+Email: hello@bylunalabs.com
 Subject line: Accessibility feedback
 
 Please include:

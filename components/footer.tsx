@@ -59,7 +59,7 @@ export function Footer() {
                 <em className="italic">{t.footer.headingEmphasis}</em>
               </p>
               <CalButton className="cursor-pointer rounded-[30px] border border-line bg-transparent px-5 py-[11px] text-[13px] font-medium text-bone transition-all hover:border-accent hover:bg-accent/[0.06]">
-                {t.common.bookAudit}
+                {t.common.bookConsult}
               </CalButton>
             </div>
             <Link href="/" className="w-fit transition-opacity hover:opacity-70">
@@ -109,11 +109,12 @@ export function Footer() {
             </h2>
             <ul className="space-y-3">
               <li>
+                {/* TODO(owner): confirm contact email */}
                 <a
-                  href="mailto:lunarecode@gmail.com"
+                  href="mailto:hello@bylunalabs.com"
                   className="text-sm font-light text-bone-dim transition-colors hover:text-accent"
                 >
-                  lunarecode@gmail.com
+                  hello@bylunalabs.com
                 </a>
               </li>
               <li className="text-sm font-light text-bone-dim">

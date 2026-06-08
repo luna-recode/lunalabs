@@ -101,7 +101,7 @@ export function Nav() {
             <LocaleSelector />
           </div>
           <CalButton className="btn-fill cursor-pointer whitespace-nowrap rounded-[30px] border-none px-5 py-[11px] text-[13px] font-medium tracking-wide transition-all hover:-translate-y-px">
-            {t.common.bookAudit}
+            {t.common.bookConsult}
           </CalButton>
         </div>
 
@@ -166,7 +166,7 @@ export function Nav() {
               onClick={close}
               className="btn-fill cursor-pointer rounded-[32px] border-none px-[28px] py-[15px] text-sm font-medium transition-all active:scale-95"
             >
-              {t.common.bookAudit}
+              {t.common.bookConsult}
             </CalButton>
           </div>
         </div>

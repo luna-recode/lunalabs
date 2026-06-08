@@ -5,6 +5,7 @@ import { Nav } from "@/components/nav";
 import { Proof } from "@/components/proof";
 import { Reframe } from "@/components/reframe";
 import { Stack } from "@/components/stack";
+import { Work } from "@/components/work";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <main id="main-content">
         <Hero />
         <Reframe />
+        <Work />
         <Stack />
         <Proof />
         <FinalCta />

@@ -69,7 +69,7 @@ export async function submitContact(
 
     await resend.emails.send({
       from: `Luna Labs <${process.env.CONTACT_FROM_EMAIL ?? "onboarding@resend.dev"}>`,
-      to: process.env.CONTACT_TO_EMAIL ?? "lunarecode@gmail.com",
+      to: process.env.CONTACT_TO_EMAIL ?? "hello@bylunalabs.com",
       replyTo: email,
       subject: `New inquiry — ${brand} (${name})`,
       html: `

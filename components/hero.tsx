@@ -82,9 +82,16 @@ export function Hero() {
           {t.hero.body}
         </p>
 
+        <p className={`animate-rise-delay-4 mt-5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted ${reducedMotion ? "" : motionClass}`}>
+          {t.hero.recentWork}{" "}
+          <Link href="/#works" className="text-accent transition-colors hover:text-bone">
+            {t.hero.recentWorkClient}
+          </Link>
+        </p>
+
         <div className={`animate-rise-delay-4 mt-[38px] flex flex-wrap gap-3.5 ${reducedMotion ? "" : motionClass}`}>
           <CalButton className="btn-fill cursor-pointer rounded-[32px] border-none px-[26px] py-[15px] text-sm font-medium transition-all hover:-translate-y-0.5">
-            {t.common.seeWhatWedFix}
+            {t.common.bookConsult}
           </CalButton>
           <Link
             href="/#works"

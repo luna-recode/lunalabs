@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { CarePlan } from "@/components/pricing/care-plan";
-import { PaybackCallout } from "@/components/pricing/payback-callout";
 import { PricingFaq } from "@/components/pricing/pricing-faq";
 import { PricingHero } from "@/components/pricing/pricing-hero";
 import { TierCards } from "@/components/pricing/tier-cards";
+import { ValueCallout } from "@/components/pricing/value-callout";
 import { FinalCta } from "@/components/final-cta";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
@@ -21,7 +21,7 @@ export default function PricingPage() {
       <main id="main-content">
         <PricingHero />
         <TierCards />
-        <PaybackCallout />
+        <ValueCallout />
         <CarePlan />
         <PricingFaq />
         <FinalCta />

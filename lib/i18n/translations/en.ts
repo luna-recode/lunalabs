@@ -2,12 +2,10 @@ import type { Translations } from "../types";
 
 export const en: Translations = {
   common: {
-    bookAudit: "Book a revenue audit →",
-    seeWhatWedFix: "See what we'd fix →",
-    viewWork: "View the work",
+    bookConsult: "Book a free consult →",
+    viewWork: "See the work →",
     scroll: "Scroll",
     errorPrefix: "Error: ",
-    improved: "Improved: ",
     backToTop: "Back to top",
     skipToMain: "Skip to main content",
   },
@@ -25,17 +23,32 @@ export const en: Translations = {
     spanish: "Español",
   },
   hero: {
-    eyebrow: "Revenue systems for commerce brands",
-    titleLine1: "We don't sell",
-    titleLine2: "redesigns.",
-    body: "We turn the followers a fashion brand already has into buyers — recovery flows, social proof, and a checkout that doesn't leak. Looks are table stakes. Revenue is the job.",
+    eyebrow: "Revenue systems · Orange County, CA",
+    titleLine1: "Your brand, online —",
+    titleLine2: "and built to sell.",
+    body: "We design Shopify storefronts that finally look like your brand — and are built to convert, with the recovery flows and friction-free checkout that turn the followers you already have into buyers. Looks are table stakes. Selling is the job.",
+    recentWork: "Recent work:",
+    recentWorkClient: "Soleil & Stone",
   },
   reframe: {
     eyebrow: "The one idea everything rests on",
+    thesis: "We don't sell redesigns.",
     titleBeforeLooks: "A theme changes how it ",
     looks: "looks.",
     titleBeforeEarns: "We change how it ",
     earns: "earns.",
+  },
+  work: {
+    eyebrow: "Selected work",
+    client: "Soleil & Stone, Laguna Beach",
+    delivered:
+      "Custom design system + a conversion-focused Shopify storefront.",
+    imageTodo:
+      "TODO(owner): provide Soleil & Stone build images — before/after or hero shots — and/or a live URL.",
+    quoteTodo:
+      "TODO(owner): add a real client quote if one exists. Otherwise omit; do not fabricate.",
+    beforeLabel: "Before",
+    afterLabel: "After",
   },
   stack: {
     eyebrow: "The engine we build on",
@@ -58,20 +71,18 @@ export const en: Translations = {
   proof: {
     eyebrow: "The conversation that closes",
     heading: "You don't need more traffic. You need more of it to buy.",
-    body: "A 12k-follower boutique with no cart recovery is losing money every day. We rebuild this table live with your real numbers — and the price stops being the conversation.",
-    rows: [
-      { label: "Conversion rate", now: "1.0%", after: "2.2%" },
-      { label: "Orders / month", now: "15", after: "33" },
-      { label: "Recovered carts", now: "$0", after: "+$430" },
+    body: "A boutique with a few thousand followers and no cart recovery leaves sales on the table every week. We build the parts that close that gap — abandoned-cart and welcome flows, reviews and trust signals on the page, and a checkout that doesn't lose people. No inflated promises; just the mechanics of a store that sells.",
+    mechanisms: [
+      "Abandoned-cart and welcome flows",
+      "Reviews and trust signals on the page",
+      "Checkout that doesn't lose people",
     ],
-    totalNow: "$1,350",
-    totalAfter: "$3,665",
   },
   finalCta: {
     eyebrow: "Let's find the leaks",
     headingBefore: "How much revenue is your audience ",
     headingEmphasis: "leaving behind?",
-    body: "Free 20-minute teardown. We'll show you the gap on a call — no pitch deck, just your numbers.",
+    body: "Free 20-minute consult. We'll look at your store and brand and map exactly what to build — no pitch deck, no pressure.",
     formNote: "Or fill out the form — we'll reach out within 24h",
   },
   footer: {
@@ -119,14 +130,6 @@ export const en: Translations = {
     subscribeInvalidError: "Enter a valid email address.",
     subscribeGenericError: "Something went wrong. Try again.",
   },
-  roiTable: {
-    caption:
-      "Monthly revenue comparison before and after implementing a revenue system",
-    perMonth: "Per month",
-    now: "Now",
-    after: "After",
-    monthlyRevenue: "Monthly revenue",
-  },
   pricing: {
     metaTitle: "Pricing — Luna Labs",
     metaDescription:
@@ -145,13 +148,16 @@ export const en: Translations = {
     undecidedBody:
       "Every store is at a different stage. Tell us where you are and we'll map the gaps — no pitch decks, no pressure, just a straight answer on where to start.",
     undecidedCta: "Let's figure it out →",
-    paybackEyebrow: "The payback line that lands",
-    paybackTitleLine1: "Price is a number.",
-    paybackTitleEmphasis: "Payback period is a decision.",
-    paybackBody:
-      "On a typical 12k-follower boutique, a revenue system adds roughly +$2,300/month — about $27k a year. Against a $3,800 Growth build, that's payback in under two months. Everything after is margin.",
-    paybackNote:
-      "Illustrative · rebuilt with your real numbers on every audit call",
+    valueEyebrow: "What matters in the build",
+    valueTitle: "What you're actually buying",
+    valueBody:
+      "Not a theme anyone can install in an afternoon — a storefront designed around your brand and built on the parts that actually move product: recovery flows, trust signals on the page, and a checkout that doesn't lose people. You're buying a store that sells, not just one that exists.",
+    valueParts: [
+      "Brand-specific storefront",
+      "Recovery flows",
+      "On-page trust signals",
+      "Checkout flow",
+    ],
     careEyebrow: "Tier 04 · Recurring",
     careTitle: "Care Plan",
     careBody:
@@ -258,7 +264,7 @@ export const en: Translations = {
       {
         question: "That's more than I wanted to spend.",
         answer:
-          "Fair — let's look at what it returns. If it adds one extra sale a day at your AOV, it pays for itself in weeks. The real question is the payback period, not the sticker.",
+          "A cheap theme is cheap because it does nothing but sit there. You're not paying for pixels — you're paying for a store designed around your brand and built to actually sell. That's the difference between a cost and an investment.",
       },
       {
         question: "Can't I just buy a theme?",

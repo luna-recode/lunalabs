@@ -2,12 +2,10 @@ import type { Translations } from "../types";
 
 export const es: Translations = {
   common: {
-    bookAudit: "Agenda una auditoría de ingresos →",
-    seeWhatWedFix: "Mira qué arreglaríamos →",
-    viewWork: "Ver el trabajo",
+    bookConsult: "Agenda una consulta gratis →",
+    viewWork: "Ver el trabajo →",
     scroll: "Desplázate",
     errorPrefix: "Error: ",
-    improved: "Mejorado: ",
     backToTop: "Volver arriba",
     skipToMain: "Saltar al contenido principal",
   },
@@ -25,17 +23,32 @@ export const es: Translations = {
     spanish: "Español",
   },
   hero: {
-    eyebrow: "Sistemas de ingresos para marcas de comercio",
-    titleLine1: "No vendemos",
-    titleLine2: "rediseños.",
-    body: "Convertimos en compradores a los seguidores que una marca de moda ya tiene — flujos de recuperación, prueba social y un checkout que no pierde ventas. La estética es lo mínimo. Los ingresos son el objetivo.",
+    eyebrow: "Sistemas de ingresos · Orange County, CA",
+    titleLine1: "Tu marca, online —",
+    titleLine2: "y construida para vender.",
+    body: "Diseñamos tiendas Shopify que por fin se ven como tu marca — y están hechas para convertir, con flujos de recuperación y un checkout sin fricción que convierten en compradores a los seguidores que ya tienes. La estética es lo mínimo. Vender es el trabajo.",
+    recentWork: "Trabajo reciente:",
+    recentWorkClient: "Soleil & Stone",
   },
   reframe: {
     eyebrow: "La idea central de todo",
+    thesis: "No vendemos rediseños.",
     titleBeforeLooks: "Un tema cambia cómo ",
     looks: "se ve.",
     titleBeforeEarns: "Nosotros cambiamos cómo ",
     earns: "genera ingresos.",
+  },
+  work: {
+    eyebrow: "Trabajo seleccionado",
+    client: "Soleil & Stone, Laguna Beach",
+    delivered:
+      "Sistema de diseño personalizado + una tienda Shopify enfocada en conversión.",
+    imageTodo:
+      "TODO(owner): compartir imágenes del build de Soleil & Stone — antes/después o capturas del hero — y/o una URL pública.",
+    quoteTodo:
+      "TODO(owner): agregar una cita real del cliente si existe. Si no, omitir; no fabricar.",
+    beforeLabel: "Antes",
+    afterLabel: "Después",
   },
   stack: {
     eyebrow: "El motor sobre el que construimos",
@@ -58,20 +71,18 @@ export const es: Translations = {
   proof: {
     eyebrow: "La conversación que cierra",
     heading: "No necesitas más tráfico. Necesitas que más personas compren.",
-    body: "Una boutique con 12k seguidores y sin recuperación de carritos está perdiendo dinero todos los días. Reconstruimos esta tabla en vivo con tus números reales — y el precio deja de ser el tema de conversación.",
-    rows: [
-      { label: "Tasa de conversión", now: "1.0%", after: "2.2%" },
-      { label: "Pedidos / mes", now: "15", after: "33" },
-      { label: "Carritos recuperados", now: "$0", after: "+$430" },
+    body: "Una boutique con algunos miles de seguidores y sin recuperación de carritos deja ventas sobre la mesa cada semana. Construimos las piezas que cierran esa brecha — flujos de carrito abandonado y bienvenida, reseñas y señales de confianza en la página, y un checkout que no pierde gente. Sin promesas infladas; solo la mecánica de una tienda que vende.",
+    mechanisms: [
+      "Flujos de carrito abandonado y bienvenida",
+      "Reseñas y señales de confianza en la página",
+      "Checkout que no pierde gente",
     ],
-    totalNow: "$1,350",
-    totalAfter: "$3,665",
   },
   finalCta: {
     eyebrow: "Encontremos las fugas",
     headingBefore: "¿Cuántos ingresos está dejando ",
     headingEmphasis: "tu audiencia sobre la mesa?",
-    body: "Teardown gratuito de 20 minutos. Te mostramos la brecha en una llamada — sin pitch deck, solo tus números.",
+    body: "Consulta gratuita de 20 minutos. Revisamos tu tienda y tu marca para mapear exactamente qué construir — sin pitch deck, sin presión.",
     formNote: "O completa el formulario — te contactamos en menos de 24 h",
   },
   footer: {
@@ -119,14 +130,6 @@ export const es: Translations = {
     subscribeInvalidError: "Ingresa un email válido.",
     subscribeGenericError: "Algo salió mal. Intenta de nuevo.",
   },
-  roiTable: {
-    caption:
-      "Comparación de ingresos mensuales antes y después de implementar un sistema de ingresos",
-    perMonth: "Por mes",
-    now: "Ahora",
-    after: "Después",
-    monthlyRevenue: "Ingresos mensuales",
-  },
   pricing: {
     metaTitle: "Precios — Luna Labs",
     metaDescription:
@@ -145,13 +148,16 @@ export const es: Translations = {
     undecidedBody:
       "Cada tienda está en una etapa distinta. Cuéntanos dónde estás y mapeamos las brechas — sin pitch decks, sin presión, solo una respuesta directa sobre por dónde empezar.",
     undecidedCta: "Lo resolvemos juntos →",
-    paybackEyebrow: "La línea de payback que convence",
-    paybackTitleLine1: "El precio es un número.",
-    paybackTitleEmphasis: "El periodo de payback es una decisión.",
-    paybackBody:
-      "En una boutique típica con 12k seguidores, un sistema de ingresos agrega aproximadamente +$2,300/mes — unos $27k al año. Frente a un build Growth de $3,800, el payback es en menos de dos meses. Todo lo que sigue es margen.",
-    paybackNote:
-      "Ilustrativo · reconstruido con tus números reales en cada auditoría",
+    valueEyebrow: "Lo que importa en el build",
+    valueTitle: "Lo que realmente estás comprando",
+    valueBody:
+      "No un tema que cualquiera instala en una tarde — una tienda diseñada alrededor de tu marca y construida sobre las piezas que de verdad mueven producto: flujos de recuperación, señales de confianza en la página y un checkout que no pierde gente. Estás comprando una tienda que vende, no solo una que existe.",
+    valueParts: [
+      "Tienda específica para la marca",
+      "Flujos de recuperación",
+      "Señales de confianza en la página",
+      "Flujo de checkout",
+    ],
     careEyebrow: "Nivel 04 · Recurrente",
     careTitle: "Care Plan",
     careBody:
@@ -258,7 +264,7 @@ export const es: Translations = {
       {
         question: "Es más de lo que quería gastar.",
         answer:
-          "Justo — veamos qué retorna. Si agrega una venta extra al día a tu AOV, se paga solo en semanas. La pregunta real es el periodo de payback, no el sticker.",
+          "Un tema barato es barato porque no hace nada más que quedarse ahí. No estás pagando por pixeles — estás pagando por una tienda diseñada alrededor de tu marca y construida para vender de verdad. Esa es la diferencia entre un costo y una inversión.",
       },
       {
         question: "¿No puedo simplemente comprar un tema?",

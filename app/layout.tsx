@@ -26,9 +26,9 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bylunalabs.com"),
-  title: "Luna Labs — Revenue Systems for Commerce Brands",
+  title: "Luna Labs — Shopify Storefronts Built to Sell",
   description:
-    "We turn the followers a fashion brand already has into buyers — recovery flows, social proof, and a checkout that doesn't leak.",
+    "We design Shopify storefronts that look like your brand and are built to sell with recovery flows, trust signals, and friction-free checkout.",
   openGraph: {
     siteName: "Luna Labs",
     locale: "en_US",
