@@ -10,14 +10,14 @@ export function TierCards() {
 
   return (
     <section className="px-[clamp(20px,5vw,64px)] pb-[clamp(70px,11vh,120px)]">
-      <ScrollReveal className="mx-auto grid max-w-[1200px] grid-cols-1 gap-0 overflow-hidden rounded-lg border border-line md:grid-cols-3">
+      <ScrollReveal className="mx-auto grid max-w-[1200px] grid-cols-1 gap-0 overflow-hidden rounded-lg border border-line bg-card shadow-[0_14px_30px_-22px_rgba(33,64,143,0.4)] md:grid-cols-3">
         {t.pricing.buildTiers.map((tier, i) => (
           <article
             key={tier.id}
             className={`relative flex flex-col ${
               tier.recommended
-                ? "bg-accent/[0.06] md:-my-px md:border-x md:border-accent/20"
-                : "bg-transparent"
+                ? "bg-surface md:-my-px md:border-x md:border-accent/20"
+                : "bg-card"
             } ${i < t.pricing.buildTiers.length - 1 ? "border-b border-line md:border-b-0 md:border-r md:border-line" : ""}`}
           >
             {tier.recommended && (
@@ -35,7 +35,7 @@ export function TierCards() {
                   </h2>
                 </div>
                 {tier.recommended && (
-                  <span className="shrink-0 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 font-mono text-[9px] uppercase tracking-[0.2em] text-accent">
+                  <span className="shrink-0 rounded-full border border-gold bg-[linear-gradient(135deg,#efd89a_0%,#c6a14e_42%,#9a7a33_60%,#efd89a_100%)] px-3 py-1 font-mono text-[9px] uppercase tracking-[0.2em] text-[#2a2208]">
                     {t.pricing.recommended}
                   </span>
                 )}
@@ -99,7 +99,7 @@ export function TierCards() {
         ))}
       </ScrollReveal>
 
-      <ScrollReveal className="mx-auto mt-10 max-w-[1200px] flex flex-col items-center gap-5 rounded-lg border border-line bg-bone/[0.03] px-[clamp(24px,5vw,60px)] py-[clamp(32px,5vh,52px)] text-center md:flex-row md:justify-between md:text-left">
+      <ScrollReveal className="mx-auto mt-10 max-w-[1200px] flex flex-col items-center gap-5 rounded-lg border border-line bg-card px-[clamp(24px,5vw,60px)] py-[clamp(32px,5vh,52px)] text-center shadow-[0_14px_30px_-22px_rgba(33,64,143,0.4)] md:flex-row md:justify-between md:text-left">
         <div>
           <p className="font-serif text-[clamp(18px,2vw,24px)] font-medium leading-[1.2] tracking-tight">
             {t.pricing.undecidedTitle}

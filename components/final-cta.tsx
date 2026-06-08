@@ -12,9 +12,9 @@ export function FinalCta() {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="relative overflow-hidden border-t border-line px-[clamp(20px,5vw,64px)] py-[clamp(90px,14vh,160px)]"
+      className="relative overflow-hidden border-t border-[#243450] bg-[linear-gradient(150deg,#16243f,#21408f)] px-[clamp(20px,5vw,64px)] py-[clamp(90px,14vh,160px)] text-bone [--accent-dim:#9cc1ee] [--accent:#9cc1ee] [--bone-dim:#aebbd2] [--bone:#ffffff] [--gray:#aebbd2] [--line:#243450]"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_90%_at_50%_120%,rgba(201,184,150,0.12),transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_90%_at_50%_120%,rgba(156,193,238,0.35),transparent_60%)]" />
 
       <div className="relative z-[2] mx-auto grid max-w-[1200px] grid-cols-1 items-start gap-[clamp(48px,8vw,100px)] md:grid-cols-[1fr_1.1fr]">
         <ScrollReveal>

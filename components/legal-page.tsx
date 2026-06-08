@@ -48,7 +48,7 @@ export function LegalPage({ page }: { page: LegalPageKey }) {
         <section className="mx-auto max-w-[900px] px-[clamp(20px,5vw,64px)] pb-[clamp(80px,12vh,140px)]">
           <nav
             aria-label={content.contents}
-            className="mb-16 rounded-lg border border-line bg-bone/[0.03] px-8 py-7"
+            className="mb-16 rounded-lg border border-line bg-card px-8 py-7 shadow-[0_14px_30px_-22px_rgba(33,64,143,0.4)]"
           >
             <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.28em] text-muted">
               {content.contents}
@@ -97,7 +97,7 @@ export function LegalPage({ page }: { page: LegalPageKey }) {
             ))}
           </div>
 
-          <div className="mt-16 rounded-lg border border-line bg-bone/[0.03] px-8 py-6">
+          <div className="mt-16 rounded-lg border border-line bg-card px-8 py-6 shadow-[0_14px_30px_-22px_rgba(33,64,143,0.4)]">
             <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.24em] text-muted">
               {content.alsoWorthReading}
             </p>

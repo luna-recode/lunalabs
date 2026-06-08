@@ -95,9 +95,9 @@ export function ContactForm() {
       <div>
         <label htmlFor="followers" className={labelClass}>{t.forms.followers}</label>
         <select id="followers" name="followers" className={`${inputClass} cursor-pointer`} defaultValue="">
-          <option value="" disabled className="bg-ink">{t.forms.selectRange}</option>
+          <option value="" disabled className="bg-card text-[#15233f]">{t.forms.selectRange}</option>
           {t.forms.followerOptions.map((option) => (
-            <option key={option} value={option} className="bg-ink">
+            <option key={option} value={option} className="bg-card text-[#15233f]">
               {option}
             </option>
           ))}

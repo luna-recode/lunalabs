@@ -62,7 +62,7 @@ export function EmailPopup() {
   return (
     <div className="fixed inset-0 z-[500] flex items-center justify-center p-4">
       <div
-        className="absolute inset-0 bg-ink/70 backdrop-blur-sm"
+        className="absolute inset-0 bg-[#15233f]/35 backdrop-blur-sm"
         onClick={dismiss}
         aria-hidden
       />
@@ -71,14 +71,14 @@ export function EmailPopup() {
         role="dialog"
         aria-modal="true"
         aria-labelledby="popup-heading"
-        className="relative z-10 w-full max-w-[420px] animate-rise overflow-hidden rounded-2xl border border-line bg-ink-2 shadow-2xl"
+        className="relative z-10 w-full max-w-[420px] animate-rise overflow-hidden rounded-2xl border border-line bg-card shadow-[0_14px_30px_-22px_rgba(33,64,143,0.4)]"
       >
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
 
         <button
           onClick={dismiss}
           aria-label={t.popup.close}
-          className="absolute right-4 top-4 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border border-line text-muted transition-colors hover:border-bone/40 hover:text-bone"
+            className="absolute right-4 top-4 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border border-line text-muted transition-colors hover:border-accent/40 hover:text-bone"
         >
           <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden>
             <path d="M1 1l8 8M9 1l-8 8" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
@@ -115,7 +115,7 @@ export function EmailPopup() {
               <form action={formAction} className="mt-6">
                 <input type="hidden" name="locale" value={locale} />
                 <input name="website" tabIndex={-1} aria-hidden="true" autoComplete="off" className="absolute opacity-0 pointer-events-none" />
-                <div className="flex overflow-hidden rounded-xl border border-line bg-bone/[0.04] transition-colors focus-within:border-bone/30">
+                <div className="flex overflow-hidden rounded-xl border border-line bg-surface transition-colors focus-within:border-accent/40">
                   <input
                     type="email"
                     name="email"

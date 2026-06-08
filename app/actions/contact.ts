@@ -73,13 +73,13 @@ export async function submitContact(
       replyTo: email,
       subject: `New inquiry — ${brand} (${name})`,
       html: `
-        <div style="font-family:sans-serif;max-width:560px;margin:0 auto;color:#0a0a0b">
+        <div style="font-family:sans-serif;max-width:560px;margin:0 auto;color:#15233f">
           <h2 style="margin-bottom:4px">${name}</h2>
-          <p style="margin:0;color:#666">${brand}${followers ? ` · ${followers} followers` : ""}</p>
-          <hr style="border:none;border-top:1px solid #eee;margin:20px 0"/>
+          <p style="margin:0;color:#445574">${brand}${followers ? ` · ${followers} followers` : ""}</p>
+          <hr style="border:none;border-top:1px solid #dbe6f4;margin:20px 0"/>
           <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
           ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ""}
-          <hr style="border:none;border-top:1px solid #eee;margin:20px 0"/>
+          <hr style="border:none;border-top:1px solid #dbe6f4;margin:20px 0"/>
           <p style="white-space:pre-wrap">${message}</p>
         </div>
       `,
