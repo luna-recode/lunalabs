@@ -1,21 +1,25 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "@/lib/i18n/context";
 
 const SCROLL_THRESHOLD = 400;
 
 function SkipToMain() {
+  const t = useTranslations();
+
   return (
     <a
       href="#main-content"
       className="sr-only sr-only-focusable left-4 top-4 z-[10000] rounded-lg bg-accent px-4 py-2 text-sm font-medium text-on-accent"
     >
-      Skip to main content
+      {t.common.skipToMain}
     </a>
   );
 }
 
 function BackToTop() {
+  const t = useTranslations();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -28,7 +32,7 @@ function BackToTop() {
   const scrollToHero = () => {
     const hero = document.getElementById("hero");
     const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
+      "(prefers-reduced-motion: reduce)",
     ).matches;
     const behavior = prefersReducedMotion ? "auto" : "smooth";
 
@@ -44,7 +48,7 @@ function BackToTop() {
     <button
       type="button"
       onClick={scrollToHero}
-      aria-label="Back to top"
+      aria-label={t.common.backToTop}
       className={`fixed bottom-6 right-6 z-[150] flex h-11 w-11 items-center justify-center rounded-full border border-line bg-accent text-on-accent shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent-bright focus-visible:outline-offset-4 ${
         visible
           ? "pointer-events-auto translate-y-0 opacity-100"

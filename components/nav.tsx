@@ -4,14 +4,17 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Brand } from "./brand";
 import { CalButton } from "./cal-button";
-
-const links = [
-  { href: "/#works", label: "Works" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/#contact", label: "Contact" },
-];
+import { LocaleSelector } from "./locale-selector";
+import { useTranslations } from "@/lib/i18n/context";
 
 export function Nav() {
+  const t = useTranslations();
+  const links = [
+    { href: "/#works", label: t.nav.works },
+    { href: "/pricing", label: t.nav.pricing },
+    { href: "/#contact", label: t.nav.contact },
+  ];
+
   const [solid, setSolid] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -93,19 +96,26 @@ export function Nav() {
           ))}
         </div>
 
-        <CalButton className="btn-fill hidden cursor-pointer whitespace-nowrap rounded-[30px] border-none px-5 py-[11px] text-[13px] font-medium tracking-wide transition-all hover:-translate-y-px md:block">
-          Book a revenue audit →
-        </CalButton>
+        <div className="hidden items-center md:flex">
+          <div className="mr-4">
+            <LocaleSelector />
+          </div>
+          <CalButton className="btn-fill cursor-pointer whitespace-nowrap rounded-[30px] border-none px-5 py-[11px] text-[13px] font-medium tracking-wide transition-all hover:-translate-y-px">
+            {t.common.bookAudit}
+          </CalButton>
+        </div>
 
-        <button
-          ref={menuButtonRef}
-          type="button"
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
-          aria-controls="mobile-menu"
-          onClick={() => setMenuOpen((o) => !o)}
-          className="relative z-[201] -mr-2 flex h-11 w-11 flex-col items-center justify-center gap-[6px] md:hidden"
-        >
+        <div className="relative z-[201] flex items-center gap-3 md:hidden">
+          <LocaleSelector />
+          <button
+            ref={menuButtonRef}
+            type="button"
+            aria-label={menuOpen ? t.nav.closeMenu : t.nav.openMenu}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setMenuOpen((o) => !o)}
+            className="-mr-2 flex h-11 w-11 flex-col items-center justify-center gap-[6px]"
+          >
           <span
             aria-hidden
             className={`h-px w-5 bg-bone transition-all duration-300 ${
@@ -124,7 +134,8 @@ export function Nav() {
               menuOpen ? "-translate-y-[7px] -rotate-45" : ""
             }`}
           />
-        </button>
+          </button>
+        </div>
       </nav>
 
       <div
@@ -155,13 +166,13 @@ export function Nav() {
               onClick={close}
               className="btn-fill cursor-pointer rounded-[32px] border-none px-[28px] py-[15px] text-sm font-medium transition-all active:scale-95"
             >
-              Book a revenue audit →
+              {t.common.bookAudit}
             </CalButton>
           </div>
         </div>
 
         <p className="pb-10 text-center font-mono text-[10px] uppercase tracking-[0.22em] text-muted">
-          Revenue systems · Orange County, CA
+          {t.nav.mobileTagline}
         </p>
       </div>
     </>

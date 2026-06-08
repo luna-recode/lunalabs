@@ -1,6 +1,11 @@
+"use client";
+
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { useTranslations } from "@/lib/i18n/context";
 
 export function PricingHero() {
+  const t = useTranslations();
+
   return (
     <section
       id="hero"
@@ -13,17 +18,15 @@ export function PricingHero() {
         <ScrollReveal>
           <div className="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.32em] text-accent-dim">
             <span className="h-px w-[34px] bg-accent-dim" />
-            Pricing & positioning
+            {t.pricing.heroEyebrow}
           </div>
           <h1 className="max-w-[14ch] font-serif text-[clamp(36px,6vw,72px)] font-medium leading-[1.02] tracking-tight">
-            Four rungs.
+            {t.pricing.heroTitleLine1}
             <br />
-            <span className="italic text-accent">Each one a conversion lever.</span>
+            <span className="italic text-accent">{t.pricing.heroTitleLine2}</span>
           </h1>
           <p className="mt-7 max-w-[52ch] text-[clamp(15px,1.5vw,18px)] font-light leading-[1.6] text-bone-dim">
-            Essential gets the brand online without leaking sales. Everything above
-            it adds a specific mechanism to make the existing audience spend more.
-            We always show three build tiers together — most clients land on Growth.
+            {t.pricing.heroBody}
           </p>
         </ScrollReveal>
       </div>

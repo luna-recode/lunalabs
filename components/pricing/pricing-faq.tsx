@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { ScrollReveal } from "@/components/scroll-reveal";
-import { faqs } from "@/lib/pricing-data";
+import { useTranslations } from "@/lib/i18n/context";
 
 export function PricingFaq() {
+  const t = useTranslations();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -15,18 +16,18 @@ export function PricingFaq() {
       <div className="mx-auto max-w-[800px]">
         <ScrollReveal className="mb-[clamp(40px,6vh,56px)] text-center">
           <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-muted">
-            Before you ask
+            {t.pricing.faqEyebrow}
           </span>
           <h2
             id="faq-heading"
             className="mt-4 font-serif text-[clamp(28px,4vw,42px)] font-medium leading-[1.1] tracking-tight"
           >
-            The reframes we use on every call
+            {t.pricing.faqHeading}
           </h2>
         </ScrollReveal>
 
         <ScrollReveal className="divide-y divide-line overflow-hidden rounded-lg border border-line">
-          {faqs.map((faq, i) => {
+          {t.pricing.faqs.map((faq, i) => {
             const open = openIndex === i;
             const triggerId = `faq-trigger-${i}`;
             const panelId = `faq-panel-${i}`;
@@ -52,7 +53,7 @@ export function PricingFaq() {
                   >
                     +
                   </span>
-                  <span className="sr-only">{open ? "Collapse" : "Expand"}</span>
+                  <span className="sr-only">{open ? t.pricing.collapse : t.pricing.expand}</span>
                 </button>
                 <div
                   id={panelId}

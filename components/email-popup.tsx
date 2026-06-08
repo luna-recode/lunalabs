@@ -3,11 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import { useActionState } from "react";
 import { subscribeEmail, type SubscribeState } from "@/app/actions/subscribe";
+import { useLocale, useTranslations } from "@/lib/i18n/context";
 
 const STORAGE_KEY = "ll_popup_v1";
 const COOLDOWN_DAYS = 7;
 
 export function EmailPopup() {
+  const { locale } = useLocale();
+  const t = useTranslations();
   const [visible, setVisible] = useState(false);
   const triggered = useRef(false);
   const [state, formAction, pending] = useActionState<SubscribeState, FormData>(
@@ -42,12 +45,11 @@ export function EmailPopup() {
     };
   }, []);
 
-  // Auto-close 2.5 s after success
   useEffect(() => {
     if (state?.status !== "success") return;
     localStorage.setItem(STORAGE_KEY, String(Date.now()));
-    const t = setTimeout(() => setVisible(false), 2500);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => setVisible(false), 2500);
+    return () => clearTimeout(timer);
   }, [state]);
 
   const dismiss = () => {
@@ -59,27 +61,23 @@ export function EmailPopup() {
 
   return (
     <div className="fixed inset-0 z-[500] flex items-end justify-center p-4 sm:items-center">
-      {/* Backdrop */}
       <div
         className="absolute inset-0 bg-ink/70 backdrop-blur-sm"
         onClick={dismiss}
         aria-hidden
       />
 
-      {/* Panel */}
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="popup-heading"
         className="relative z-10 w-full max-w-[420px] animate-rise overflow-hidden rounded-2xl border border-line bg-ink-2 shadow-2xl"
       >
-        {/* Gold accent hairline */}
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
 
-        {/* Close */}
         <button
           onClick={dismiss}
-          aria-label="Close"
+          aria-label={t.popup.close}
           className="absolute right-4 top-4 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border border-line text-muted transition-colors hover:border-bone/40 hover:text-bone"
         >
           <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden>
@@ -88,7 +86,6 @@ export function EmailPopup() {
         </button>
 
         <div className="p-8">
-          {/* Moon mark */}
           <img
             src="/luna-labs-moon.svg"
             alt=""
@@ -98,9 +95,9 @@ export function EmailPopup() {
 
           {state?.status === "success" ? (
             <div className="py-4 text-center">
-              <p className="font-serif text-[22px] font-medium">You&apos;re in. ✦</p>
+              <p className="font-serif text-[22px] font-medium">{t.popup.successTitle}</p>
               <p className="mt-2 text-sm font-light text-bone-dim">
-                We&apos;ll be in your inbox soon — no fluff, just revenue signals.
+                {t.popup.successBody}
               </p>
             </div>
           ) : (
@@ -109,13 +106,14 @@ export function EmailPopup() {
                 id="popup-heading"
                 className="font-serif text-[22px] font-medium leading-[1.15] tracking-tight"
               >
-                Get more revenue from the store you already have.
+                {t.popup.title}
               </h2>
               <p className="mt-2.5 text-[14px] font-light leading-[1.6] text-bone-dim">
-                We send occasional breakdowns on Shopify, email flows, and conversion — the exact moves our clients use. No pitch decks. Unsubscribe any time.
+                {t.popup.body}
               </p>
 
               <form action={formAction} className="mt-6">
+                <input type="hidden" name="locale" value={locale} />
                 <div className="flex overflow-hidden rounded-xl border border-line bg-bone/[0.04] transition-colors focus-within:border-bone/30">
                   <input
                     type="email"
@@ -128,7 +126,7 @@ export function EmailPopup() {
                     type="submit"
                     disabled={pending}
                     className="shrink-0 cursor-pointer bg-transparent px-4 text-muted transition-colors hover:text-bone disabled:opacity-40"
-                    aria-label="Subscribe"
+                    aria-label={t.forms.subscribe}
                   >
                     {pending ? (
                       <span className="block h-3.5 w-3.5 animate-spin rounded-full border border-muted border-t-bone" />
@@ -148,7 +146,7 @@ export function EmailPopup() {
               </form>
 
               <p className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
-                No spam · Unsubscribe any time
+                {t.popup.noSpam}
               </p>
             </>
           )}

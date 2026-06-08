@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Outfit, Space_Mono } from "next/font/google";
-import { SkipLink } from "@/components/skip-link";
 import { EmailPopup } from "@/components/email-popup";
+import { LocaleProvider } from "@/lib/i18n/context";
+import { SkipLink } from "@/components/skip-link";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -27,6 +28,9 @@ export const metadata: Metadata = {
   title: "Luna Labs — Revenue Systems for Commerce Brands",
   description:
     "We turn the followers a fashion brand already has into buyers — recovery flows, social proof, and a checkout that doesn't leak.",
+  appleWebApp: {
+    title: "Luna Labs",
+  },
 };
 
 export default function RootLayout({
@@ -40,9 +44,11 @@ export default function RootLayout({
       className={`${cormorant.variable} ${outfit.variable} ${spaceMono.variable} scroll-smooth`}
     >
       <body className="grain antialiased">
-        <SkipLink />
-        {children}
-        <EmailPopup />
+        <LocaleProvider>
+          <SkipLink />
+          {children}
+          <EmailPopup />
+        </LocaleProvider>
       </body>
     </html>
   );

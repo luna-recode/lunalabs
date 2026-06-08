@@ -1,3 +1,7 @@
+"use client";
+
+import { useTranslations } from "@/lib/i18n/context";
+
 type RoiRow = {
   label: string;
   now: string;
@@ -17,6 +21,7 @@ export function RoiTable({
   totalAfter,
   variant = "default",
 }: RoiTableProps) {
+  const t = useTranslations();
   const borderClass = variant === "surface" ? "border-line-d" : "border-line";
   const wrapperClass =
     variant === "surface"
@@ -26,28 +31,26 @@ export function RoiTable({
 
   return (
     <table className={`w-full ${wrapperClass} border-collapse`}>
-      <caption className="sr-only">
-        Monthly revenue comparison before and after implementing a revenue system
-      </caption>
+      <caption className="sr-only">{t.roiTable.caption}</caption>
       <thead>
         <tr className={`border-b ${borderClass}`}>
           <th
             scope="col"
             className="px-[22px] py-4 text-left font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted"
           >
-            Per month
+            {t.roiTable.perMonth}
           </th>
           <th
             scope="col"
             className="px-[22px] py-4 text-right font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted"
           >
-            Now
+            {t.roiTable.now}
           </th>
           <th
             scope="col"
             className="px-[22px] py-4 text-right font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted"
           >
-            After
+            {t.roiTable.after}
           </th>
         </tr>
       </thead>
@@ -59,18 +62,18 @@ export function RoiTable({
             </th>
             <td className="px-[22px] py-4 text-right text-muted">{row.now}</td>
             <td className="px-[22px] py-4 text-right font-medium text-accent">
-              <span className="sr-only">Improved: </span>
+              <span className="sr-only">{t.common.improved}</span>
               {row.after}
             </td>
           </tr>
         ))}
         <tr className={`bg-accent/[0.06] font-serif text-[17px] ${rowTextClass}`}>
           <th scope="row" className="px-[22px] py-4 text-left font-normal">
-            Monthly revenue
+            {t.roiTable.monthlyRevenue}
           </th>
           <td className="px-[22px] py-4 text-right text-muted">{totalNow}</td>
           <td className="px-[22px] py-4 text-right text-[19px] font-medium text-accent">
-            <span className="sr-only">Improved: </span>
+            <span className="sr-only">{t.common.improved}</span>
             {totalAfter}
           </td>
         </tr>

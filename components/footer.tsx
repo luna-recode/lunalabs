@@ -1,21 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { CalButton } from "./cal-button";
 import { Brand } from "./brand";
 import { SubscribeForm } from "./subscribe-form";
-
-const services = [
-  "Shopify Storefronts",
-  "Klaviyo Email Flows",
-  "Checkout Optimization",
-  "Paid Social & Ads",
-  "Monthly Care Plans",
-];
-
-const navigate = [
-  { href: "/#works", label: "Works" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/#contact", label: "Contact" },
-];
+import { useTranslations } from "@/lib/i18n/context";
 
 const socials = [
   {
@@ -50,23 +39,27 @@ const socials = [
   },
 ];
 
-
 export function Footer() {
+  const t = useTranslations();
+  const navigate = [
+    { href: "/#works", label: t.nav.works },
+    { href: "/pricing", label: t.nav.pricing },
+    { href: "/#contact", label: t.nav.contact },
+  ];
+
   return (
     <footer className="border-t border-line bg-ink-2">
-      {/* Main grid */}
       <div className="mx-auto max-w-[1400px] px-[clamp(20px,5vw,64px)] py-[clamp(60px,10vh,100px)]">
         <div className="grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-[1.3fr_1fr_0.8fr_1fr] lg:gap-12">
-
-          {/* Col 1 — Brand: full width on mobile, 1 col on desktop */}
           <div className="col-span-2 flex flex-col gap-7 lg:col-span-1">
             <div>
               <p className="mb-5 font-serif text-[clamp(22px,2.6vw,30px)] font-medium leading-[1.1] tracking-tight">
-                Let&apos;s talk<br />
-                <em className="italic">revenue.</em>
+                {t.footer.headingLine1}
+                <br />
+                <em className="italic">{t.footer.headingEmphasis}</em>
               </p>
               <CalButton className="cursor-pointer rounded-[30px] border border-line bg-transparent px-5 py-[11px] text-[13px] font-medium text-bone transition-all hover:border-accent hover:bg-accent/[0.06]">
-                Book a revenue audit →
+                {t.common.bookAudit}
               </CalButton>
             </div>
             <Link href="/" className="w-fit transition-opacity hover:opacity-70">
@@ -79,24 +72,22 @@ export function Footer() {
             />
           </div>
 
-          {/* Col 2 — What We Build */}
           <div>
             <h2 className="mb-5 font-mono text-[10px] uppercase tracking-[0.24em] text-muted">
-              What We Build
+              {t.footer.whatWeBuild}
             </h2>
             <ul className="space-y-3">
-              {services.map((s) => (
-                <li key={s} className="text-sm font-light text-bone-dim">
-                  {s}
+              {t.footer.services.map((service) => (
+                <li key={service} className="text-sm font-light text-bone-dim">
+                  {service}
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Col 3 — Navigate */}
           <div>
             <h2 className="mb-5 font-mono text-[10px] uppercase tracking-[0.24em] text-muted">
-              Navigate
+              {t.footer.navigate}
             </h2>
             <ul className="space-y-3">
               {navigate.map((link) => (
@@ -112,10 +103,9 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Col 4 — Get In Touch: full width on mobile, 1 col on desktop */}
           <div className="col-span-2 lg:col-span-1">
             <h2 className="mb-5 font-mono text-[10px] uppercase tracking-[0.24em] text-muted">
-              Get In Touch
+              {t.footer.getInTouch}
             </h2>
             <ul className="space-y-3">
               <li>
@@ -134,48 +124,43 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Bottom strip */}
       <div className="border-t border-line">
         <div className="mx-auto flex max-w-[1400px] flex-col items-center gap-6 px-[clamp(20px,5vw,64px)] py-10">
-
-          {/* Social icons */}
           <div className="flex items-center gap-5">
-            {socials.map((s) => (
+            {socials.map((social) => (
               <a
-                key={s.label}
-                href={s.href}
+                key={social.label}
+                href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={s.label}
+                aria-label={social.label}
                 className="text-muted transition-colors hover:text-accent"
               >
-                {s.icon}
+                {social.icon}
               </a>
             ))}
           </div>
 
-          {/* Subscribe */}
           <div className="flex flex-col items-center gap-3">
             <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-muted">
-              Subscribe to our emails
+              {t.footer.subscribe}
             </p>
             <SubscribeForm />
           </div>
         </div>
 
-        {/* Copyright bar */}
         <div className="border-t border-line px-[clamp(20px,5vw,64px)] py-5">
           <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-3 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
-            <span>© 2026 · Luna Labs · Orange County, CA</span>
+            <span>{t.footer.copyright}</span>
             <div className="flex gap-5">
               <a href="/terms" className="transition-colors hover:text-accent">
-                Terms &amp; Conditions
+                {t.footer.terms}
               </a>
               <a href="/accessibility" className="transition-colors hover:text-accent">
-                Accessibility
+                {t.footer.accessibility}
               </a>
               <a href="/privacy" className="transition-colors hover:text-accent">
-                Privacy Policy
+                {t.footer.privacy}
               </a>
             </div>
           </div>

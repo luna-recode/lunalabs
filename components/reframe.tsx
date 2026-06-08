@@ -1,6 +1,11 @@
+"use client";
+
 import { ScrollReveal } from "./scroll-reveal";
+import { useTranslations } from "@/lib/i18n/context";
 
 export function Reframe() {
+  const t = useTranslations();
+
   return (
     <section
       aria-labelledby="reframe-heading"
@@ -8,16 +13,17 @@ export function Reframe() {
     >
       <ScrollReveal className="mx-auto max-w-[1100px]">
         <div className="mb-[30px] font-mono text-[11px] uppercase tracking-[0.28em] text-accent-dim">
-          The one idea everything rests on
+          {t.reframe.eyebrow}
         </div>
         <h2
           id="reframe-heading"
           className="font-serif text-[clamp(30px,4.6vw,62px)] font-medium leading-[1.08] tracking-tight"
         >
-          A theme changes how it{" "}
-          <em className="reframe-em relative italic">looks.</em>
+          {t.reframe.titleBeforeLooks}
+          <em className="reframe-em relative italic">{t.reframe.looks}</em>
           <br />
-          We change how it <em className="reframe-em relative italic">earns.</em>
+          {t.reframe.titleBeforeEarns}
+          <em className="reframe-em relative italic">{t.reframe.earns}</em>
         </h2>
       </ScrollReveal>
     </section>

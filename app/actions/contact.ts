@@ -2,14 +2,17 @@
 
 import { Resend } from "resend";
 import { z } from "zod";
+import { translations } from "@/lib/i18n/translations";
+import type { Locale } from "@/lib/i18n/types";
 
 const schema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email("Valid email required"),
+  name: z.string().min(1),
+  email: z.string().email(),
   phone: z.string().optional(),
-  brand: z.string().min(1, "Brand name is required"),
+  brand: z.string().min(1),
   followers: z.string().optional(),
-  message: z.string().min(1, "Message is required"),
+  message: z.string().min(1),
+  locale: z.enum(["en", "es"]).optional(),
 });
 
 export type ContactState = {
@@ -17,14 +20,20 @@ export type ContactState = {
   message: string;
 } | null;
 
+function getLocale(value: FormDataEntryValue | null): Locale {
+  return value === "es" ? "es" : "en";
+}
+
 export async function submitContact(
   _prev: ContactState,
   formData: FormData,
 ): Promise<ContactState> {
+  const locale = getLocale(formData.get("locale"));
+  const t = translations[locale].forms;
   const result = schema.safeParse(Object.fromEntries(formData));
 
   if (!result.success) {
-    return { status: "error", message: "Please fill in all required fields." };
+    return { status: "error", message: t.contactRequiredError };
   }
 
   const { name, email, phone, brand, followers, message } = result.data;
@@ -50,8 +59,8 @@ export async function submitContact(
       `,
     });
 
-    return { status: "success", message: "Got it — we'll be in touch within 24 hours." };
+    return { status: "success", message: t.contactSuccess };
   } catch {
-    return { status: "error", message: "Something went wrong. Please try again or email us directly." };
+    return { status: "error", message: t.contactGenericError };
   }
 }
