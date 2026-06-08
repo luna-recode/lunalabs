@@ -26,7 +26,7 @@ export function PricingFaq() {
           </h2>
         </ScrollReveal>
 
-        <ScrollReveal className="divide-y divide-line overflow-hidden rounded-lg border border-line">
+        <ScrollReveal className="divide-y divide-line overflow-hidden rounded-lg border border-line bg-card shadow-[0_14px_30px_-22px_rgba(33,64,143,0.4)]">
           {t.pricing.faqs.map((faq, i) => {
             const open = openIndex === i;
             const triggerId = `faq-trigger-${i}`;
@@ -38,7 +38,7 @@ export function PricingFaq() {
                   type="button"
                   id={triggerId}
                   onClick={() => setOpenIndex(open ? null : i)}
-                  className="flex w-full cursor-pointer items-start justify-between gap-6 px-6 py-5 text-left transition-colors hover:bg-bone/[0.03]"
+                  className="flex w-full cursor-pointer items-start justify-between gap-6 px-6 py-5 text-left transition-colors hover:bg-surface"
                   aria-expanded={open}
                   aria-controls={panelId}
                 >

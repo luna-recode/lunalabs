@@ -25,8 +25,8 @@ export function RoiTable({
   const borderClass = variant === "surface" ? "border-line-d" : "border-line";
   const wrapperClass =
     variant === "surface"
-      ? "overflow-hidden rounded-lg border border-line-d bg-card"
-      : "overflow-hidden rounded-lg border border-line bg-bone/[0.02]";
+      ? "overflow-hidden rounded-lg border border-line-d bg-card shadow-[0_14px_30px_-22px_rgba(33,64,143,0.4)]"
+      : "overflow-hidden rounded-lg border border-line bg-card shadow-[0_14px_30px_-22px_rgba(33,64,143,0.4)]";
   const rowTextClass = variant === "surface" ? "text-bone" : "";
 
   return (
@@ -61,18 +61,18 @@ export function RoiTable({
               {row.label}
             </th>
             <td className="px-3 py-3 text-right text-muted sm:px-[22px] sm:py-4">{row.now}</td>
-            <td className="px-3 py-3 text-right font-medium text-accent sm:px-[22px] sm:py-4">
+            <td className="px-3 py-3 text-right font-medium text-gold sm:px-[22px] sm:py-4">
               <span className="sr-only">{t.common.improved}</span>
               {row.after}
             </td>
           </tr>
         ))}
-        <tr className={`bg-accent/[0.06] font-serif text-[17px] ${rowTextClass}`}>
+        <tr className={`bg-surface font-serif text-[17px] ${rowTextClass}`}>
           <th scope="row" className="px-3 py-3 text-left font-normal sm:px-[22px] sm:py-4">
             {t.roiTable.monthlyRevenue}
           </th>
           <td className="px-3 py-3 text-right text-muted sm:px-[22px] sm:py-4">{totalNow}</td>
-          <td className="px-3 py-3 text-right text-[17px] font-medium text-accent sm:px-[22px] sm:py-4 sm:text-[19px]">
+          <td className="px-3 py-3 text-right text-[17px] font-medium text-gold sm:px-[22px] sm:py-4 sm:text-[19px]">
             <span className="sr-only">{t.common.improved}</span>
             {totalAfter}
           </td>

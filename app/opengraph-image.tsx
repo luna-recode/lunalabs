@@ -25,7 +25,7 @@ export default async function Image() {
           width: 1200,
           height: 630,
           display: "flex",
-          background: "#030304",
+          background: "#f4f8fd",
           overflow: "hidden",
           position: "relative",
         }}
@@ -39,7 +39,7 @@ export default async function Image() {
             width: 480,
             height: 480,
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(201,184,150,0.11) 0%, rgba(201,184,150,0) 70%)",
+            background: "radial-gradient(circle, rgba(47,99,214,0.16) 0%, rgba(47,99,214,0) 70%)",
             display: "flex",
           }}
         />
@@ -50,7 +50,7 @@ export default async function Image() {
             position: "absolute",
             right: -80,
             top: 60,
-            opacity: 0.07,
+            opacity: 0.1,
             display: "flex",
           }}
         >
@@ -65,7 +65,7 @@ export default async function Image() {
             left: 0,
             right: 0,
             height: 1,
-            background: "linear-gradient(to right, transparent, rgba(201,184,150,0.5), transparent)",
+            background: "linear-gradient(to right, transparent, rgba(198,161,78,0.55), transparent)",
             display: "flex",
           }}
         />
@@ -90,7 +90,7 @@ export default async function Image() {
                   fontFamily: "Cormorant, Georgia, serif",
                   fontSize: 26,
                   fontWeight: 500,
-                  color: "#f7f6f3",
+                  color: "#15233f",
                   lineHeight: 1,
                 }}
               >
@@ -100,7 +100,7 @@ export default async function Image() {
                 style={{
                   fontFamily: "monospace",
                   fontSize: 11,
-                  color: "#8a7d62",
+                  color: "#21408f",
                   letterSpacing: "0.34em",
                   textTransform: "uppercase",
                   lineHeight: 1,
@@ -119,7 +119,7 @@ export default async function Image() {
                 style={{
                   width: 32,
                   height: 1,
-                  background: "#8a7d62",
+                  background: "#21408f",
                   display: "flex",
                 }}
               />
@@ -127,7 +127,7 @@ export default async function Image() {
                 style={{
                   fontFamily: "monospace",
                   fontSize: 11,
-                  color: "#8a7d62",
+                  color: "#21408f",
                   letterSpacing: "0.28em",
                   textTransform: "uppercase",
                 }}
@@ -142,7 +142,7 @@ export default async function Image() {
                 fontFamily: "Cormorant, Georgia, serif",
                 fontSize: 98,
                 fontWeight: 500,
-                color: "#f7f6f3",
+                color: "#15233f",
                 lineHeight: 0.93,
                 letterSpacing: "-0.02em",
               }}
@@ -155,7 +155,7 @@ export default async function Image() {
                 fontSize: 98,
                 fontWeight: 500,
                 fontStyle: "italic",
-                color: "#c9b896",
+                color: "#2f63d6",
                 lineHeight: 0.93,
                 letterSpacing: "-0.02em",
               }}
@@ -170,7 +170,7 @@ export default async function Image() {
               style={{
                 fontFamily: "monospace",
                 fontSize: 12,
-                color: "#a8a6a0",
+                color: "#445574",
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
               }}
@@ -181,7 +181,7 @@ export default async function Image() {
               style={{
                 width: 44,
                 height: 1,
-                background: "rgba(201,184,150,0.35)",
+                background: "rgba(198,161,78,0.35)",
                 display: "flex",
               }}
             />

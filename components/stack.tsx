@@ -42,11 +42,11 @@ export function Stack() {
         </h2>
       </ScrollReveal>
 
-      <ScrollReveal className="mx-auto grid max-w-[1100px] grid-cols-1 overflow-hidden rounded-md border border-line md:grid-cols-3">
+      <ScrollReveal className="mx-auto grid max-w-[1100px] grid-cols-1 overflow-hidden rounded-md border border-line bg-card shadow-[0_14px_30px_-22px_rgba(33,64,143,0.4)] md:grid-cols-3">
         {t.stack.tools.map((tool, i) => (
           <div
             key={tool.name}
-            className={`flex flex-col items-center gap-3 px-7 py-[clamp(24px,4vw,40px)] text-center transition-colors hover:bg-bone/[0.04] ${
+            className={`flex flex-col items-center gap-3 px-7 py-[clamp(24px,4vw,40px)] text-center transition-colors hover:bg-surface ${
               i < t.stack.tools.length - 1 ? "border-b border-line md:border-b-0 md:border-r md:border-line" : ""
             }`}
           >

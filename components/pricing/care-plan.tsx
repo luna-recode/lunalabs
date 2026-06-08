@@ -28,7 +28,7 @@ export function CarePlan() {
           </p>
         </div>
 
-        <div className="overflow-hidden rounded-lg border border-line">
+        <div className="overflow-hidden rounded-lg border border-line bg-card shadow-[0_14px_30px_-22px_rgba(33,64,143,0.4)]">
           <div className="grid grid-cols-1 border-b border-line md:grid-cols-3">
             {t.pricing.careTiers.map((tier, i) => (
               <div

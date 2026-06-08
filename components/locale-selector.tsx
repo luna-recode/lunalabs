@@ -72,7 +72,7 @@ export function LocaleSelector() {
         <ul
           role="listbox"
           aria-label={t.language.label}
-          className="absolute right-0 top-[calc(100%+8px)] z-[250] min-w-[148px] overflow-hidden rounded-xl border border-line bg-ink-2 py-1 shadow-[0_16px_40px_rgba(0,0,0,0.45)]"
+          className="absolute right-0 top-[calc(100%+8px)] z-[250] min-w-[148px] overflow-hidden rounded-xl border border-line bg-card py-1 shadow-[0_14px_30px_-22px_rgba(33,64,143,0.4)]"
         >
           {LOCALES.map((item) => {
             const selected = locale === item.code;

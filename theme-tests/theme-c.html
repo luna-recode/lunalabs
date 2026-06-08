@@ -9,36 +9,36 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
   :root{
-    --void:#030304;--base:#0a0a0c;--elevated:#111114;--card:#16161a;
-    --text:#f7f6f3;--text-soft:#a8a6a0;--text-faint:#5e5c58;
-    --champagne:#c9b896;--champagne-dim:#8a7d62;--silver:#d4d2ce;
-    --line:rgba(247,246,243,.08);--line-accent:rgba(201,184,150,.22);
+    --void:#f4f8fd;--base:#ffffff;--elevated:#e9f1fb;--card:#ffffff;
+    --text:#15233f;--text-soft:#445574;--text-faint:#8595b1;
+    --champagne:#c6a14e;--champagne-dim:#21408f;--silver:#9cc1ee;
+    --line:#dbe6f4;--line-accent:rgba(47,99,214,.24);
     --serif:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',sans-serif;--mono:'Space Mono',monospace;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{font-family:var(--sans);background:var(--void);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  .theme-bar{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;align-items:center;justify-content:center;gap:6px;padding:8px 16px;background:rgba(3,3,4,.92);border-bottom:1px solid var(--line);backdrop-filter:blur(20px);font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase}
+  .theme-bar{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;align-items:center;justify-content:center;gap:6px;padding:8px 16px;background:rgba(244,248,253,.92);border-bottom:1px solid var(--line);backdrop-filter:blur(20px);font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase}
   .theme-bar a{color:var(--text-faint);text-decoration:none;padding:6px 12px;border-radius:2px;border:1px solid transparent;transition:.2s}
   .theme-bar a:hover{color:var(--text)}
   .theme-bar a.active{color:var(--void);background:var(--champagne);border-color:var(--champagne)}
   .theme-bar span{color:var(--text-faint);margin:0 4px}
   nav{position:fixed;top:36px;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:24px clamp(28px,6vw,80px);transition:.4s}
-  nav.solid{background:rgba(3,3,4,.9);backdrop-filter:blur(24px);border-bottom:1px solid var(--line);padding:18px clamp(28px,6vw,80px)}
+  nav.solid{background:rgba(244,248,253,.9);backdrop-filter:blur(24px);border-bottom:1px solid var(--line);padding:18px clamp(28px,6vw,80px)}
   .brand{font-family:var(--serif);font-size:26px;font-weight:400;display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;letter-spacing:.04em}
   .brand img{width:30px;height:30px;opacity:.9}
   .brand b{font-family:var(--mono);font-size:8px;letter-spacing:.36em;color:var(--champagne-dim);text-transform:uppercase;font-weight:400}
   .navlinks{display:flex;gap:48px;font-size:12px;font-weight:400;letter-spacing:.08em;text-transform:uppercase}
   .navlinks a{color:var(--text-soft);text-decoration:none;transition:.3s}
   .navlinks a:hover{color:var(--champagne)}
-  .btn-primary{font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--void);background:var(--champagne);border:none;padding:16px 32px;border-radius:0;cursor:pointer;transition:.35s;white-space:nowrap}
-  .btn-primary:hover{background:var(--text);letter-spacing:.16em}
+  .btn-primary{font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#2a2208;background:linear-gradient(135deg,#efd89a 0%,#c6a14e 42%,#9a7a33 60%,#efd89a 100%);border:none;padding:16px 32px;border-radius:0;cursor:pointer;transition:.35s;white-space:nowrap}
+  .btn-primary:hover{background:linear-gradient(135deg,#efd89a 0%,#c6a14e 42%,#9a7a33 60%,#efd89a 100%);letter-spacing:.16em}
   .btn-ghost{font-size:12px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--text-soft);background:transparent;border:1px solid var(--line);padding:16px 32px;border-radius:0;cursor:pointer;transition:.35s}
   .btn-ghost:hover{color:var(--text);border-color:var(--line-accent)}
   .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;padding-top:36px;overflow:hidden}
   .hero-line{position:absolute;top:50%;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--line) 20%,var(--line) 80%,transparent);z-index:1}
   .hero-vignette{position:absolute;inset:0;z-index:0;background:
-    radial-gradient(ellipse 100% 80% at 50% 0%,rgba(201,184,150,.04),transparent 50%),
+    radial-gradient(ellipse 100% 80% at 50% 0%,rgba(47,99,214,.16),transparent 50%),
     radial-gradient(ellipse 60% 40% at 80% 60%,rgba(255,255,255,.02),transparent 40%),
     var(--void)}
   .hero-inner{position:relative;z-index:3;width:100%;padding:0 clamp(28px,6vw,80px) clamp(72px,10vh,110px)}
@@ -65,7 +65,7 @@
   .tools{max-width:1400px;margin:0 auto}
   .tool{display:grid;grid-template-columns:80px 1fr 2fr;gap:32px;align-items:center;padding:40px 0;border-top:1px solid var(--line);transition:.3s}
   .tool:last-child{border-bottom:1px solid var(--line)}
-  .tool:hover{padding-left:16px;background:linear-gradient(90deg,rgba(201,184,150,.04),transparent)}
+  .tool:hover{padding-left:16px;background:linear-gradient(90deg,rgba(156,193,238,.3),transparent)}
   .tool .idx{font-family:var(--mono);font-size:9px;color:var(--text-faint);letter-spacing:.2em}
   .tool .logo-wrap{display:flex;align-items:center;justify-content:center;height:48px}
   .tool .logo{height:32px;opacity:.5;filter:grayscale(1) brightness(1.4);transition:.4s}
@@ -83,7 +83,7 @@
   .napkin .row.h{font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-faint)}
   .napkin .row .now{color:var(--text-faint);text-align:right}
   .napkin .row .aft{color:var(--champagne);font-weight:500;text-align:right}
-  .napkin .row.tot{background:rgba(201,184,150,.06);font-family:var(--serif);font-size:20px}
+  .napkin .row.tot{background:#e9f1fb;font-family:var(--serif);font-size:20px}
   .final{padding:clamp(120px,18vh,220px) clamp(28px,6vw,80px);text-align:center;position:relative;background:var(--void)}
   .final-frame{max-width:900px;margin:0 auto;padding:clamp(60px,10vh,100px) clamp(32px,6vw,80px);border:1px solid var(--line-accent);position:relative}
   .final-frame::before,.final-frame::after{content:"";position:absolute;width:12px;height:12px;border-color:var(--champagne);border-style:solid}
