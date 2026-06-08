@@ -11,19 +11,19 @@ const tools = [
   },
   {
     name: "Klaviyo",
-    showName: false,
+    showName: true,
     role: "The recovery layer. Welcome, abandoned-cart & post-purchase flows that print money.",
-    logo: "/klaviyo-logo.svg",
-    logoClass: "h-10 w-auto max-w-[120px]",
+    logo: "/klaviyo-icon.svg",
+    logoClass: "h-10 w-auto",
     filterClass: "invert",
   },
   {
     name: "Google Analytics",
-    showName: false,
+    showName: true,
     role: "The proof. GA4 + clear reporting so results are visible from week one.",
-    logo: "/google-analytics.svg",
-    logoClass: "h-10 w-auto max-w-[130px]",
-    filterClass: "brightness-0 invert",
+    logo: "/google_analytics-icon.svg",
+    logoClass: "h-10 w-auto",
+    filterClass: "",
   },
 ];
 

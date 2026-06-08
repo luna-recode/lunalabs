@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theme B — Agency · Luna Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08080f;--surface:#0f0f1a;--surface-2:#161625;
+    --text:#eef0ff;--text-dim:#9498b8;--text-muted:#5c6080;
+    --indigo:#4f46e5;--indigo-deep:#312e81;--indigo-light:#818cf8;--indigo-glow:rgba(79,70,229,.35);
+    --line:rgba(129,140,248,.14);--line-strong:rgba(129,140,248,.28);
+    --serif:'Instrument Serif',Georgia,serif;--sans:'Inter',sans-serif;--mono:'IBM Plex Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .theme-bar{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;align-items:center;justify-content:center;gap:6px;padding:8px 16px;background:rgba(8,8,15,.95);border-bottom:1px solid var(--line);backdrop-filter:blur(16px);font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+  .theme-bar a{color:var(--text-muted);text-decoration:none;padding:6px 12px;border-radius:20px;border:1px solid transparent;transition:.2s}
+  .theme-bar a:hover{color:var(--text)}
+  .theme-bar a.active{color:#fff;background:var(--indigo);border-color:var(--indigo)}
+  .theme-bar span{color:var(--text-muted);margin:0 4px}
+  nav{position:fixed;top:36px;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(24px,5vw,72px);transition:.3s}
+  nav.solid{background:rgba(8,8,15,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:14px clamp(24px,5vw,72px)}
+  .brand{font-family:var(--serif);font-size:22px;display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;letter-spacing:-.01em}
+  .brand img{width:34px;height:34px}
+  .brand b{font-family:var(--mono);font-size:10px;letter-spacing:.28em;color:var(--indigo-light);text-transform:uppercase;font-weight:500}
+  .navlinks{display:flex;gap:40px;font-size:13px;font-weight:500}
+  .navlinks a{color:var(--text-dim);text-decoration:none;transition:.25s}
+  .navlinks a:hover{color:var(--indigo-light)}
+  .btn-primary{font-family:var(--sans);font-size:13px;font-weight:600;color:#fff;background:linear-gradient(135deg,var(--indigo) 0%,var(--indigo-deep) 100%);border:none;padding:12px 22px;border-radius:8px;cursor:pointer;transition:.25s;white-space:nowrap;box-shadow:0 4px 24px var(--indigo-glow)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px var(--indigo-glow)}
+  .btn-ghost{font-size:14px;font-weight:500;color:var(--text);background:transparent;border:1px solid var(--line-strong);padding:14px 26px;border-radius:8px;cursor:pointer;transition:.25s}
+  .btn-ghost:hover{border-color:var(--indigo-light);background:rgba(79,70,229,.08)}
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding-top:36px;overflow:hidden}
+  .hero-mesh{position:absolute;inset:0;z-index:0;background:
+    radial-gradient(ellipse 80% 60% at 70% 20%,rgba(79,70,229,.18),transparent 55%),
+    radial-gradient(ellipse 50% 50% at 10% 80%,rgba(49,46,129,.25),transparent 50%),
+    linear-gradient(180deg,#08080f 0%,#0c0c18 50%,#08080f 100%)}
+  .hero-grid{position:absolute;inset:0;z-index:1;opacity:.04;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:80px 80px}
+  .hero-inner{position:relative;z-index:3;width:100%;max-width:1280px;margin:0 auto;padding:clamp(80px,12vh,120px) clamp(24px,5vw,72px)}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--indigo-light);background:rgba(79,70,229,.12);border:1px solid var(--line-strong);padding:8px 14px;border-radius:6px;margin-bottom:32px}
+  .badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--indigo);box-shadow:0 0 12px var(--indigo)}
+  .hero h1{font-family:var(--serif);font-weight:400;line-height:1.02;font-size:clamp(44px,7vw,96px);max-width:14ch;letter-spacing:-.02em}
+  .hero h1 .accent{color:var(--indigo-light);font-style:italic}
+  .hero p.sub{margin-top:28px;max-width:48ch;font-size:clamp(16px,1.6vw,19px);line-height:1.65;color:var(--text-dim);font-weight:300}
+  .hero-actions{margin-top:40px;display:flex;gap:14px;flex-wrap:wrap}
+  .hero-stat{margin-top:64px;display:flex;gap:48px;flex-wrap:wrap;padding-top:32px;border-top:1px solid var(--line)}
+  .hero-stat div{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)}
+  .hero-stat strong{display:block;font-family:var(--serif);font-size:28px;font-weight:400;color:var(--text);letter-spacing:-.02em;margin-bottom:4px;text-transform:none}
+  .reframe{background:var(--surface);padding:clamp(90px,14vh,160px) clamp(24px,5vw,72px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);position:relative}
+  .reframe::before{content:"";position:absolute;top:0;left:clamp(24px,5vw,72px);width:120px;height:3px;background:linear-gradient(90deg,var(--indigo),transparent)}
+  .reframe .wrap{max-width:1000px;margin:0 auto}
+  .reframe .tag{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--indigo-light);margin-bottom:28px}
+  .reframe h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,4.8vw,64px);line-height:1.08;letter-spacing:-.02em}
+  .reframe h2 em{font-style:italic;color:var(--indigo-light)}
+  .stack{padding:clamp(80px,12vh,130px) clamp(24px,5vw,72px)}
+  .stack .head{margin-bottom:clamp(50px,8vh,80px)}
+  .stack .head .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:14px}
+  .stack .head h3{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.6vw,44px);line-height:1.12;max-width:20ch;letter-spacing:-.02em}
+  .tools{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1200px;margin:0 auto}
+  .tool{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:40px 32px;display:flex;flex-direction:column;gap:20px;transition:.3s}
+  .tool:hover{border-color:var(--line-strong);background:var(--surface-2);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.3)}
+  .tool .num{font-family:var(--mono);font-size:10px;color:var(--indigo);letter-spacing:.16em}
+  .tool .logo{height:36px;opacity:.7;transition:.3s}
+  .tool:hover .logo{opacity:1}
+  .tool .name{font-family:var(--serif);font-size:24px}
+  .tool .role{font-size:14px;color:var(--text-dim);font-weight:300;line-height:1.6}
+  .proof{padding:clamp(90px,14vh,150px) clamp(24px,5vw,72px);background:linear-gradient(180deg,var(--bg),var(--surface))}
+  .proof .grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,8vw,100px);align-items:center}
+  .proof .tag{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--indigo-light);margin-bottom:24px}
+  .proof h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4vw,52px);line-height:1.06;letter-spacing:-.02em;margin-bottom:24px}
+  .proof p{font-size:16px;line-height:1.7;color:var(--text-dim);font-weight:300;max-width:42ch}
+  .napkin{background:var(--surface-2);border:1px solid var(--line-strong);border-radius:12px;overflow:hidden}
+  .napkin .row{display:grid;grid-template-columns:1.4fr .8fr .8fr;padding:18px 24px;border-bottom:1px solid var(--line);font-size:14px;align-items:center}
+  .napkin .row:last-child{border-bottom:none}
+  .napkin .row.h{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)}
+  .napkin .row .now{color:var(--text-muted);text-align:right}
+  .napkin .row .aft{color:var(--indigo-light);font-weight:600;text-align:right}
+  .napkin .row.tot{background:rgba(79,70,229,.1);font-family:var(--serif);font-size:18px}
+  .final{padding:clamp(100px,16vh,200px) clamp(24px,5vw,72px);text-align:center;position:relative}
+  .final-glow{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(79,70,229,.2),transparent 65%);pointer-events:none}
+  .final .inner{position:relative;z-index:2;max-width:800px;margin:0 auto}
+  .final .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--indigo-light);margin-bottom:28px}
+  .final h2{font-family:var(--serif);font-weight:400;font-size:clamp(36px,6vw,80px);line-height:1.04;letter-spacing:-.02em;margin-bottom:20px}
+  .final h2 em{font-style:italic;color:var(--indigo-light)}
+  .final p{font-size:17px;color:var(--text-dim);font-weight:300;margin-bottom:44px;line-height:1.6}
+  .final .btn-primary{padding:18px 36px;font-size:15px;border-radius:8px}
+  footer{padding:40px clamp(24px,5vw,72px);display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);background:var(--surface);flex-wrap:wrap;gap:16px}
+  footer .mono{font-family:var(--mono);letter-spacing:.12em;font-size:10px;text-transform:uppercase;color:var(--text-muted)}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media(max-width:760px){.navlinks{display:none}.tools{grid-template-columns:1fr}.proof .grid{grid-template-columns:1fr}.hero{align-items:flex-end}.hero-inner{padding-bottom:80px}}
+</style>
+</head>
+<body>
+
+<div class="theme-bar">
+  <a href="index.html">All</a><span>·</span>
+  <a href="theme-a.html">A · Current</a>
+  <a href="theme-b.html" class="active">B · Agency</a>
+  <a href="theme-c.html">C · Premium</a>
+</div>
+
+<nav id="nav">
+  <a href="#" class="brand"><img src="../public/luna-labs-moon.svg" alt="">Luna <b>Labs</b></a>
+  <div class="navlinks">
+    <a href="#works">Works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="btn-primary">Book a revenue audit →</button>
+</nav>
+
+<header class="hero">
+  <div class="hero-mesh"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="badge">Revenue systems for commerce brands</div>
+    <h1>We don't sell <span class="accent">redesigns.</span></h1>
+    <p class="sub">We turn the followers a fashion brand already has into buyers — recovery flows, social proof, and a checkout that doesn't leak. Looks are table stakes. Revenue is the job.</p>
+    <div class="hero-actions">
+      <button class="btn-primary">See what we'd fix →</button>
+      <button class="btn-ghost">View the work</button>
+    </div>
+    <div class="hero-stat">
+      <div><strong>2.2×</strong>Avg. conversion lift</div>
+      <div><strong>&lt;60d</strong>Typical payback</div>
+      <div><strong>3</strong>Core automations</div>
+    </div>
+  </div>
+</header>
+
+<section class="reframe reveal">
+  <div class="wrap">
+    <div class="tag">The one idea everything rests on</div>
+    <h2>A theme changes how it <em>looks.</em><br>We change how it <em>earns.</em></h2>
+  </div>
+</section>
+
+<section class="stack" id="works">
+  <div class="head reveal">
+    <span class="lbl">The engine we build on</span>
+    <h3>Built on the tools that actually move revenue.</h3>
+  </div>
+  <div class="tools reveal">
+    <div class="tool">
+      <span class="num">01</span>
+      <img class="logo" src="../public/shopify-icon.svg" alt="Shopify">
+      <span class="name">Shopify</span>
+      <span class="role">The storefront. Custom-designed, mobile-first, built to not lose the sale.</span>
+    </div>
+    <div class="tool">
+      <span class="num">02</span>
+      <img class="logo" src="../public/klaviyo-logo.svg" alt="Klaviyo" style="filter:invert(1)">
+      <span class="name">Klaviyo</span>
+      <span class="role">The recovery layer. Welcome, abandoned-cart & post-purchase flows that print money.</span>
+    </div>
+    <div class="tool">
+      <span class="num">03</span>
+      <img class="logo" src="../public/google-analytics.svg" alt="GA" style="filter:brightness(0) invert(1)">
+      <span class="name">Analytics</span>
+      <span class="role">The proof. GA4 + clear reporting so results are visible from week one.</span>
+    </div>
+  </div>
+</section>
+
+<section class="proof" id="pricing">
+  <div class="grid">
+    <div class="reveal">
+      <div class="tag">The conversation that closes</div>
+      <h2>You don't need more traffic. You need more of it to buy.</h2>
+      <p>A 12k-follower boutique with no cart recovery is losing money every day. We rebuild this table live with your real numbers — and the price stops being the conversation.</p>
+    </div>
+    <div class="napkin reveal">
+      <div class="row h"><span>Per month</span><span class="now">Now</span><span>After</span></div>
+      <div class="row"><span>Conversion rate</span><span class="now">1.0%</span><span class="aft">2.2%</span></div>
+      <div class="row"><span>Orders / month</span><span class="now">15</span><span class="aft">33</span></div>
+      <div class="row"><span>Recovered carts</span><span class="now">$0</span><span class="aft">+$430</span></div>
+      <div class="row tot"><span>Monthly revenue</span><span class="now">$1,350</span><span class="aft">$3,665</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="contact">
+  <div class="final-glow"></div>
+  <div class="inner reveal">
+    <div class="lbl">Let's find the leaks</div>
+    <h2>How much revenue is<br>your audience <em>leaving behind?</em></h2>
+    <p>Free 20-minute teardown. We'll show you the gap on a call — no pitch deck, just your numbers.</p>
+    <button class="btn-primary">Book a revenue audit →</button>
+  </div>
+</section>
+
+<footer>
+  <a href="#" class="brand" style="font-size:18px"><img src="../public/luna-labs-moon.svg" alt="" style="width:26px;height:26px">Luna <b style="font-size:9px">Labs</b></a>
+  <span class="mono">© 2026 · Revenue Systems · Orange County, CA</span>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>60));
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.18});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
