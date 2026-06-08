@@ -24,7 +24,7 @@ export const es: Translations = {
   },
   hero: {
     eyebrow: "Sistemas de ingresos · Orange County, CA",
-    titleLine1: "Tu marca, online —",
+    titleLine1: "Tu marca, online",
     titleLine2: "y construida para vender.",
     body: "Diseñamos tiendas Shopify que por fin se ven como tu marca — y están hechas para convertir, con flujos de recuperación y un checkout sin fricción que convierten en compradores a los seguidores que ya tienes. La estética es lo mínimo. Vender es el trabajo.",
     recentWork: "Trabajo reciente:",

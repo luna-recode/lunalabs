@@ -24,7 +24,7 @@ export const en: Translations = {
   },
   hero: {
     eyebrow: "Revenue systems · Orange County, CA",
-    titleLine1: "Your brand, online —",
+    titleLine1: "Your brand, online",
     titleLine2: "and built to sell.",
     body: "We design Shopify storefronts that finally look like your brand — and are built to convert, with the recovery flows and friction-free checkout that turn the followers you already have into buyers. Looks are table stakes. Selling is the job.",
     recentWork: "Recent work:",

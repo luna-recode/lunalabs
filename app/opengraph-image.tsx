@@ -147,7 +147,7 @@ export default async function Image() {
                 letterSpacing: "-0.02em",
               }}
             >
-              Your brand, online —
+              Your brand, online
             </span>
             <span
               style={{
