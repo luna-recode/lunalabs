@@ -50,22 +50,6 @@ const socials = [
   },
 ];
 
-function ShopifyPartnerBadge() {
-  return (
-    <div className="flex items-center gap-2.5">
-      <svg width="22" height="25" viewBox="0 0 22 25" fill="none" aria-label="Shopify">
-        <path d="M18.65 4.83c-.01-.12-.12-.2-.21-.21-.1-.01-1.77-.13-1.77-.13l-1.38-1.38c-.14-.14-.44-.1-.55-.07l-.57.18C13.78 2.57 13.17.72 11.4.72c-.05 0-.1 0-.15.01-.48-.62-1.08-.9-1.6-.83-.97.13-1.93.87-2.73 2.18-.55.9-.97 2.03-1.09 2.9L4 6.3c-.44.14-.46.16-.52.57L2 21.5 14.4 24l5.5-1.08L18.65 4.83z" fill="#96BF48"/>
-        <path d="M16.67 4.49L14.4 24l5.5-1.08-2.02-18.3c-.12-.08-.21-.13-.21-.13z" fill="#5E8E3E"/>
-        <path d="M11.4.72c-.04 0-.09 0-.13.01.46.56.76 1.4.9 2.44l1.83-.57C13.56 1.6 12.6.72 11.4.72zM9.65 1.9C8.3 2.33 7.55 4.15 7.32 5.37l1.85-.57c.26-.94.7-1.77 1.33-2.28-.3-.38-.55-.6-.85-.62z" fill="#fff" opacity=".5"/>
-        <path d="M8.6 11.02s.8-.52 2.07-.52c1.35 0 1.96.76 1.96.76l.76-2.46s-1.14-.86-2.72-.86c-2.2 0-3.6 1.37-3.6 3.04 0 1.66 1.09 2.37 2.09 2.92 1 .54 1.33 1 1.33 1.57 0 .66-.52 1.04-1.33 1.04-1.24 0-2.09-.78-2.09-.78l-.83 2.58s1.04.95 2.75.95c2.18 0 3.8-1.28 3.8-3.23 0-1.52-1.04-2.42-2.09-2.99-1.05-.57-1.1-.9-1.1-1.02z" fill="#fff"/>
-      </svg>
-      <span className="font-sans text-sm text-[#96BF48]">
-        shopify{" "}
-        <em className="not-italic font-medium">partner</em>
-      </span>
-    </div>
-  );
-}
 
 export function Footer() {
   return (
@@ -88,7 +72,11 @@ export function Footer() {
             <Link href="/" className="w-fit transition-opacity hover:opacity-70">
               <Brand />
             </Link>
-            <ShopifyPartnerBadge />
+            <img
+              src="/shopify-icon.svg"
+              alt="Shopify"
+              className="h-6 w-auto opacity-60"
+            />
           </div>
 
           {/* Col 2 — What We Build */}
