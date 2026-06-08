@@ -6,4 +6,3 @@ export const LOCALES: { code: Locale; label: string; nativeLabel: string }[] = [
 ];
 
 export const DEFAULT_LOCALE: Locale = "en";
-export const LOCALE_STORAGE_KEY = "luna-locale";

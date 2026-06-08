@@ -117,7 +117,7 @@ export const faqs = [
   {
     question: "That's more than I wanted to spend.",
     answer:
-      "Fair — let's look at what it returns. If it adds one extra sale a day at your AOV, it pays for itself in weeks. The real question is the payback period, not the sticker.",
+      "A cheap theme is cheap because it does nothing but sit there. You're not paying for pixels — you're paying for a store designed around your brand and built to actually sell. That's the difference between a cost and an investment.",
   },
   {
     question: "Can't I just buy a theme?",

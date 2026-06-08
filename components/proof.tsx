@@ -1,6 +1,5 @@
 "use client";
 
-import { RoiTable } from "@/components/roi-table";
 import { ScrollReveal } from "./scroll-reveal";
 import { useTranslations } from "@/lib/i18n/context";
 
@@ -30,11 +29,18 @@ export function Proof() {
         </ScrollReveal>
 
         <ScrollReveal>
-          <RoiTable
-            rows={t.proof.rows}
-            totalNow={t.proof.totalNow}
-            totalAfter={t.proof.totalAfter}
-          />
+          <div className="overflow-hidden rounded-lg border border-line bg-card shadow-[0_14px_30px_-22px_rgba(33,64,143,0.4)]">
+            <ul className="divide-y divide-line">
+              {t.proof.mechanisms.map((mechanism) => (
+                <li key={mechanism} className="flex items-start gap-4 px-6 py-5">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                  <span className="font-serif text-[clamp(20px,2.4vw,30px)] font-medium leading-[1.15] tracking-tight">
+                    {mechanism}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </ScrollReveal>
       </div>
     </section>

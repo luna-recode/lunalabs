@@ -32,7 +32,7 @@ export function FinalCta() {
             {t.finalCta.body}
           </p>
           <CalButton className="btn-fill cursor-pointer rounded-[32px] border-none px-[28px] py-[15px] text-sm font-medium transition-all hover:-translate-y-0.5">
-            {t.common.bookAudit}
+            {t.common.bookConsult}
           </CalButton>
           <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
             {t.finalCta.formNote}

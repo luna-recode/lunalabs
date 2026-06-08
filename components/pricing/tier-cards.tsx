@@ -92,7 +92,7 @@ export function TierCards() {
                     : "border border-line bg-transparent text-bone hover:border-accent hover:bg-accent/[0.06]"
                 }`}
               >
-                {tier.recommended ? t.common.bookAudit : t.pricing.talkAboutTier}
+                {tier.recommended ? t.common.bookConsult : t.pricing.talkAboutTier}
               </CalButton>
             </div>
           </article>

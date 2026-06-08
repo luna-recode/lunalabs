@@ -85,7 +85,7 @@ Residentes de California (CCPA): Tiene derecho a saber qué información persona
 
 Residentes de la UE/Reino Unido (RGPD): Nuestra base legal para tratar los datos del formulario de contacto es el interés legítimo (responder a su consulta). Nuestra base legal para el marketing por correo es su consentimiento explícito en el momento de la suscripción.
 
-Para ejercer cualquiera de estos derechos, escríbanos a lunarecode@gmail.com. Responderemos en un plazo de 30 días.`,
+Para ejercer cualquiera de estos derechos, escríbanos a hello@bylunalabs.com. Responderemos en un plazo de 30 días.`,
       },
       {
         id: "security",
@@ -113,7 +113,7 @@ En caso de cambios significativos, haremos esfuerzos razonables para notificar a
 
 Luna Labs
 Orange County, CA
-lunarecode@gmail.com
+hello@bylunalabs.com
 
 Si es residente de la UE y considera que no hemos atendido adecuadamente su inquietud, tiene derecho a presentar una reclamación ante su autoridad local de protección de datos.`,
       },
@@ -228,7 +228,7 @@ Luna Labs puede resolver de inmediato y sin preaviso en casos de impago del clie
 
 Luna Labs
 Orange County, CA
-lunarecode@gmail.com`,
+hello@bylunalabs.com`,
       },
     ],
   },
@@ -264,7 +264,7 @@ La accesibilidad es un esfuerzo continuo. Revisamos este sitio con regularidad y
 • Compatibilidad con lectores de pantalla — encabezados y regiones semánticas, etiquetas de formulario, indicaciones de campos obligatorios y regiones dinámicas para errores y mensajes de éxito en formularios.
 • Color y contraste — colores de texto principal y secundario ajustados para cumplir ratios de contraste WCAG AA sobre nuestro fondo oscuro.
 • Movimiento — animaciones y vídeo con reproducción automática respetan la preferencia prefers-reduced-motion; el contenido permanece visible sin depender del movimiento.
-• Tablas — los datos comparativos de ROI utilizan tablas HTML semánticas con leyendas y encabezados con alcance definido.
+• Estructura de contenido — las secciones de prueba, trabajo y precios usan encabezados semánticos, regiones y etiquetas accesibles donde aparecen marcadores visuales.
 • Acordeón de preguntas frecuentes — los controles de expandir/contraer utilizan atributos ARIA adecuados y compatibilidad con teclado.`,
       },
       {
@@ -272,24 +272,24 @@ La accesibilidad es un esfuerzo continuo. Revisamos este sitio con regularidad y
         title: "Limitaciones conocidas",
         body: `Parte del contenido de terceros no está completamente bajo nuestro control y puede presentar barreras de accesibilidad:
 
-• Widget de reservas de Cal.com — el botón «Book a revenue audit» abre un modal de programación de Cal.com. El comportamiento con teclado y lectores de pantalla dentro del modal depende del embed de Cal.com. Hemos probado el acceso básico por teclado (véase la lista de comprobación más abajo) y trabajaremos con Cal.com o ofreceremos una ruta alternativa de reserva si se reportan incidencias.
+• Widget de reservas de Cal.com — el botón «Book a free consult» abre un modal de programación de Cal.com. El comportamiento con teclado y lectores de pantalla dentro del modal depende del embed de Cal.com. Hemos probado el acceso básico por teclado (véase la lista de comprobación más abajo) y trabajaremos con Cal.com o ofreceremos una ruta alternativa de reserva si se reportan incidencias.
 • Google Analytics — los scripts analíticos no afectan al contenido de la página pero pueden establecer cookies. Consulte nuestra Política de privacidad para más detalles.
 
 El vídeo de fondo del hero es únicamente decorativo. Toda la información relevante aparece en el texto superpuesto y está disponible sin reproducir el vídeo.`,
       },
       {
-        id: "cal-audit",
+        id: "cal-consult",
         title: "Lista de comprobación de accesibilidad por teclado de Cal.com",
-        body: `Probamos manualmente el embed de Cal.com («Book a revenue audit») con navegación exclusiva por teclado. Utilice esta lista si verifica la accesibilidad en su dispositivo:
+        body: `Probamos manualmente el embed de Cal.com («Book a free consult») con navegación exclusiva por teclado. Utilice esta lista si verifica la accesibilidad en su dispositivo:
 
-1. Tab hasta el activador — Pulse Tab por la página hasta que el foco llegue al botón «Book a revenue audit».
+1. Tab hasta el activador — Pulse Tab por la página hasta que el foco llegue al botón «Book a free consult».
 2. Abrir el modal — Pulse Intro o Espacio en el botón enfocado. Debería abrirse el diálogo de programación de Cal.com.
 3. Foco dentro del modal — Tab debe mover el foco al interior del modal, no detrás de él hacia la página subyacente.
 4. Operar controles — Todos los campos de fecha, hora y formulario dentro del modal deben ser accesibles y operables con Tab, Shift+Tab, Intro, Espacio y teclas de flecha cuando corresponda.
-5. Cerrar el modal — Pulse Escape. El modal debe cerrarse y el foco debe volver al botón «Book a revenue audit» (o permanecer en un control de cierre lógico).
+5. Cerrar el modal — Pulse Escape. El modal debe cerrarse y el foco debe volver al botón «Book a free consult» (o permanecer en un control de cierre lógico).
 6. Completar la reserva — Si avanza en el flujo, confirme que los campos obligatorios anuncian errores y que la acción de envío es accesible por teclado.
 
-Si algún paso falla en su navegador o tecnología de asistencia, repórtelo mediante la información de contacto indicada más abajo. También puede escribir a lunarecode@gmail.com directamente para programar una auditoría sin utilizar el embed.`,
+Si algún paso falla en su navegador o tecnología de asistencia, repórtelo mediante la información de contacto indicada más abajo. También puede escribir a hello@bylunalabs.com directamente para programar una consulta sin utilizar el embed.`,
       },
       {
         id: "compatibility",
@@ -303,7 +303,7 @@ Navegadores antiguos o combinaciones no compatibles de tecnología de asistencia
         title: "Comentarios e incidencias",
         body: `Agradecemos sus comentarios sobre la accesibilidad de este sitio web. Si encuentra una barrera o tiene sugerencias de mejora, contáctenos:
 
-Correo electrónico: lunarecode@gmail.com
+Correo electrónico: hello@bylunalabs.com
 Asunto: Comentarios sobre accesibilidad
 
 Incluya:

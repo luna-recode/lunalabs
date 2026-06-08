@@ -5,9 +5,6 @@ import { useActionState } from "react";
 import { subscribeEmail, type SubscribeState } from "@/app/actions/subscribe";
 import { useLocale, useTranslations } from "@/lib/i18n/context";
 
-const STORAGE_KEY = "ll_popup_v1";
-const COOLDOWN_DAYS = 7;
-
 export function EmailPopup() {
   const { locale } = useLocale();
   const t = useTranslations();
@@ -19,12 +16,6 @@ export function EmailPopup() {
   );
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      const daysSince = (Date.now() - Number(stored)) / 86_400_000;
-      if (daysSince < COOLDOWN_DAYS) return;
-    }
-
     const trigger = () => {
       if (triggered.current) return;
       triggered.current = true;
@@ -47,13 +38,11 @@ export function EmailPopup() {
 
   useEffect(() => {
     if (state?.status !== "success") return;
-    localStorage.setItem(STORAGE_KEY, String(Date.now()));
     const timer = setTimeout(() => setVisible(false), 2500);
     return () => clearTimeout(timer);
   }, [state]);
 
   const dismiss = () => {
-    localStorage.setItem(STORAGE_KEY, String(Date.now()));
     setVisible(false);
   };
 

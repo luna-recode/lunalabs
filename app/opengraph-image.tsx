@@ -132,7 +132,7 @@ export default async function Image() {
                   textTransform: "uppercase",
                 }}
               >
-                Revenue systems for commerce brands
+                Revenue systems · Orange County, CA
               </span>
             </div>
 
@@ -147,7 +147,7 @@ export default async function Image() {
                 letterSpacing: "-0.02em",
               }}
             >
-              We don't sell
+              Your brand, online
             </span>
             <span
               style={{
@@ -160,7 +160,7 @@ export default async function Image() {
                 letterSpacing: "-0.02em",
               }}
             >
-              redesigns.
+              and built to sell.
             </span>
           </div>
 

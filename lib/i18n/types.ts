@@ -47,12 +47,10 @@ export type LegalPageContent = {
 
 export type Translations = {
   common: {
-    bookAudit: string;
-    seeWhatWedFix: string;
+    bookConsult: string;
     viewWork: string;
     scroll: string;
     errorPrefix: string;
-    improved: string;
     backToTop: string;
     skipToMain: string;
   };
@@ -74,13 +72,25 @@ export type Translations = {
     titleLine1: string;
     titleLine2: string;
     body: string;
+    recentWork: string;
+    recentWorkClient: string;
   };
   reframe: {
     eyebrow: string;
+    thesis: string;
     titleBeforeLooks: string;
     looks: string;
     titleBeforeEarns: string;
     earns: string;
+  };
+  work: {
+    eyebrow: string;
+    client: string;
+    delivered: string;
+    imageTodo: string;
+    quoteTodo: string;
+    beforeLabel: string;
+    afterLabel: string;
   };
   stack: {
     eyebrow: string;
@@ -91,9 +101,7 @@ export type Translations = {
     eyebrow: string;
     heading: string;
     body: string;
-    rows: { label: string; now: string; after: string }[];
-    totalNow: string;
-    totalAfter: string;
+    mechanisms: string[];
   };
   finalCta: {
     eyebrow: string;
@@ -139,13 +147,6 @@ export type Translations = {
     subscribeInvalidError: string;
     subscribeGenericError: string;
   };
-  roiTable: {
-    caption: string;
-    perMonth: string;
-    now: string;
-    after: string;
-    monthlyRevenue: string;
-  };
   pricing: {
     metaTitle: string;
     metaDescription: string;
@@ -161,11 +162,10 @@ export type Translations = {
     undecidedTitle: string;
     undecidedBody: string;
     undecidedCta: string;
-    paybackEyebrow: string;
-    paybackTitleLine1: string;
-    paybackTitleEmphasis: string;
-    paybackBody: string;
-    paybackNote: string;
+    valueEyebrow: string;
+    valueTitle: string;
+    valueBody: string;
+    valueParts: string[];
     careEyebrow: string;
     careTitle: string;
     careBody: string;
