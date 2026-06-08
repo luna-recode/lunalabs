@@ -6,6 +6,7 @@ export function FinalCta() {
   return (
     <section
       id="contact"
+      aria-labelledby="contact-heading"
       className="relative overflow-hidden border-t border-line px-[clamp(20px,5vw,64px)] py-[clamp(90px,14vh,160px)]"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_90%_at_50%_120%,rgba(201,184,150,0.12),transparent_60%)]" />
@@ -15,7 +16,10 @@ export function FinalCta() {
           <div className="mb-[26px] font-mono text-[11px] uppercase tracking-[0.3em] text-muted">
             Let&apos;s find the leaks
           </div>
-          <h2 className="mb-[18px] font-serif text-[clamp(34px,5vw,64px)] font-medium leading-[1.02] tracking-tight">
+          <h2
+            id="contact-heading"
+            className="mb-[18px] font-serif text-[clamp(34px,5vw,64px)] font-medium leading-[1.02] tracking-tight"
+          >
             How much revenue is your audience{" "}
             <em className="reframe-em relative italic">leaving behind?</em>
           </h2>

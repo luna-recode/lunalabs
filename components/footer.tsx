@@ -81,9 +81,9 @@ export function Footer() {
 
           {/* Col 2 — What We Build */}
           <div>
-            <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.24em] text-muted">
+            <h2 className="mb-5 font-mono text-[10px] uppercase tracking-[0.24em] text-muted">
               What We Build
-            </p>
+            </h2>
             <ul className="space-y-3">
               {services.map((s) => (
                 <li key={s} className="text-sm font-light text-bone-dim">
@@ -95,9 +95,9 @@ export function Footer() {
 
           {/* Col 3 — Navigate */}
           <div>
-            <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.24em] text-muted">
+            <h2 className="mb-5 font-mono text-[10px] uppercase tracking-[0.24em] text-muted">
               Navigate
-            </p>
+            </h2>
             <ul className="space-y-3">
               {navigate.map((link) => (
                 <li key={link.href}>
@@ -114,9 +114,9 @@ export function Footer() {
 
           {/* Col 4 — Get In Touch: full width on mobile, 1 col on desktop */}
           <div className="col-span-2 lg:col-span-1">
-            <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.24em] text-muted">
+            <h2 className="mb-5 font-mono text-[10px] uppercase tracking-[0.24em] text-muted">
               Get In Touch
-            </p>
+            </h2>
             <ul className="space-y-3">
               <li>
                 <a
@@ -170,6 +170,9 @@ export function Footer() {
             <div className="flex gap-5">
               <a href="/terms" className="transition-colors hover:text-accent">
                 Terms &amp; Conditions
+              </a>
+              <a href="/accessibility" className="transition-colors hover:text-accent">
+                Accessibility
               </a>
               <a href="/privacy" className="transition-colors hover:text-accent">
                 Privacy Policy

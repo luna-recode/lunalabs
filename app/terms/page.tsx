@@ -75,7 +75,7 @@ export default function TermsPage() {
   return (
     <>
       <Nav />
-      <main>
+      <main id="main-content">
         {/* Hero */}
         <section className="relative overflow-hidden pt-[140px] pb-[clamp(60px,8vh,90px)]">
           <div className="hero-bg absolute inset-0 z-0 opacity-40" />

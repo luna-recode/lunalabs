@@ -4,13 +4,19 @@ import { careIncludes, careTiers } from "@/lib/pricing-data";
 
 export function CarePlan() {
   return (
-    <section className="px-[clamp(20px,5vw,64px)] py-[clamp(80px,13vh,140px)]">
+    <section
+      aria-labelledby="care-plan-heading"
+      className="px-[clamp(20px,5vw,64px)] py-[clamp(80px,13vh,140px)]"
+    >
       <ScrollReveal className="mx-auto max-w-[1200px]">
         <div className="mb-[clamp(40px,6vh,64px)] max-w-[640px]">
           <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-muted">
             Tier 04 · Recurring
           </span>
-          <h2 className="mt-4 font-serif text-[clamp(30px,4.6vw,52px)] font-medium leading-[1.08] tracking-tight">
+          <h2
+            id="care-plan-heading"
+            className="mt-4 font-serif text-[clamp(30px,4.6vw,52px)] font-medium leading-[1.08] tracking-tight"
+          >
             Care Plan
           </h2>
           <p className="mt-5 text-base font-light leading-[1.65] text-bone-dim">

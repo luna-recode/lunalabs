@@ -2,7 +2,10 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 
 export function PricingHero() {
   return (
-    <section className="relative overflow-hidden pt-[140px] pb-[clamp(60px,10vh,100px)]">
+    <section
+      id="hero"
+      className="relative overflow-hidden pt-[140px] pb-[clamp(60px,10vh,100px)]"
+    >
       <div className="hero-bg absolute inset-0 z-0 opacity-60" />
       <div className="absolute inset-0 z-[1] bg-gradient-to-b from-ink/70 via-ink/85 to-ink" />
 

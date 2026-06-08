@@ -31,15 +31,19 @@ export function Stack() {
   return (
     <section
       id="works"
+      aria-labelledby="works-heading"
       className="relative border-y border-line px-[clamp(20px,5vw,64px)] py-[clamp(70px,11vh,120px)]"
     >
       <ScrollReveal className="mb-[clamp(46px,7vh,72px)] flex flex-col items-center gap-4 text-center">
         <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-muted">
           The engine we build on
         </span>
-        <h3 className="max-w-[18ch] font-serif text-[clamp(24px,3.4vw,42px)] font-medium leading-[1.12]">
+        <h2
+          id="works-heading"
+          className="max-w-[18ch] font-serif text-[clamp(24px,3.4vw,42px)] font-medium leading-[1.12]"
+        >
           Built on the tools that actually move revenue.
-        </h3>
+        </h2>
       </ScrollReveal>
 
       <ScrollReveal className="mx-auto grid max-w-[1100px] grid-cols-1 overflow-hidden rounded-md border border-line md:grid-cols-3">

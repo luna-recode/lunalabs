@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Outfit, Space_Mono } from "next/font/google";
+import { SkipLink } from "@/components/skip-link";
+import { EmailPopup } from "@/components/email-popup";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -37,7 +39,11 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant.variable} ${outfit.variable} ${spaceMono.variable} scroll-smooth`}
     >
-      <body className="grain antialiased">{children}</body>
+      <body className="grain antialiased">
+        <SkipLink />
+        {children}
+        <EmailPopup />
+      </body>
     </html>
   );
 }

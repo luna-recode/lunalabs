@@ -8,7 +8,7 @@
   --card: #16161a;
   --text: #f7f6f3;
   --text-soft: #a8a6a0;
-  --text-faint: #5e5c58;
+  --text-faint: #8a8884;
   --champagne: #c9b896;
   --champagne-dim: #8a7d62;
   --silver: #d4d2ce;
@@ -211,4 +211,67 @@ em.reframe-em {
 .reveal.in {
   opacity: 1;
   transform: none;
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only-focusable:focus,
+.sr-only-focusable:focus-visible {
+  position: fixed !important;
+  width: auto;
+  height: auto;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Focus visible — WCAG 2.4.7 */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .animate-rise,
+  .animate-rise-delay-1,
+  .animate-rise-delay-2,
+  .animate-rise-delay-3,
+  .animate-rise-delay-4,
+  .animate-rise-delay-5,
+  .scroll-bar {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* No-JS fallback for scroll reveal */
+@media (scripting: none) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }

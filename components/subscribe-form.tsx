@@ -11,7 +11,11 @@ export function SubscribeForm() {
 
   if (state?.status === "success") {
     return (
-      <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-bone">
+      <p
+        role="status"
+        aria-live="polite"
+        className="font-mono text-[11px] uppercase tracking-[0.22em] text-bone"
+      >
         ✓ {state.message}
       </p>
     );
@@ -19,13 +23,17 @@ export function SubscribeForm() {
 
   return (
     <form action={formAction} className="w-full max-w-[400px]">
+      <label htmlFor="subscribe-email" className="sr-only">
+        Email address
+      </label>
       <div className="flex items-center overflow-hidden rounded-lg border border-line bg-bone/[0.04] transition-colors focus-within:border-accent/40">
         <input
+          id="subscribe-email"
           type="email"
           name="email"
           required
           placeholder="Your email"
-          className="flex-1 bg-transparent px-4 py-3.5 text-sm text-bone placeholder:text-muted focus:outline-none"
+          className="flex-1 bg-transparent px-4 py-3.5 text-sm text-bone placeholder:text-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
         />
         <button
           type="submit"
@@ -43,7 +51,14 @@ export function SubscribeForm() {
         </button>
       </div>
       {state?.status === "error" && (
-        <p className="mt-2 text-center font-mono text-[10px] text-red-400">{state.message}</p>
+        <p
+          role="alert"
+          aria-live="assertive"
+          className="mt-2 text-center font-mono text-[10px] text-red-400"
+        >
+          <span className="font-medium">Error: </span>
+          {state.message}
+        </p>
       )}
     </form>
   );

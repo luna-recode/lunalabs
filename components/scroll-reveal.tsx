@@ -14,6 +14,12 @@ export function ScrollReveal({ children, className = "" }: ScrollRevealProps) {
     const el = ref.current;
     if (!el) return;
 
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) {
+      el.classList.add("in");
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

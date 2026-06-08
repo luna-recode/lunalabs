@@ -4,7 +4,7 @@ import { useActionState } from "react";
 import { submitContact, type ContactState } from "@/app/actions/contact";
 
 const inputClass =
-  "w-full rounded-lg border border-line bg-transparent px-4 py-3 text-sm text-bone placeholder:text-muted transition-colors focus:border-accent/40 focus:outline-none";
+  "w-full rounded-lg border border-line bg-transparent px-4 py-3 text-sm text-bone placeholder:text-muted transition-colors focus:border-accent/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent";
 
 const labelClass = "mb-1.5 block font-mono text-[10px] uppercase tracking-[0.18em] text-muted";
 
@@ -16,7 +16,11 @@ export function ContactForm() {
 
   if (state?.status === "success") {
     return (
-      <div className="flex h-full min-h-[320px] flex-col items-center justify-center rounded-lg border border-line bg-bone/[0.03] px-8 py-12 text-center">
+      <div
+        role="status"
+        aria-live="polite"
+        className="flex h-full min-h-[320px] flex-col items-center justify-center rounded-lg border border-line bg-bone/[0.03] px-8 py-12 text-center"
+      >
         <span className="mb-4 font-mono text-[11px] uppercase tracking-[0.28em] text-muted">
           Sent
         </span>
@@ -28,15 +32,35 @@ export function ContactForm() {
   }
 
   return (
-    <form action={formAction} className="space-y-4">
+    <form action={formAction} className="space-y-4" noValidate>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
-          <label htmlFor="name" className={labelClass}>Name *</label>
-          <input id="name" name="name" type="text" required placeholder="Jane Smith" className={inputClass} />
+          <label htmlFor="name" className={labelClass}>
+            Name <span className="normal-case">(required)</span>
+          </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            required
+            aria-required="true"
+            placeholder="Jane Smith"
+            className={inputClass}
+          />
         </div>
         <div>
-          <label htmlFor="email" className={labelClass}>Email *</label>
-          <input id="email" name="email" type="email" required placeholder="jane@yourbrand.com" className={inputClass} />
+          <label htmlFor="email" className={labelClass}>
+            Email <span className="normal-case">(required)</span>
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            aria-required="true"
+            placeholder="jane@yourbrand.com"
+            className={inputClass}
+          />
         </div>
       </div>
 
@@ -46,8 +70,18 @@ export function ContactForm() {
           <input id="phone" name="phone" type="tel" placeholder="+1 (555) 000-0000" className={inputClass} />
         </div>
         <div>
-          <label htmlFor="brand" className={labelClass}>Brand / store *</label>
-          <input id="brand" name="brand" type="text" required placeholder="Your Brand Co." className={inputClass} />
+          <label htmlFor="brand" className={labelClass}>
+            Brand / store <span className="normal-case">(required)</span>
+          </label>
+          <input
+            id="brand"
+            name="brand"
+            type="text"
+            required
+            aria-required="true"
+            placeholder="Your Brand Co."
+            className={inputClass}
+          />
         </div>
       </div>
 
@@ -63,11 +97,14 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="message" className={labelClass}>What do you need? *</label>
+        <label htmlFor="message" className={labelClass}>
+          What do you need? <span className="normal-case">(required)</span>
+        </label>
         <textarea
           id="message"
           name="message"
           required
+          aria-required="true"
           rows={4}
           placeholder="Tell us what's going on with your store — current sales, what's not working, what you're trying to fix."
           className={`${inputClass} resize-none`}
@@ -75,7 +112,10 @@ export function ContactForm() {
       </div>
 
       {state?.status === "error" && (
-        <p className="text-sm text-red-400">{state.message}</p>
+        <div role="alert" aria-live="assertive" className="text-sm text-red-400">
+          <span className="font-medium">Error: </span>
+          {state.message}
+        </div>
       )}
 
       <button

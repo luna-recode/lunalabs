@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Brand } from "./brand";
 import { CalButton } from "./cal-button";
 
@@ -14,6 +14,8 @@ const links = [
 export function Nav() {
   const [solid, setSolid] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > 60);
@@ -29,11 +31,46 @@ export function Nav() {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+        return;
+      }
+
+      if (e.key !== "Tab" || !menuRef.current) return;
+
+      const focusable = menuRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last?.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first?.focus();
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    const firstLink = menuRef.current?.querySelector<HTMLElement>("a[href]");
+    firstLink?.focus();
+
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
+
   const close = () => setMenuOpen(false);
 
   return (
     <>
       <nav
+        aria-label="Main navigation"
         className={`fixed inset-x-0 top-0 z-[200] flex items-center justify-between px-[clamp(20px,5vw,64px)] transition-all duration-300 ${
           solid
             ? "border-b border-line bg-ink/92 py-[15px] backdrop-blur-[14px]"
@@ -44,7 +81,6 @@ export function Nav() {
           <Brand />
         </Link>
 
-        {/* Desktop links */}
         <div className="hidden items-center gap-[38px] text-sm font-normal md:flex">
           {links.map((link) => (
             <Link
@@ -57,30 +93,33 @@ export function Nav() {
           ))}
         </div>
 
-        {/* Desktop CTA */}
         <CalButton className="btn-fill hidden cursor-pointer whitespace-nowrap rounded-[30px] border-none px-5 py-[11px] text-[13px] font-medium tracking-wide transition-all hover:-translate-y-px md:block">
           Book a revenue audit →
         </CalButton>
 
-        {/* Hamburger — mobile only */}
         <button
+          ref={menuButtonRef}
           type="button"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
           onClick={() => setMenuOpen((o) => !o)}
           className="relative z-[201] -mr-2 flex h-11 w-11 flex-col items-center justify-center gap-[6px] md:hidden"
         >
           <span
+            aria-hidden
             className={`h-px w-5 bg-bone transition-all duration-300 ${
               menuOpen ? "translate-y-[7px] rotate-45" : ""
             }`}
           />
           <span
+            aria-hidden
             className={`h-px w-5 bg-bone transition-all duration-300 ${
               menuOpen ? "opacity-0" : ""
             }`}
           />
           <span
+            aria-hidden
             className={`h-px w-5 bg-bone transition-all duration-300 ${
               menuOpen ? "-translate-y-[7px] -rotate-45" : ""
             }`}
@@ -88,8 +127,11 @@ export function Nav() {
         </button>
       </nav>
 
-      {/* Mobile menu overlay */}
       <div
+        ref={menuRef}
+        id="mobile-menu"
+        aria-hidden={!menuOpen}
+        inert={!menuOpen ? true : undefined}
         className={`fixed inset-0 z-[199] flex flex-col bg-ink/[0.97] backdrop-blur-md transition-all duration-300 ease-out md:hidden ${
           menuOpen
             ? "pointer-events-auto opacity-100"
@@ -102,6 +144,7 @@ export function Nav() {
               key={link.href}
               href={link.href}
               onClick={close}
+              tabIndex={menuOpen ? 0 : -1}
               className="font-serif text-[clamp(32px,9vw,44px)] font-medium tracking-tight text-bone transition-opacity hover:opacity-60"
             >
               {link.label}

@@ -18,7 +18,7 @@ export default function PricingPage() {
   return (
     <>
       <Nav />
-      <main>
+      <main id="main-content">
         <PricingHero />
         <TierCards />
         <PaybackCallout />
