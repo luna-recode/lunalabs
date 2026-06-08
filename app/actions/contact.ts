@@ -2,18 +2,32 @@
 
 import { Resend } from "resend";
 import { z } from "zod";
+import { headers } from "next/headers";
 import { translations } from "@/lib/i18n/translations";
 import type { Locale } from "@/lib/i18n/types";
 
 const schema = z.object({
-  name: z.string().min(1),
-  email: z.string().email(),
-  phone: z.string().optional(),
-  brand: z.string().min(1),
-  followers: z.string().optional(),
-  message: z.string().min(1),
-  locale: z.enum(["en", "es"]).optional(),
+  name:     z.string().min(1).max(100),
+  email:    z.string().email().max(254),
+  phone:    z.string().max(30).optional(),
+  brand:    z.string().min(1).max(200),
+  followers: z.string().max(50).optional(),
+  message:  z.string().min(1).max(5000),
+  locale:   z.enum(["en", "es"]).optional(),
+  website:  z.string().max(0).optional(), // honeypot — must be empty
 });
+
+// Simple in-process rate limiter: max 3 submissions per IP per 10 minutes
+const contactRateMap = new Map<string, number[]>();
+const CONTACT_LIMIT = 3;
+const CONTACT_WINDOW_MS = 10 * 60 * 1000;
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const times = (contactRateMap.get(ip) ?? []).filter(t => now - t < CONTACT_WINDOW_MS);
+  contactRateMap.set(ip, [...times, now]);
+  return times.length >= CONTACT_LIMIT;
+}
 
 export type ContactState = {
   status: "success" | "error";
@@ -30,7 +44,19 @@ export async function submitContact(
 ): Promise<ContactState> {
   const locale = getLocale(formData.get("locale"));
   const t = translations[locale].forms;
+
+  // Rate limit by IP
+  const ip = (await headers()).get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
+  if (isRateLimited(ip)) {
+    return { status: "error", message: "Too many requests. Please wait a few minutes." };
+  }
+
   const result = schema.safeParse(Object.fromEntries(formData));
+
+  // Honeypot: bot filled the hidden field
+  if (result.success && result.data.website) {
+    return { status: "success", message: t.contactSuccess }; // silent reject
+  }
 
   if (!result.success) {
     return { status: "error", message: t.contactRequiredError };

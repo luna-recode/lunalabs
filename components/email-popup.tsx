@@ -60,7 +60,7 @@ export function EmailPopup() {
   if (!visible) return null;
 
   return (
-    <div className="fixed inset-0 z-[500] flex items-end justify-center p-4 sm:items-center">
+    <div className="fixed inset-0 z-[500] flex items-center justify-center p-4">
       <div
         className="absolute inset-0 bg-ink/70 backdrop-blur-sm"
         onClick={dismiss}
@@ -114,6 +114,7 @@ export function EmailPopup() {
 
               <form action={formAction} className="mt-6">
                 <input type="hidden" name="locale" value={locale} />
+                <input name="website" tabIndex={-1} aria-hidden="true" autoComplete="off" className="absolute opacity-0 pointer-events-none" />
                 <div className="flex overflow-hidden rounded-xl border border-line bg-bone/[0.04] transition-colors focus-within:border-bone/30">
                   <input
                     type="email"

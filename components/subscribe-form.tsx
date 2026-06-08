@@ -27,6 +27,7 @@ export function SubscribeForm() {
   return (
     <form action={formAction} className="w-full max-w-[400px]">
       <input type="hidden" name="locale" value={locale} />
+      <input name="website" tabIndex={-1} aria-hidden="true" autoComplete="off" className="absolute opacity-0 pointer-events-none" />
       <label htmlFor="subscribe-email" className="sr-only">
         {t.forms.subscribeEmail}
       </label>

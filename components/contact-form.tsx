@@ -37,6 +37,8 @@ export function ContactForm() {
   return (
     <form action={formAction} className="space-y-4" noValidate>
       <input type="hidden" name="locale" value={locale} />
+      {/* Honeypot — hidden from real users, bots fill it and get silently rejected */}
+      <input name="website" tabIndex={-1} aria-hidden="true" autoComplete="off" className="absolute opacity-0 pointer-events-none" />
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>

@@ -58,7 +58,7 @@ export function Hero() {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           aria-hidden
           tabIndex={-1}
         />
@@ -67,8 +67,8 @@ export function Hero() {
       <div className="hero-bg absolute inset-0 z-[1] opacity-50" />
       <div className="absolute inset-0 z-[2] bg-gradient-to-b from-ink/30 via-ink/20 to-ink/90" />
 
-      <div className="relative z-[3] mx-auto w-full max-w-[1500px] px-[clamp(20px,5vw,64px)] pb-[clamp(56px,9vh,96px)]">
-        <div className={`animate-rise-delay-5 mb-[26px] flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.32em] text-accent-dim ${reducedMotion ? "" : motionClass}`}>
+      <div className="relative z-[3] mx-auto w-full max-w-[1500px] px-[clamp(20px,5vw,64px)] pb-[clamp(96px,12vh,120px)]">
+        <div className={`animate-rise-delay-5 mb-[26px] flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.16em] text-accent-dim sm:text-[11px] sm:tracking-[0.32em] ${reducedMotion ? "" : motionClass}`}>
           <span className="h-px w-[34px] bg-accent-dim" aria-hidden />
           {t.hero.eyebrow}
         </div>

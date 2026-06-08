@@ -36,19 +36,19 @@ export function RoiTable({
         <tr className={`border-b ${borderClass}`}>
           <th
             scope="col"
-            className="px-[22px] py-4 text-left font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted"
+            className="px-3 py-3 text-left font-mono text-[9px] uppercase tracking-[0.12em] text-muted sm:px-[22px] sm:py-4 sm:text-[10.5px] sm:tracking-[0.14em]"
           >
             {t.roiTable.perMonth}
           </th>
           <th
             scope="col"
-            className="px-[22px] py-4 text-right font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted"
+            className="px-3 py-3 text-right font-mono text-[9px] uppercase tracking-[0.12em] text-muted sm:px-[22px] sm:py-4 sm:text-[10.5px] sm:tracking-[0.14em]"
           >
             {t.roiTable.now}
           </th>
           <th
             scope="col"
-            className="px-[22px] py-4 text-right font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted"
+            className="px-3 py-3 text-right font-mono text-[9px] uppercase tracking-[0.12em] text-muted sm:px-[22px] sm:py-4 sm:text-[10.5px] sm:tracking-[0.14em]"
           >
             {t.roiTable.after}
           </th>
@@ -57,22 +57,22 @@ export function RoiTable({
       <tbody>
         {rows.map((row) => (
           <tr key={row.label} className={`border-b ${borderClass} text-sm ${rowTextClass}`}>
-            <th scope="row" className="px-[22px] py-4 text-left font-normal">
+            <th scope="row" className="px-3 py-3 text-left font-normal sm:px-[22px] sm:py-4">
               {row.label}
             </th>
-            <td className="px-[22px] py-4 text-right text-muted">{row.now}</td>
-            <td className="px-[22px] py-4 text-right font-medium text-accent">
+            <td className="px-3 py-3 text-right text-muted sm:px-[22px] sm:py-4">{row.now}</td>
+            <td className="px-3 py-3 text-right font-medium text-accent sm:px-[22px] sm:py-4">
               <span className="sr-only">{t.common.improved}</span>
               {row.after}
             </td>
           </tr>
         ))}
         <tr className={`bg-accent/[0.06] font-serif text-[17px] ${rowTextClass}`}>
-          <th scope="row" className="px-[22px] py-4 text-left font-normal">
+          <th scope="row" className="px-3 py-3 text-left font-normal sm:px-[22px] sm:py-4">
             {t.roiTable.monthlyRevenue}
           </th>
-          <td className="px-[22px] py-4 text-right text-muted">{totalNow}</td>
-          <td className="px-[22px] py-4 text-right text-[19px] font-medium text-accent">
+          <td className="px-3 py-3 text-right text-muted sm:px-[22px] sm:py-4">{totalNow}</td>
+          <td className="px-3 py-3 text-right text-[17px] font-medium text-accent sm:px-[22px] sm:py-4 sm:text-[19px]">
             <span className="sr-only">{t.common.improved}</span>
             {totalAfter}
           </td>

@@ -25,9 +25,19 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://bylunalabs.com"),
   title: "Luna Labs — Revenue Systems for Commerce Brands",
   description:
     "We turn the followers a fashion brand already has into buyers — recovery flows, social proof, and a checkout that doesn't leak.",
+  openGraph: {
+    siteName: "Luna Labs",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@bylunalabs",
+  },
   appleWebApp: {
     title: "Luna Labs",
   },
