@@ -13,11 +13,14 @@ export function Hero() {
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReducedMotion(mq.matches);
+    const frame = requestAnimationFrame(() => setReducedMotion(mq.matches));
 
     const onChange = () => setReducedMotion(mq.matches);
     mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
+    return () => {
+      cancelAnimationFrame(frame);
+      mq.removeEventListener("change", onChange);
+    };
   }, []);
 
   useEffect(() => {
