@@ -50,7 +50,7 @@ export function Nav() {
             <Link
               key={link.href}
               href={link.href}
-              className="nav-link relative text-bone-dim transition-colors hover:text-bone"
+              className="nav-link relative text-bone-dim transition-colors"
             >
               {link.label}
             </Link>
@@ -58,7 +58,7 @@ export function Nav() {
         </div>
 
         {/* Desktop CTA */}
-        <CalButton className="hidden cursor-pointer whitespace-nowrap rounded-[30px] border-none bg-bone px-5 py-[11px] text-[13px] font-medium tracking-wide text-ink transition-all hover:-translate-y-px hover:bg-white md:block">
+        <CalButton className="btn-fill hidden cursor-pointer whitespace-nowrap rounded-[30px] border-none px-5 py-[11px] text-[13px] font-medium tracking-wide transition-all hover:-translate-y-px md:block">
           Book a revenue audit →
         </CalButton>
 
@@ -110,7 +110,7 @@ export function Nav() {
           <div className="mt-4">
             <CalButton
               onClick={close}
-              className="cursor-pointer rounded-[32px] border-none bg-bone px-[28px] py-[15px] text-sm font-medium text-ink transition-all active:scale-95"
+              className="btn-fill cursor-pointer rounded-[32px] border-none px-[28px] py-[15px] text-sm font-medium transition-all active:scale-95"
             >
               Book a revenue audit →
             </CalButton>

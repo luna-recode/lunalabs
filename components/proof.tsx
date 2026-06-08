@@ -42,14 +42,14 @@ export function Proof() {
               >
                 <span>{row.label}</span>
                 <span className="text-right text-muted">{row.now}</span>
-                <span className="text-right font-medium text-bone">{row.after}</span>
+                <span className="text-right font-medium text-accent">{row.after}</span>
               </div>
             ))}
 
-            <div className="grid grid-cols-[1.4fr_0.8fr_0.8fr] items-center bg-bone/[0.05] px-[22px] py-4 font-serif text-[17px]">
+            <div className="grid grid-cols-[1.4fr_0.8fr_0.8fr] items-center bg-accent/[0.06] px-[22px] py-4 font-serif text-[17px]">
               <span>Monthly revenue</span>
               <span className="text-right text-muted">$1,350</span>
-              <span className="text-right text-[19px] font-medium text-bone">$3,665</span>
+              <span className="text-right text-[19px] font-medium text-accent">$3,665</span>
             </div>
           </div>
         </ScrollReveal>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CalButton } from "@/components/cal-button";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { buildTiers } from "@/lib/pricing-data";
@@ -11,12 +12,12 @@ export function TierCards() {
             key={tier.id}
             className={`relative flex flex-col ${
               tier.recommended
-                ? "bg-bone/[0.06] md:-my-px md:border-x md:border-bone/20"
+                ? "bg-accent/[0.06] md:-my-px md:border-x md:border-accent/20"
                 : "bg-transparent"
             } ${i < buildTiers.length - 1 ? "border-b border-line md:border-b-0 md:border-r md:border-line" : ""}`}
           >
             {tier.recommended && (
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-bone/40 to-transparent" />
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
             )}
 
             <div className="flex flex-1 flex-col p-[clamp(28px,4vw,40px)]">
@@ -30,7 +31,7 @@ export function TierCards() {
                   </h2>
                 </div>
                 {tier.recommended && (
-                  <span className="shrink-0 rounded-full border border-bone/30 bg-bone/10 px-3 py-1 font-mono text-[9px] uppercase tracking-[0.2em] text-bone">
+                  <span className="shrink-0 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 font-mono text-[9px] uppercase tracking-[0.2em] text-accent">
                     Recommended
                   </span>
                 )}
@@ -83,8 +84,8 @@ export function TierCards() {
               <CalButton
                 className={`w-full cursor-pointer rounded-[32px] px-6 py-[14px] text-sm font-medium transition-all ${
                   tier.recommended
-                    ? "border-none bg-bone text-ink hover:-translate-y-0.5 hover:bg-white"
-                    : "border border-line bg-transparent text-bone hover:border-bone hover:bg-bone/[0.06]"
+                    ? "btn-fill border-none hover:-translate-y-0.5"
+                    : "border border-line bg-transparent text-bone hover:border-accent hover:bg-accent/[0.06]"
                 }`}
               >
                 {tier.recommended ? "Book a revenue audit →" : "Talk about this tier"}
@@ -92,6 +93,24 @@ export function TierCards() {
             </div>
           </article>
         ))}
+      </ScrollReveal>
+
+      {/* Undecided CTA */}
+      <ScrollReveal className="mx-auto mt-10 max-w-[1200px] flex flex-col items-center gap-5 rounded-lg border border-line bg-bone/[0.03] px-[clamp(24px,5vw,60px)] py-[clamp(32px,5vh,52px)] text-center md:flex-row md:justify-between md:text-left">
+        <div>
+          <p className="font-serif text-[clamp(18px,2vw,24px)] font-medium leading-[1.2] tracking-tight">
+            Not sure which plan fits your brand?
+          </p>
+          <p className="mt-2 max-w-[52ch] text-sm font-light leading-[1.6] text-bone-dim">
+            Every store is at a different stage. Tell us where you are and we&apos;ll map the gaps — no pitch decks, no pressure, just a straight answer on where to start.
+          </p>
+        </div>
+        <Link
+          href="/#contact"
+          className="shrink-0 cursor-pointer rounded-[32px] border border-line bg-transparent px-6 py-[13px] text-sm font-medium text-bone transition-all hover:border-accent hover:bg-accent/[0.06]"
+        >
+          Let&apos;s figure it out →
+        </Link>
       </ScrollReveal>
     </section>
   );

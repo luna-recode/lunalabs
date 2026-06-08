@@ -19,7 +19,7 @@ export function SubscribeForm() {
 
   return (
     <form action={formAction} className="w-full max-w-[400px]">
-      <div className="flex items-center overflow-hidden rounded-lg border border-line bg-bone/[0.04] transition-colors focus-within:border-bone/40">
+      <div className="flex items-center overflow-hidden rounded-lg border border-line bg-bone/[0.04] transition-colors focus-within:border-accent/40">
         <input
           type="email"
           name="email"
@@ -31,7 +31,7 @@ export function SubscribeForm() {
           type="submit"
           disabled={pending}
           aria-label="Subscribe"
-          className="flex h-full shrink-0 cursor-pointer items-center justify-center border-none bg-transparent px-4 text-muted transition-colors hover:text-bone disabled:opacity-40"
+          className="flex h-full shrink-0 cursor-pointer items-center justify-center border-none bg-transparent px-4 text-muted transition-colors hover:text-accent disabled:opacity-40"
         >
           {pending ? (
             <span className="h-3.5 w-3.5 animate-spin rounded-full border border-muted border-t-bone" />

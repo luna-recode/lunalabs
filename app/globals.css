@@ -1,14 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #0a0a0b;
-  --ink-2: #141416;
-  --bone: #f4f3f1;
-  --bone-dim: #cdccca;
-  --gray: #8a8a8d;
-  --gray-d: #3a3a3d;
-  --line: rgba(244, 243, 241, 0.16);
-  --line-d: rgba(10, 10, 11, 0.14);
+  /* Variant C — premium dark */
+  --void: #030304;
+  --base: #0a0a0c;
+  --elevated: #111114;
+  --card: #16161a;
+  --text: #f7f6f3;
+  --text-soft: #a8a6a0;
+  --text-faint: #5e5c58;
+  --champagne: #c9b896;
+  --champagne-dim: #8a7d62;
+  --silver: #d4d2ce;
+
+  /* Semantic aliases (keeps existing utility names working) */
+  --ink: var(--void);
+  --ink-2: var(--elevated);
+  --bone: var(--text);
+  --bone-dim: var(--text-soft);
+  --gray: var(--text-faint);
+  --gray-d: var(--champagne-dim);
+  --accent: var(--champagne);
+  --accent-dim: var(--champagne-dim);
+  --on-accent: var(--void);
+  --surface: var(--base);
+  --line: rgba(247, 246, 243, 0.08);
+  --line-d: rgba(201, 184, 150, 0.22);
 }
 
 @theme inline {
@@ -20,9 +37,15 @@
   --color-muted-d: var(--gray-d);
   --color-line: var(--line);
   --color-line-d: var(--line-d);
-  --font-serif: var(--font-playfair);
-  --font-sans: var(--font-dm-sans);
-  --font-mono: var(--font-jetbrains);
+  --color-accent: var(--accent);
+  --color-accent-dim: var(--accent-dim);
+  --color-on-accent: var(--on-accent);
+  --color-surface: var(--surface);
+  --color-silver: var(--silver);
+  --color-card: var(--card);
+  --font-serif: var(--font-cormorant);
+  --font-sans: var(--font-outfit);
+  --font-mono: var(--font-space-mono);
 }
 
 html {
@@ -32,18 +55,18 @@ html {
 body {
   background: var(--ink);
   color: var(--bone);
-  font-family: var(--font-dm-sans), -apple-system, sans-serif;
+  font-family: var(--font-outfit), -apple-system, sans-serif;
   overflow-x: hidden;
 }
 
-/* Grain overlay */
+/* Grain overlay — lighter touch for premium dark */
 .grain::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: 9000;
   pointer-events: none;
-  opacity: 0.05;
+  opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -53,31 +76,21 @@ body {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(120% 90% at 75% 18%, rgba(120, 120, 124, 0.55), transparent 55%),
-    radial-gradient(80% 70% at 18% 80%, rgba(60, 60, 64, 0.6), transparent 60%),
-    linear-gradient(120deg, #1a1a1d 0%, #3a3a3e 38%, #222226 70%, #0c0c0e 100%);
+    radial-gradient(ellipse 100% 80% at 50% 0%, rgba(201, 184, 150, 0.05), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(255, 255, 255, 0.02), transparent 40%),
+    var(--void);
 }
 
 .hero-bg::after {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(75deg, transparent 40%, rgba(200, 200, 204, 0.14) 52%, transparent 60%),
-    radial-gradient(40% 80% at 68% 55%, rgba(230, 230, 234, 0.12), transparent 70%);
-}
-
-/* Brand mark */
-.brand-mark {
-  position: relative;
-}
-
-.brand-mark::after {
-  content: "";
-  position: absolute;
-  inset: -1.5px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 70% 30%, transparent 48%, var(--ink) 49%);
+  background: linear-gradient(
+    180deg,
+    rgba(3, 3, 4, 0.25) 0%,
+    rgba(3, 3, 4, 0.15) 45%,
+    rgba(3, 3, 4, 0.88) 100%
+  );
 }
 
 /* Nav link underline */
@@ -88,7 +101,7 @@ body {
   bottom: -5px;
   width: 0;
   height: 1px;
-  background: var(--bone);
+  background: var(--accent);
   transition: width 0.3s;
 }
 
@@ -96,7 +109,15 @@ body {
   width: 100%;
 }
 
-/* Reframe highlight */
+.nav-link:hover {
+  color: var(--accent);
+}
+
+/* Reframe / emphasis */
+em.reframe-em {
+  color: var(--accent);
+}
+
 .reframe-em::after {
   content: "";
   position: absolute;
@@ -104,8 +125,19 @@ body {
   bottom: 6px;
   width: 100%;
   height: 8px;
-  background: rgba(10, 10, 11, 0.1);
+  background: rgba(201, 184, 150, 0.12);
   z-index: -1;
+}
+
+/* Primary CTA pattern */
+.btn-fill {
+  background: var(--accent);
+  color: var(--on-accent);
+  transition: all 0.25s;
+}
+
+.btn-fill:hover {
+  background: var(--silver);
 }
 
 /* Scroll cue */

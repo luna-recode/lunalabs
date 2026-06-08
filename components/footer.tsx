@@ -65,7 +65,7 @@ export function Footer() {
                 Let&apos;s talk<br />
                 <em className="italic">revenue.</em>
               </p>
-              <CalButton className="cursor-pointer rounded-[30px] border border-line bg-transparent px-5 py-[11px] text-[13px] font-medium text-bone transition-all hover:border-bone hover:bg-bone/[0.06]">
+              <CalButton className="cursor-pointer rounded-[30px] border border-line bg-transparent px-5 py-[11px] text-[13px] font-medium text-bone transition-all hover:border-accent hover:bg-accent/[0.06]">
                 Book a revenue audit →
               </CalButton>
             </div>
@@ -73,9 +73,9 @@ export function Footer() {
               <Brand />
             </Link>
             <img
-              src="/shopify-icon.svg"
+              src="/shopify-logo.svg"
               alt="Shopify"
-              className="h-6 w-auto opacity-60"
+              className="h-7 w-auto self-start opacity-60"
             />
           </div>
 
@@ -103,7 +103,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm font-light text-bone-dim transition-colors hover:text-bone"
+                    className="text-sm font-light text-bone-dim transition-colors hover:text-accent"
                   >
                     {link.label}
                   </Link>
@@ -121,7 +121,7 @@ export function Footer() {
               <li>
                 <a
                   href="mailto:lunarecode@gmail.com"
-                  className="text-sm font-light text-bone-dim transition-colors hover:text-bone"
+                  className="text-sm font-light text-bone-dim transition-colors hover:text-accent"
                 >
                   lunarecode@gmail.com
                 </a>
@@ -147,7 +147,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className="text-muted transition-colors hover:text-bone"
+                className="text-muted transition-colors hover:text-accent"
               >
                 {s.icon}
               </a>
@@ -166,10 +166,15 @@ export function Footer() {
         {/* Copyright bar */}
         <div className="border-t border-line px-[clamp(20px,5vw,64px)] py-5">
           <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-3 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
-            <span>© 2026 · Luna Recode · Orange County, CA</span>
-            <a href="/privacy" className="transition-colors hover:text-bone">
-              Privacy Policy
-            </a>
+            <span>© 2026 · Luna Labs · Orange County, CA</span>
+            <div className="flex gap-5">
+              <a href="/terms" className="transition-colors hover:text-accent">
+                Terms &amp; Conditions
+              </a>
+              <a href="/privacy" className="transition-colors hover:text-accent">
+                Privacy Policy
+              </a>
+            </div>
           </div>
         </div>
       </div>

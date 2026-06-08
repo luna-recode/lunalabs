@@ -2,9 +2,9 @@ import { ScrollReveal } from "./scroll-reveal";
 
 export function Reframe() {
   return (
-    <section className="relative bg-bone px-[clamp(20px,5vw,64px)] py-[clamp(80px,14vh,150px)] text-ink">
+    <section className="relative border-y border-line bg-surface px-[clamp(20px,5vw,64px)] py-[clamp(80px,14vh,150px)] text-bone">
       <ScrollReveal className="mx-auto max-w-[1100px]">
-        <div className="mb-[30px] font-mono text-[11px] uppercase tracking-[0.28em] text-muted">
+        <div className="mb-[30px] font-mono text-[11px] uppercase tracking-[0.28em] text-accent-dim">
           The one idea everything rests on
         </div>
         <h2 className="font-serif text-[clamp(30px,4.6vw,62px)] font-medium leading-[1.08] tracking-tight">

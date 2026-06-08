@@ -9,7 +9,7 @@ import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 
 export const metadata: Metadata = {
-  title: "Pricing — Luna Recode",
+  title: "Pricing — Luna Labs",
   description:
     "Four rungs, each one a conversion lever. Essential, Growth, and Scale builds — plus a Care Plan to keep the engine running.",
 };

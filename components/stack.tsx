@@ -14,16 +14,16 @@ const tools = [
     showName: false,
     role: "The recovery layer. Welcome, abandoned-cart & post-purchase flows that print money.",
     logo: "/klaviyo-logo.svg",
-    logoClass: "h-7 w-auto max-w-[120px]",
+    logoClass: "h-10 w-auto max-w-[120px]",
     filterClass: "invert",
   },
   {
     name: "Google Analytics",
     showName: false,
     role: "The proof. GA4 + clear reporting so results are visible from week one.",
-    logo: "/google-analytics.png",
-    logoClass: "h-12 w-auto max-w-[130px]",
-    filterClass: "",
+    logo: "/google-analytics.svg",
+    logoClass: "h-10 w-auto max-w-[130px]",
+    filterClass: "brightness-0 invert",
   },
 ];
 
@@ -46,7 +46,7 @@ export function Stack() {
         {tools.map((tool, i) => (
           <div
             key={tool.name}
-            className={`flex flex-col items-center gap-[18px] px-7 py-[clamp(34px,6vw,58px)] text-center transition-colors hover:bg-bone/[0.04] ${
+            className={`flex flex-col items-center gap-3 px-7 py-[clamp(24px,4vw,40px)] text-center transition-colors hover:bg-bone/[0.04] ${
               i < tools.length - 1 ? "border-b border-line md:border-b-0 md:border-r md:border-line" : ""
             }`}
           >

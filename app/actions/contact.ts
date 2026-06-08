@@ -33,7 +33,7 @@ export async function submitContact(
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     await resend.emails.send({
-      from: `Luna Recode <${process.env.CONTACT_FROM_EMAIL ?? "onboarding@resend.dev"}>`,
+      from: `Luna Labs <${process.env.CONTACT_FROM_EMAIL ?? "onboarding@resend.dev"}>`,
       to: process.env.CONTACT_TO_EMAIL ?? "lunarecode@gmail.com",
       replyTo: email,
       subject: `New inquiry — ${brand} (${name})`,

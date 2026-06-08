@@ -70,7 +70,7 @@ export function CarePlan() {
                   Scale build.
                 </p>
               </div>
-              <CalButton className="mt-8 w-full cursor-pointer rounded-[32px] border border-line bg-transparent px-6 py-[14px] text-sm font-medium text-bone transition-all hover:border-bone hover:bg-bone/[0.06] md:mt-6 md:w-auto md:self-start">
+              <CalButton className="mt-8 w-full cursor-pointer rounded-[32px] border border-line bg-transparent px-6 py-[14px] text-sm font-medium text-bone transition-all hover:border-accent hover:bg-accent/[0.06] md:mt-6 md:w-auto md:self-start">
                 Ask about Care Plan →
               </CalButton>
             </div>
