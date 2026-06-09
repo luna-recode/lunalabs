@@ -10,8 +10,13 @@ export const es: Translations = {
     skipToMain: "Saltar al contenido principal",
   },
   nav: {
-    works: "Trabajo",
+    services: "Servicios",
+    works: "Casos de estudio",
+    websites: "Sitios web",
     pricing: "Precios",
+    blog: "Blog",
+    about: "Nosotros",
+    bookAudit: "Auditoría",
     contact: "Contacto",
     openMenu: "Abrir menú",
     closeMenu: "Cerrar menú",
@@ -28,7 +33,7 @@ export const es: Translations = {
     titleLine2: "y construida para vender.",
     body: "Diseñamos tiendas Shopify que por fin se ven como tu marca — y están hechas para convertir, con flujos de recuperación y un checkout sin fricción que convierten en compradores a los seguidores que ya tienes. La estética es lo mínimo. Vender es el trabajo.",
     recentWork: "Trabajo reciente:",
-    recentWorkClient: "Soleil & Stone",
+    recentWorkClient: "Dra. Yesly García",
   },
   reframe: {
     eyebrow: "La idea central de todo",
@@ -40,11 +45,11 @@ export const es: Translations = {
   },
   work: {
     eyebrow: "Trabajo seleccionado",
-    client: "Soleil & Stone, Laguna Beach",
+    client: "Dra. Yesly García, Managua",
     delivered:
-      "Sistema de diseño personalizado + una tienda Shopify enfocada en conversión.",
+      "Práctica digital completa — dominio, sitio web, Google Maps y reservas.",
     imageTodo:
-      "TODO(owner): compartir imágenes del build de Soleil & Stone — antes/después o capturas del hero — y/o una URL pública.",
+      "TODO(owner): compartir imágenes del build de Dra. Yesly García — hero del sitio o fotos de clínica.",
     quoteTodo:
       "TODO(owner): agregar una cita real del cliente si existe. Si no, omitir; no fabricar.",
     beforeLabel: "Antes",
@@ -82,7 +87,7 @@ export const es: Translations = {
     eyebrow: "Encontremos las fugas",
     headingBefore: "¿Cuántos ingresos está dejando ",
     headingEmphasis: "tu audiencia sobre la mesa?",
-    body: "Consulta gratuita de 20 minutos. Revisamos tu tienda y tu marca para mapear exactamente qué construir — sin pitch deck, sin presión.",
+    body: "Consulta gratuita de 15 minutos. Revisamos tu tienda y tu marca para mapear exactamente qué construir — sin pitch deck, sin presión.",
     formNote: "O completa el formulario — te contactamos en menos de 24 h",
   },
   footer: {
@@ -91,12 +96,11 @@ export const es: Translations = {
     whatWeBuild: "Lo que construimos",
     navigate: "Navegar",
     getInTouch: "Contáctanos",
-    services: [
-      "Tiendas Shopify",
-      "Flujos de email Klaviyo",
-      "Optimización de checkout",
-      "Paid social y ads",
-      "Care Plans mensuales",
+    serviceLinks: [
+      { href: "/services/conversion-websites", label: "Sitios de conversión" },
+      { href: "/services/ecommerce-optimization", label: "Optimización ecommerce" },
+      { href: "/services/landing-page-design", label: "Diseño de landing pages" },
+      { href: "/services/website-redesign", label: "Rediseño web" },
     ],
     subscribe: "Suscríbete a nuestros correos",
     copyright: "© 2026 · Luna Labs · Orange County, CA",

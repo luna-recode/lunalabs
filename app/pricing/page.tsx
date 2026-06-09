@@ -8,11 +8,14 @@ import { FinalCta } from "@/components/final-cta";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 
-export const metadata: Metadata = {
-  title: "Pricing — Luna Labs",
+import { createPageMetadata } from "@/lib/seo/metadata";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Pricing — Shopify CRO & Conversion Website Builds",
   description:
-    "Four rungs, each one a conversion lever. Launch, Essential, and Growth builds — plus a Care Plan to keep the engine running.",
-};
+    "Transparent pricing for conversion-focused Shopify builds — Launch, Essential, Growth tiers plus Care Plans for ongoing ecommerce optimization.",
+  path: "/pricing",
+});
 
 export default function PricingPage() {
   return (

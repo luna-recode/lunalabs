@@ -56,8 +56,13 @@ export type Translations = {
     skipToMain: string;
   };
   nav: {
+    services: string;
     works: string;
+    websites: string;
     pricing: string;
+    blog: string;
+    about: string;
+    bookAudit: string;
     contact: string;
     openMenu: string;
     closeMenu: string;
@@ -117,7 +122,7 @@ export type Translations = {
     whatWeBuild: string;
     navigate: string;
     getInTouch: string;
-    services: string[];
+    serviceLinks: { href: string; label: string }[];
     subscribe: string;
     copyright: string;
     terms: string;

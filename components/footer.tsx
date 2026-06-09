@@ -42,9 +42,13 @@ const socials = [
 export function Footer() {
   const t = useTranslations();
   const navigate = [
-    { href: "/works", label: t.nav.works },
+    { href: "/services", label: t.nav.services },
+    { href: "/case-studies", label: t.nav.works },
     { href: "/pricing", label: t.nav.pricing },
-    { href: "/#contact", label: t.nav.contact },
+    { href: "/blog", label: t.nav.blog },
+    { href: "/about", label: t.nav.about },
+    { href: "/book-audit", label: t.nav.bookAudit },
+    { href: "/contact", label: t.nav.contact },
   ];
 
   return (
@@ -77,9 +81,14 @@ export function Footer() {
               {t.footer.whatWeBuild}
             </h2>
             <ul className="space-y-3">
-              {t.footer.services.map((service) => (
-                <li key={service} className="text-sm font-light text-bone-dim">
-                  {service}
+              {t.footer.serviceLinks.map((service) => (
+                <li key={service.href}>
+                  <Link
+                    href={service.href}
+                    className="text-sm font-light text-bone-dim transition-colors hover:text-accent"
+                  >
+                    {service.label}
+                  </Link>
                 </li>
               ))}
             </ul>

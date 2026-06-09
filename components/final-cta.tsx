@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { CalButton } from "./cal-button";
 import { ContactForm } from "./contact-form";
 import { ScrollReveal } from "./scroll-reveal";
@@ -31,9 +32,17 @@ export function FinalCta() {
           <p className="mb-8 max-w-[40ch] text-base font-light leading-[1.65] text-bone-dim">
             {t.finalCta.body}
           </p>
-          <CalButton className="btn-fill cursor-pointer rounded-[32px] border-none px-[28px] py-[15px] text-sm font-medium transition-all hover:-translate-y-0.5">
-            {t.common.bookConsult}
-          </CalButton>
+          <div className="flex flex-wrap gap-3">
+            <CalButton className="btn-fill cursor-pointer rounded-[32px] border-none px-[28px] py-[15px] text-sm font-medium transition-all hover:-translate-y-0.5">
+              {t.common.bookConsult}
+            </CalButton>
+            <Link
+              href="/book-audit"
+              className="rounded-[32px] border border-line px-[28px] py-[15px] text-sm font-normal text-bone transition-all hover:border-accent hover:bg-accent/[0.06]"
+            >
+              Book a revenue audit →
+            </Link>
+          </div>
           <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
             {t.finalCta.formNote}
           </p>
@@ -41,7 +50,7 @@ export function FinalCta() {
 
         <ScrollReveal>
           <div className="rounded-2xl border border-white/10 bg-white/[0.09] p-8 backdrop-blur-md">
-            <ContactForm />
+            <ContactForm variant="glass" />
           </div>
         </ScrollReveal>
       </div>

@@ -4,7 +4,7 @@ import { Footer } from "@/components/footer";
 import { FinalCta } from "@/components/final-cta";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { CaseStudyCard } from "@/components/case-study-card";
-import { caseStudies } from "@/lib/works-data";
+import { fetchWorkStudies } from "@/lib/works-data";
 
 export const metadata: Metadata = {
   title: "Works — Luna Labs",
@@ -12,7 +12,8 @@ export const metadata: Metadata = {
     "Shopify storefronts and revenue systems we've built for real brands.",
 };
 
-export default function WorksPage() {
+export default async function WorksPage() {
+  const studies = await fetchWorkStudies();
   return (
     <>
       <Nav />
@@ -41,7 +42,7 @@ export default function WorksPage() {
           className="px-[clamp(20px,5vw,64px)] py-[clamp(80px,13vh,140px)]"
         >
           <div className="mx-auto max-w-[1200px] space-y-[clamp(80px,12vh,140px)]">
-            {caseStudies.map((study) => (
+            {studies.map((study) => (
               <CaseStudyCard key={study.id} study={study} />
             ))}
           </div>

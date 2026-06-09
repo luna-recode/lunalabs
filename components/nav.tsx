@@ -10,9 +10,12 @@ import { useTranslations } from "@/lib/i18n/context";
 export function Nav() {
   const t = useTranslations();
   const links = [
-    { href: "/works", label: t.nav.works },
+    { href: "/services", label: t.nav.services },
+    { href: "/case-studies", label: t.nav.works },
+    { href: "/launch", label: t.nav.websites },
     { href: "/pricing", label: t.nav.pricing },
-    { href: "/#contact", label: t.nav.contact },
+    { href: "/blog", label: t.nav.blog },
+    { href: "/contact", label: t.nav.contact },
   ];
 
   const [solid, setSolid] = useState(false);

@@ -2,10 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useActionState } from "react";
+import { usePathname } from "next/navigation";
 import { subscribeEmail, type SubscribeState } from "@/app/actions/subscribe";
 import { useLocale, useTranslations } from "@/lib/i18n/context";
 
+const POPUP_KEY = "luna_popup_seen";
+
 export function EmailPopup() {
+  const pathname = usePathname();
   const { locale } = useLocale();
   const t = useTranslations();
   const [visible, setVisible] = useState(false);
@@ -16,6 +20,11 @@ export function EmailPopup() {
   );
 
   useEffect(() => {
+    // Never show on the Studio route
+    if (pathname?.startsWith("/studio")) return;
+    // Already seen/dismissed — never show again
+    if (localStorage.getItem(POPUP_KEY)) return;
+
     const trigger = () => {
       if (triggered.current) return;
       triggered.current = true;
@@ -26,7 +35,7 @@ export function EmailPopup() {
 
     const onScroll = () => {
       const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-      if (pct >= 1.0) trigger();
+      if (pct >= 0.5) trigger();
     };
     window.addEventListener("scroll", onScroll, { passive: true });
 
@@ -34,15 +43,17 @@ export function EmailPopup() {
       clearTimeout(timer);
       window.removeEventListener("scroll", onScroll);
     };
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     if (state?.status !== "success") return;
+    localStorage.setItem(POPUP_KEY, "1");
     const timer = setTimeout(() => setVisible(false), 10000);
     return () => clearTimeout(timer);
   }, [state]);
 
   const dismiss = () => {
+    localStorage.setItem(POPUP_KEY, "1");
     setVisible(false);
   };
 

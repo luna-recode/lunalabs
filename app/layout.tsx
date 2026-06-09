@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Outfit, Space_Mono } from "next/font/google";
 import { BtnShine } from "@/components/btn-shine";
 import { EmailPopup } from "@/components/email-popup";
+import { JsonLd } from "@/components/seo/json-ld";
 import { LocaleProvider } from "@/lib/i18n/context";
 import { SkipLink } from "@/components/skip-link";
+import { organizationSchema, websiteSchema } from "@/lib/seo/schema";
+import { SITE } from "@/lib/seo/site";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -26,21 +29,31 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bylunalabs.com"),
-  title: "Luna Labs — Shopify Storefronts Built to Sell",
-  description:
-    "We design Shopify storefronts that look like your brand and are built to sell with recovery flows, trust signals, and friction-free checkout.",
+  metadataBase: new URL(SITE.url),
+  title: {
+    default:
+      "Luna Labs — Conversion Rate Optimization & Ecommerce Web Design",
+    template: "%s | Luna Labs",
+  },
+  description: SITE.description,
+  keywords: [
+    "conversion rate optimization",
+    "ecommerce web design",
+    "Shopify optimization",
+    "landing page performance",
+    "ecommerce revenue systems",
+  ],
   openGraph: {
-    siteName: "Luna Labs",
-    locale: "en_US",
+    siteName: SITE.name,
+    locale: SITE.locale,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    site: "@bylunalabs",
+    site: SITE.twitter,
   },
   appleWebApp: {
-    title: "Luna Labs",
+    title: SITE.name,
   },
 };
 
@@ -55,6 +68,7 @@ export default function RootLayout({
       className={`${cormorant.variable} ${outfit.variable} ${spaceMono.variable} scroll-smooth`}
     >
       <body className="grain antialiased">
+        <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <LocaleProvider>
           <SkipLink />
           {children}

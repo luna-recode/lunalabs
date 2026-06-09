@@ -1,3 +1,9 @@
+import {
+  caseStudies as studies,
+  fetchCaseStudies,
+  type CaseStudy as ContentCaseStudy,
+} from "@/lib/content/case-studies-data";
+
 export type Metric = {
   label: string;
   value: string;
@@ -17,27 +23,25 @@ export type CaseStudy = {
   placeholder?: boolean;
 };
 
-export const caseStudies: CaseStudy[] = [
-  {
-    id: "soleil-stone",
-    number: "01",
-    client: "Soleil & Stone",
-    location: "Laguna Beach, CA",
-    tier: "Essential",
-    tagline:
-      "Custom design system + a conversion-focused Shopify storefront that finally matched the brand.",
-    deliverables: [
-      "Custom-designed storefront",
-      "Conversion-ready product pages",
-      "Trust signals & social proof",
-      "Email capture pop-up",
-      "Mobile-first optimization",
-    ],
-    // metrics: [{ label: "Conversion lift", value: "+XX%" }], // add when available
-    // image: "/works/soleil-stone.jpg", // add when available
-    // liveUrl: "https://...", // add when available
-  },
-  { id: "placeholder-2", number: "02", client: "", location: "", tier: "", tagline: "", deliverables: [], placeholder: true },
-  { id: "placeholder-3", number: "03", client: "", location: "", tier: "", tagline: "", deliverables: [], placeholder: true },
-  { id: "placeholder-4", number: "04", client: "", location: "", tier: "", tagline: "", deliverables: [], placeholder: true },
-];
+function toWorkStudy(study: ContentCaseStudy, index: number): CaseStudy {
+  return {
+    id: study.slug,
+    number: String(index + 1).padStart(2, "0"),
+    client: study.client,
+    location: study.location,
+    tier: study.tier,
+    tagline: study.tagline,
+    deliverables: study.deliverables,
+    metrics: study.metrics,
+    image: study.image,
+    liveUrl: study.liveUrl,
+    placeholder: study.placeholder,
+  };
+}
+
+export const caseStudies: CaseStudy[] = studies.map(toWorkStudy);
+
+export async function fetchWorkStudies(): Promise<CaseStudy[]> {
+  const data = await fetchCaseStudies();
+  return data.map(toWorkStudy);
+}

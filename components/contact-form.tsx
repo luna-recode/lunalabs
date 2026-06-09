@@ -4,12 +4,26 @@ import { useActionState } from "react";
 import { submitContact, type ContactState } from "@/app/actions/contact";
 import { useLocale, useTranslations } from "@/lib/i18n/context";
 
-const inputClass =
-  "w-full rounded-lg border border-white/15 bg-white/[0.06] px-4 py-3 text-sm text-bone placeholder:text-muted transition-colors focus:border-accent/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent";
+const fieldStyles = {
+  glass:
+    "w-full rounded-lg border border-white/15 bg-white/[0.06] px-4 py-3 text-sm text-bone placeholder:text-muted backdrop-blur-sm transition-colors focus:border-accent/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent",
+  outlined:
+    "w-full rounded-lg border border-line-d bg-surface px-4 py-3 text-sm text-bone placeholder:text-muted shadow-[inset_0_1px_2px_rgba(21,35,63,0.04)] transition-colors hover:border-accent/30 focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/20",
+} as const;
 
-const labelClass = "mb-1.5 block font-mono text-[10px] uppercase tracking-[0.18em] text-muted";
+const labelStyles = {
+  glass: "mb-1.5 block font-mono text-[10px] uppercase tracking-[0.18em] text-muted",
+  outlined:
+    "mb-1.5 block font-mono text-[10px] uppercase tracking-[0.18em] text-bone-dim",
+} as const;
 
-export function ContactForm() {
+type ContactFormProps = {
+  variant?: keyof typeof fieldStyles;
+};
+
+export function ContactForm({ variant = "glass" }: ContactFormProps) {
+  const inputClass = fieldStyles[variant];
+  const labelClass = labelStyles[variant];
   const { locale } = useLocale();
   const t = useTranslations();
   const [state, formAction, pending] = useActionState<ContactState, FormData>(

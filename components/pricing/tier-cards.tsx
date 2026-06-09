@@ -134,6 +134,15 @@ export function TierCards() {
             >
               {tier.recommended ? t.common.bookConsult : t.pricing.talkAboutTier}
             </CalButton>
+
+            {tier.id === "launch" && (
+              <Link
+                href="/launch"
+                className="mt-4 text-center text-[13px] font-light text-accent transition-colors hover:text-bone"
+              >
+                Learn more →
+              </Link>
+            )}
           </article>
         ))}
       </ScrollReveal>

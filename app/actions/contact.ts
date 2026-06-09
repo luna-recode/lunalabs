@@ -3,6 +3,7 @@
 import { Resend } from "resend";
 import { z } from "zod";
 import { headers } from "next/headers";
+import { sendContactConfirmation } from "@/lib/email/contact-confirmation";
 import { translations } from "@/lib/i18n/translations";
 import type { Locale } from "@/lib/i18n/types";
 
@@ -84,6 +85,12 @@ export async function submitContact(
         </div>
       `,
     });
+
+    try {
+      await sendContactConfirmation(resend, email, name);
+    } catch (error) {
+      console.error("Failed to send contact confirmation email:", error);
+    }
 
     return { status: "success", message: t.contactSuccess };
   } catch {

@@ -10,8 +10,13 @@ export const en: Translations = {
     skipToMain: "Skip to main content",
   },
   nav: {
-    works: "Works",
+    services: "Services",
+    works: "Case Studies",
+    websites: "Websites",
     pricing: "Pricing",
+    blog: "Blog",
+    about: "About",
+    bookAudit: "Book Audit",
     contact: "Contact",
     openMenu: "Open menu",
     closeMenu: "Close menu",
@@ -28,7 +33,7 @@ export const en: Translations = {
     titleLine2: "and built to sell.",
     body: "We design Shopify storefronts that finally look like your brand — and are built to convert, with the recovery flows and friction-free checkout that turn the followers you already have into buyers. Looks are table stakes. Selling is the job.",
     recentWork: "Recent work:",
-    recentWorkClient: "Soleil & Stone",
+    recentWorkClient: "Dra. Yesly García",
   },
   reframe: {
     eyebrow: "The one idea everything rests on",
@@ -40,11 +45,11 @@ export const en: Translations = {
   },
   work: {
     eyebrow: "Selected work",
-    client: "Soleil & Stone, Laguna Beach",
+    client: "Dra. Yesly García, Managua",
     delivered:
-      "Custom design system + a conversion-focused Shopify storefront.",
+      "Full digital practice — domain, website, Google Maps, and patient booking.",
     imageTodo:
-      "TODO(owner): provide Soleil & Stone build images — before/after or hero shots — and/or a live URL.",
+      "TODO(owner): provide Dra. Yesly García build images — homepage hero or clinic shots.",
     quoteTodo:
       "TODO(owner): add a real client quote if one exists. Otherwise omit; do not fabricate.",
     beforeLabel: "Before",
@@ -82,7 +87,7 @@ export const en: Translations = {
     eyebrow: "Let's find the leaks",
     headingBefore: "How much revenue is your audience ",
     headingEmphasis: "leaving behind?",
-    body: "Free 20-minute consult. We'll look at your store and brand and map exactly what to build — no pitch deck, no pressure.",
+    body: "Free 15-minute consult. We'll look at your store and brand and map exactly what to build — no pitch deck, no pressure.",
     formNote: "Or fill out the form — we'll reach out within 24h",
   },
   footer: {
@@ -91,12 +96,11 @@ export const en: Translations = {
     whatWeBuild: "What We Build",
     navigate: "Navigate",
     getInTouch: "Get In Touch",
-    services: [
-      "Shopify Storefronts",
-      "Klaviyo Email Flows",
-      "Checkout Optimization",
-      "Paid Social & Ads",
-      "Monthly Care Plans",
+    serviceLinks: [
+      { href: "/services/conversion-websites", label: "Conversion Websites" },
+      { href: "/services/ecommerce-optimization", label: "Ecommerce Optimization" },
+      { href: "/services/landing-page-design", label: "Landing Page Design" },
+      { href: "/services/website-redesign", label: "Website Redesign" },
     ],
     subscribe: "Subscribe to our emails",
     copyright: "© 2026 · Luna Labs · Orange County, CA",

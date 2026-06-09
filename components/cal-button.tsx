@@ -9,8 +9,8 @@ type CalButtonProps = {
   onClick?: () => void;
 };
 
-const CAL_LINK = "lunalabs/revenue-audit";
-const CAL_NAMESPACE = "revenue-audit";
+const CAL_LINK = "lunalabs/free-consult";
+const CAL_NAMESPACE = "free-consult";
 
 export function CalButton({ children, className, onClick }: CalButtonProps) {
   useEffect(() => {

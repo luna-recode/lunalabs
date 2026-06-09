@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { caseStudies, type CaseStudy } from "@/lib/works-data";
+import type { CaseStudy } from "@/lib/works-data";
 
 const MAX_VISIBLE = 4;
 
@@ -65,7 +65,7 @@ function WorkCard({ study, index }: { study: CaseStudy; index: number }) {
           </div>
         ) : (
           <Link
-            href={study.liveUrl ?? "/works"}
+            href={study.liveUrl ?? `/case-studies/${study.id}`}
             {...(study.liveUrl
               ? { target: "_blank", rel: "noopener noreferrer" }
               : {})}
@@ -94,11 +94,11 @@ function WorkCard({ study, index }: { study: CaseStudy; index: number }) {
   );
 }
 
-export function Work() {
+export function Work({ studies }: { studies: CaseStudy[] }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
-  const showArrows = caseStudies.length > MAX_VISIBLE;
+  const showArrows = studies.length > MAX_VISIBLE;
 
   useEffect(() => {
     if (!showArrows) return;
@@ -166,7 +166,7 @@ export function Work() {
           </svg>
         </div>
         <Link
-          href="/works"
+          href="/case-studies"
           className="hidden items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-muted transition-colors hover:text-accent sm:flex"
         >
           View all
@@ -195,7 +195,7 @@ export function Work() {
           ref={scrollRef}
           className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {caseStudies.map((study, i) => (
+          {studies.map((study, i) => (
             <div
               key={study.id}
               className="w-[82vw] shrink-0 snap-start sm:w-[calc(50%-8px)] lg:w-[calc(25%-12px)]"
