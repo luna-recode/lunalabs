@@ -8,7 +8,7 @@ export function Accordion({ items }: { items: Item[] }) {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <dl>
+    <dl className="rounded-2xl border border-line bg-white/60 p-2 shadow-[0_14px_30px_-22px_rgba(33,64,143,0.4)] backdrop-blur-xl sm:p-3">
       {items.map((item, i) => {
         const isOpen = open === i;
         return (
