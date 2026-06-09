@@ -17,6 +17,12 @@ const labelStyles = {
     "mb-1.5 block font-mono text-[10px] uppercase tracking-[0.18em] text-bone-dim",
 } as const;
 
+/* 4.5:1+ on each variant's background: red-400 on dark glass, red-700 on light */
+const errorStyles = {
+  glass: "text-red-400",
+  outlined: "text-[#b91c1c]",
+} as const;
+
 type ContactFormProps = {
   variant?: keyof typeof fieldStyles;
 };
@@ -134,7 +140,7 @@ export function ContactForm({ variant = "glass" }: ContactFormProps) {
       </div>
 
       {state?.status === "error" && (
-        <div role="alert" aria-live="assertive" className="text-sm text-red-400">
+        <div role="alert" aria-live="assertive" className={`text-sm ${errorStyles[variant]}`}>
           <span className="font-medium">{t.common.errorPrefix}</span>
           {state.message}
         </div>

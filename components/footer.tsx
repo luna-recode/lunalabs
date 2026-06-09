@@ -53,7 +53,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-t border-[#243450] bg-[#0f1a30] text-bone [--accent-dim:#9cc1ee] [--accent:#9cc1ee] [--bone-dim:#aebbd2] [--bone:#ffffff] [--gray:#aebbd2] [--line:#243450]">
+    <footer className="border-t border-[#243450] bg-[#0f1a30] text-bone [--accent-dim:#9cc1ee] [--accent:#9cc1ee] [--bone-dim:#aebbd2] [--bone:#ffffff] [--gray:#aebbd2] [--line:#243450] [--elevated:#16243f] [--card:#21408f]">
       <div className="mx-auto max-w-[1400px] px-[clamp(20px,5vw,64px)] py-[clamp(60px,10vh,100px)]">
         <div className="grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-[1.3fr_1fr_0.8fr_1fr] lg:gap-12">
           <div className="col-span-2 flex flex-col gap-7 lg:col-span-1">

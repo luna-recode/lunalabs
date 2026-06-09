@@ -16,7 +16,7 @@ export function TierCards() {
             key={tier.id}
             className={`relative flex flex-col overflow-hidden rounded-2xl border p-8 ${
               tier.recommended
-                ? "border-[#243450] bg-[#16243f] shadow-[0_28px_60px_-12px_rgba(33,64,143,0.6)] md:-my-6 [--accent:#9cc1ee] [--accent-dim:#9cc1ee] [--bone:#ffffff] [--bone-dim:#aebbd2] [--gold:#c6a14e] [--line:#2d4060] [--text-faint:#8595b1]"
+                ? "border-[#243450] bg-[#16243f] shadow-[0_28px_60px_-12px_rgba(33,64,143,0.6)] md:-my-6 [--accent:#9cc1ee] [--accent-dim:#9cc1ee] [--bone:#ffffff] [--bone-dim:#aebbd2] [--gold:#c6a14e] [--line:#2d4060] [--gray:#8595b1]"
                 : "border-line bg-card shadow-[0_14px_30px_-22px_rgba(33,64,143,0.3)]"
             }`}
           >

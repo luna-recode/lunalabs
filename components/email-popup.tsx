@@ -143,7 +143,7 @@ export function EmailPopup() {
                 </div>
 
                 {state?.status === "error" && (
-                  <p className="mt-2 text-center font-mono text-[10px] text-red-400">
+                  <p className="mt-2 text-center font-mono text-[10px] text-[#b91c1c]">
                     {state.message}
                   </p>
                 )}

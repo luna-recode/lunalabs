@@ -8,7 +8,7 @@
   --card: #ffffff;
   --text: #15233f;
   --text-soft: #445574;
-  --text-faint: #8595b1;
+  --text-faint: #5a6b8f; /* 4.7:1+ on all light surfaces (WCAG AA) */
   --champagne: #2f63d6;
   --champagne-dim: #21408f;
   --silver: #9cc1ee;
