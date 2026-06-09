@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ScrollReveal } from "./scroll-reveal";
 import type { CaseStudy } from "@/lib/works-data";
@@ -89,11 +90,13 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
 
         <ScrollReveal>
           {study.image ? (
-            <div className="overflow-hidden rounded-xl border border-line bg-card shadow-[0_14px_30px_-22px_rgba(33,64,143,0.4)]">
-              <img
+            <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-line bg-card shadow-[0_14px_30px_-22px_rgba(33,64,143,0.4)]">
+              <Image
                 src={study.image}
                 alt={`${study.client} storefront`}
-                className="w-full object-cover"
+                fill
+                sizes="(min-width: 768px) calc(55vw - 2rem), 100vw"
+                className="object-cover"
               />
             </div>
           ) : (

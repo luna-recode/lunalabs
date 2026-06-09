@@ -1,24 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import { ScrollReveal } from "./scroll-reveal";
 import { useTranslations } from "@/lib/i18n/context";
 
 const toolAssets = [
-  {
-    logo: "/shopify-icon.svg",
-    logoClass: "h-10 w-auto",
-    filterClass: "",
-  },
-  {
-    logo: "/klaviyo-icon.svg",
-    logoClass: "h-10 w-auto",
-    filterClass: "",
-  },
-  {
-    logo: "/google_analytics-icon.svg",
-    logoClass: "h-10 w-auto",
-    filterClass: "",
-  },
+  { logo: "/shopify-icon.svg", width: 35, height: 40 },
+  { logo: "/klaviyo-icon.svg", width: 60, height: 40 },
+  { logo: "/google_analytics-icon.svg", width: 40, height: 40 },
 ];
 
 export function Stack() {
@@ -51,10 +40,11 @@ export function Stack() {
             }`}
           >
             <div className="flex h-[52px] items-center justify-center grayscale transition-[filter] duration-300 hover:grayscale-0">
-              <img
+              <Image
                 src={toolAssets[i].logo}
                 alt={tool.name}
-                className={`${toolAssets[i].logoClass} ${toolAssets[i].filterClass}`}
+                width={toolAssets[i].width}
+                height={toolAssets[i].height}
               />
             </div>
             <span className="font-serif text-[21px] font-medium tracking-wide">{tool.name}</span>

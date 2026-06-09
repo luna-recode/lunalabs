@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { CalButton } from "./cal-button";
 import { Brand } from "./brand";
@@ -69,10 +70,12 @@ export function Footer() {
             <Link href="/" className="w-fit transition-opacity hover:opacity-70">
               <Brand />
             </Link>
-            <img
+            <Image
               src="/shopify-logo.svg"
               alt="Shopify"
-              className="h-7 w-auto self-start opacity-60"
+              width={98}
+              height={28}
+              className="self-start opacity-60"
             />
           </div>
 

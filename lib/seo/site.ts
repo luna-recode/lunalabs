@@ -1,6 +1,6 @@
 export const SITE = {
   name: "Luna Labs",
-  url: "https://bylunalabs.com",
+  url: "https://www.bylunalabs.com",
   locale: "en_US",
   twitter: "@bylunalabs",
   email: "hello@bylunalabs.com",

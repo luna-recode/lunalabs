@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { CaseStudy } from "@/lib/works-data";
@@ -18,10 +19,12 @@ function WorkCard({ study, index }: { study: CaseStudy; index: number }) {
   return (
     <article className="group relative flex aspect-[3/4] w-full flex-col overflow-hidden rounded-2xl">
       {study.image ? (
-        <img
+        <Image
           src={study.image}
           alt={`${study.client} storefront`}
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+          fill
+          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 82vw"
+          className="pointer-events-none object-cover transition-transform duration-700 group-hover:scale-[1.03]"
         />
       ) : (
         <div

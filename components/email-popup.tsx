@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useActionState } from "react";
 import { usePathname } from "next/navigation";
@@ -86,11 +87,13 @@ export function EmailPopup() {
         </button>
 
         <div className="p-8">
-          <img
+          <Image
             src="/luna-labs-moon.svg"
             alt=""
             aria-hidden
-            className="mb-5 h-10 w-10"
+            width={40}
+            height={40}
+            className="mb-5"
           />
 
           {state?.status === "success" ? (

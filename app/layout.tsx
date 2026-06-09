@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Outfit, Space_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { BtnShine } from "@/components/btn-shine";
 import { EmailPopup } from "@/components/email-popup";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -75,6 +77,8 @@ export default function RootLayout({
           <EmailPopup />
           <BtnShine />
         </LocaleProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
