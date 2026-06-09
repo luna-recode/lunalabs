@@ -112,7 +112,7 @@ En caso de cambios significativos, haremos esfuerzos razonables para notificar a
         body: `Para cualquier pregunta, solicitud o reclamación relacionada con esta Política de privacidad o con el tratamiento de sus datos, contacte con:
 
 Luna Labs
-Orange County, CA
+Los Angeles, CA
 hello@bylunalabs.com
 
 Si es residente de la UE y considera que no hemos atendido adecuadamente su inquietud, tiene derecho a presentar una reclamación ante su autoridad local de protección de datos.`,
@@ -227,7 +227,7 @@ Luna Labs puede resolver de inmediato y sin preaviso en casos de impago del clie
         body: `Para preguntas sobre estos Términos y condiciones, contáctenos en:
 
 Luna Labs
-Orange County, CA
+Los Angeles, CA
 hello@bylunalabs.com`,
       },
     ],

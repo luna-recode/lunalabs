@@ -132,7 +132,7 @@ export default async function Image() {
                   textTransform: "uppercase",
                 }}
               >
-                Revenue systems · Orange County, CA
+                Revenue systems · Los Angeles, CA
               </span>
             </div>
 

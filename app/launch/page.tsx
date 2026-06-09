@@ -11,7 +11,7 @@ import { createPageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "Websites for Local Businesses",
   description:
-    "Custom websites for restaurants, local services, and B2B professionals in Orange County — mobile-first design, Google Business Profile setup, online booking, and on-page SEO. Live in about a week.",
+    "Custom websites for restaurants, local services, and B2B professionals in Los Angeles — mobile-first design, Google Business Profile setup, online booking, and on-page SEO. Live in about a week.",
   path: "/launch",
 });
 

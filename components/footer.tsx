@@ -127,7 +127,7 @@ export function Footer() {
                 </a>
               </li>
               <li className="text-sm font-light text-bone-dim">
-                Orange County, CA
+                Los Angeles, CA
               </li>
             </ul>
           </div>

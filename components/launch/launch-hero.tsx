@@ -71,43 +71,45 @@ export function LaunchHero() {
       <div className="absolute inset-0 z-[2] bg-gradient-to-b from-ink/30 via-ink/20 to-ink/90" />
 
       <div className="relative z-[3] mx-auto w-full max-w-[1500px] px-[clamp(20px,5vw,64px)] pb-[clamp(96px,12vh,120px)]">
-        <div
-          className={`animate-rise-delay-5 mb-[26px] flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.16em] text-accent-dim sm:text-[11px] sm:tracking-[0.32em] ${reducedMotion ? "" : motionClass}`}
-        >
-          <span className="h-px w-[34px] bg-accent-dim" aria-hidden />
-          Local business · Orange County, CA
-        </div>
-
-        <h1 className="max-w-[16ch] font-serif text-[clamp(40px,7.4vw,108px)] font-medium leading-[0.98] tracking-tight">
-          <span className={`animate-rise-delay-1 block ${reducedMotion ? "" : motionClass}`}>
-            Your business, online
-          </span>
-          <span
-            className={`animate-rise-delay-2 block italic text-accent ${reducedMotion ? "" : motionClass}`}
+        <div className="ml-auto max-w-[720px] text-right">
+          <div
+            className={`animate-rise-delay-5 mb-[26px] flex items-center justify-end gap-3 font-mono text-[10px] uppercase tracking-[0.16em] text-accent-dim sm:text-[11px] sm:tracking-[0.32em] ${reducedMotion ? "" : motionClass}`}
           >
-            and built to be found.
-          </span>
-        </h1>
+            Local business · Los Angeles, CA
+            <span className="h-px w-[34px] bg-accent-dim" aria-hidden />
+          </div>
 
-        <p
-          className={`animate-rise-delay-3 mt-7 max-w-[46ch] text-[clamp(15px,1.5vw,18px)] font-light leading-[1.55] text-bone-dim ${reducedMotion ? "" : motionClass}`}
-        >
-          A clean, fast website that makes your business look as good as it is — plus a Google
-          presence so customers can actually find you. Live in about a week.
-        </p>
+          <h1 className="font-serif text-[clamp(40px,7.4vw,108px)] font-medium leading-[0.98] tracking-tight">
+            <span className={`animate-rise-delay-1 block ${reducedMotion ? "" : motionClass}`}>
+              Your business, online
+            </span>
+            <span
+              className={`animate-rise-delay-2 block italic text-accent ${reducedMotion ? "" : motionClass}`}
+            >
+              and built to be found.
+            </span>
+          </h1>
 
-        <div
-          className={`animate-rise-delay-4 mt-[38px] flex flex-wrap gap-3.5 ${reducedMotion ? "" : motionClass}`}
-        >
-          <CalButton className="btn-fill cursor-pointer rounded-[32px] border-none px-[26px] py-[15px] text-sm font-medium transition-all hover:-translate-y-0.5">
-            {t.common.bookConsult}
-          </CalButton>
-          <Link
-            href="#whats-included"
-            className="cursor-pointer rounded-[32px] border border-line bg-transparent px-[26px] py-[15px] text-sm font-normal text-bone transition-all hover:border-accent hover:bg-accent/[0.06]"
+          <p
+            className={`animate-rise-delay-3 ml-auto mt-7 max-w-[46ch] text-[clamp(15px,1.5vw,18px)] font-light leading-[1.55] text-bone-dim ${reducedMotion ? "" : motionClass}`}
           >
-            See what&apos;s included →
-          </Link>
+            A clean, fast website that makes your business look as good as it is — plus a Google
+            presence so customers can actually find you. Live in about a week.
+          </p>
+
+          <div
+            className={`animate-rise-delay-4 mt-[38px] flex flex-wrap justify-end gap-3.5 ${reducedMotion ? "" : motionClass}`}
+          >
+            <CalButton className="btn-fill cursor-pointer rounded-[32px] border-none px-[26px] py-[15px] text-sm font-medium transition-all hover:-translate-y-0.5">
+              {t.common.bookConsult}
+            </CalButton>
+            <Link
+              href="#whats-included"
+              className="cursor-pointer rounded-[32px] border border-line bg-transparent px-[26px] py-[15px] text-sm font-normal text-bone transition-all hover:border-accent hover:bg-accent/[0.06]"
+            >
+              See what&apos;s included →
+            </Link>
+          </div>
         </div>
       </div>
 

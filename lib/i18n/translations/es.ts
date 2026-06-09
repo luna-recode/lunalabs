@@ -20,7 +20,7 @@ export const es: Translations = {
     contact: "Contacto",
     openMenu: "Abrir menú",
     closeMenu: "Cerrar menú",
-    mobileTagline: "Sistemas de ingresos · Orange County, CA",
+    mobileTagline: "Sistemas de ingresos · Los Angeles, CA",
   },
   language: {
     label: "Idioma",
@@ -28,7 +28,7 @@ export const es: Translations = {
     spanish: "Español",
   },
   hero: {
-    eyebrow: "Sistemas de ingresos · Orange County, CA",
+    eyebrow: "Sistemas de ingresos · Los Angeles, CA",
     titleLine1: "Tu marca, online",
     titleLine2: "y construida para vender.",
     body: "Diseñamos tiendas Shopify que por fin se ven como tu marca — y están hechas para convertir, con flujos de recuperación y un checkout sin fricción que convierten en compradores a los seguidores que ya tienes. La estética es lo mínimo. Vender es el trabajo.",
@@ -103,7 +103,7 @@ export const es: Translations = {
       { href: "/services/website-redesign", label: "Rediseño web" },
     ],
     subscribe: "Suscríbete a nuestros correos",
-    copyright: "© 2026 · Luna Labs · Orange County, CA",
+    copyright: "© 2026 · Luna Labs · Los Angeles, CA",
     terms: "Términos y condiciones",
     accessibility: "Accesibilidad",
     privacy: "Política de privacidad",

@@ -112,7 +112,7 @@ For significant changes, we will make reasonable efforts to notify subscribers v
         body: `For any questions, requests, or complaints regarding this Privacy Policy or how we handle your data, please contact:
 
 Luna Labs
-Orange County, CA
+Los Angeles, CA
 hello@bylunalabs.com
 
 If you are an EU resident and believe we have not adequately addressed your concern, you have the right to lodge a complaint with your local data protection authority.`,
@@ -219,7 +219,7 @@ Luna Labs may terminate immediately and without notice in cases of client non-pa
       {
         id: "governing-law",
         title: "Governing Law",
-        body: `These Terms and Conditions are governed by and construed in accordance with the laws of the State of California, without regard to its conflict of law principles. Any disputes arising under these terms shall be subject to the exclusive jurisdiction of the courts located in Orange County, California.`,
+        body: `These Terms and Conditions are governed by and construed in accordance with the laws of the State of California, without regard to its conflict of law principles. Any disputes arising under these terms shall be subject to the exclusive jurisdiction of the courts located in Los Angeles, California.`,
       },
       {
         id: "contact",
@@ -227,7 +227,7 @@ Luna Labs may terminate immediately and without notice in cases of client non-pa
         body: `For questions about these Terms and Conditions, please contact us at:
 
 Luna Labs
-Orange County, CA
+Los Angeles, CA
 hello@bylunalabs.com`,
       },
     ],

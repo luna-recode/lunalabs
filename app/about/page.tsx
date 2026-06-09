@@ -17,7 +17,7 @@ import { SITE } from "@/lib/seo/site";
 export const metadata: Metadata = createPageMetadata({
   title: "About Luna Labs — Ecommerce CRO & Shopify Web Design Agency",
   description:
-    "Luna Labs is an Orange County ecommerce agency specializing in conversion rate optimization, Shopify storefronts, and ecommerce revenue systems for DTC brands.",
+    "Luna Labs is an Los Angeles ecommerce agency specializing in conversion rate optimization, Shopify storefronts, and ecommerce revenue systems for DTC brands.",
   path: "/about",
 });
 

@@ -4,7 +4,7 @@ export const SITE = {
   locale: "en_US",
   twitter: "@bylunalabs",
   email: "hello@bylunalabs.com",
-  location: "Orange County, CA",
+  location: "Los Angeles, CA",
   description:
     "Luna Labs builds conversion rate optimization systems for ecommerce brands — Shopify storefronts, landing page performance, and revenue-focused web design.",
   tagline:

@@ -20,7 +20,7 @@ export const en: Translations = {
     contact: "Contact",
     openMenu: "Open menu",
     closeMenu: "Close menu",
-    mobileTagline: "Revenue systems · Orange County, CA",
+    mobileTagline: "Revenue systems · Los Angeles, CA",
   },
   language: {
     label: "Language",
@@ -28,7 +28,7 @@ export const en: Translations = {
     spanish: "Español",
   },
   hero: {
-    eyebrow: "Revenue systems · Orange County, CA",
+    eyebrow: "Revenue systems · Los Angeles, CA",
     titleLine1: "Your brand, online",
     titleLine2: "and built to sell.",
     body: "We design Shopify storefronts that finally look like your brand — and are built to convert, with the recovery flows and friction-free checkout that turn the followers you already have into buyers. Looks are table stakes. Selling is the job.",
@@ -103,7 +103,7 @@ export const en: Translations = {
       { href: "/services/website-redesign", label: "Website Redesign" },
     ],
     subscribe: "Subscribe to our emails",
-    copyright: "© 2026 · Luna Labs · Orange County, CA",
+    copyright: "© 2026 · Luna Labs · Los Angeles, CA",
     terms: "Terms & Conditions",
     accessibility: "Accessibility",
     privacy: "Privacy Policy",
