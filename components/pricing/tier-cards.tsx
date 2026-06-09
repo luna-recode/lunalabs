@@ -10,30 +10,24 @@ export function TierCards() {
 
   return (
     <section className="px-[clamp(20px,5vw,64px)] pb-[clamp(70px,11vh,120px)]">
-      <ScrollReveal className="mx-auto grid max-w-[1200px] grid-cols-1 gap-5 md:grid-cols-3 md:py-6">
+      <ScrollReveal className="mx-auto grid max-w-[1200px] grid-cols-1 gap-5 md:grid-cols-3 md:py-10">
         {t.pricing.buildTiers.map((tier) => (
           <article
             key={tier.id}
-            className={`relative flex flex-col overflow-hidden rounded-2xl border p-8 ${
+            className={`relative flex flex-col rounded-2xl border p-8 ${
               tier.recommended
                 ? "border-[#243450] bg-[#16243f] shadow-[0_28px_60px_-12px_rgba(33,64,143,0.6)] md:-my-6 [--accent:#9cc1ee] [--accent-dim:#9cc1ee] [--bone:#ffffff] [--bone-dim:#aebbd2] [--gold:#c6a14e] [--line:#2d4060] [--gray:#8595b1]"
                 : "border-line bg-card shadow-[0_14px_30px_-22px_rgba(33,64,143,0.3)]"
             }`}
           >
-            {/* Folder-tab corner decoration on featured card */}
+            {/* Floating gold badge straddling the top edge of the featured card */}
             {tier.recommended && (
-              <div
-                className="pointer-events-none absolute right-0 top-0 h-40 w-40 overflow-hidden rounded-tr-2xl"
-                aria-hidden
-              >
-                <div
-                  className="absolute inset-0 opacity-[0.1]"
-                  style={{
-                    backgroundImage:
-                      "repeating-linear-gradient(45deg, #9cc1ee 0, #9cc1ee 1.5px, transparent 1.5px, transparent 10px)",
-                  }}
-                />
-              </div>
+              <span className="absolute -top-3.5 left-1/2 z-10 flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full bg-[image:var(--gold-gradient)] px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-[#2a2208] [box-shadow:var(--gold-shadow)]">
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="currentColor" aria-hidden>
+                  <path d="M6 0l1.55 4.45L12 6l-4.45 1.55L6 12 4.45 7.55 0 6l4.45-1.55L6 0z" />
+                </svg>
+                {t.pricing.recommended}
+              </span>
             )}
 
             {/* Tier number + badge */}
@@ -41,19 +35,10 @@ export function TierCards() {
               <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-muted">
                 {t.pricing.tierLabel} {tier.number}
               </span>
-              {(tier.recommended || tier.badge) && (
-                <span
-                  className={`flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.2em] ${
-                    tier.recommended ? "text-gold" : "text-accent-dim"
-                  }`}
-                >
-                  {tier.recommended ? t.pricing.recommended : tier.badge}
-                  <span
-                    className={`h-1.5 w-1.5 rounded-full ${
-                      tier.recommended ? "bg-gold" : "bg-accent"
-                    }`}
-                    aria-hidden
-                  />
+              {!tier.recommended && tier.badge && (
+                <span className="flex items-center gap-1.5 rounded-full border border-accent/25 bg-accent/10 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em] text-accent-dim">
+                  {tier.badge}
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
                 </span>
               )}
             </div>
