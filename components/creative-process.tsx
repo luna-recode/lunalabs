@@ -151,14 +151,14 @@ function FlipCard({ step }: { step: Step }) {
           </div>
 
           {/* Content */}
-          <div className="relative z-10 flex h-full flex-col p-8">
-            <span className="mb-2 font-mono text-[10px] uppercase tracking-[0.28em] text-bone/40">
+          <div className="relative z-10 flex h-full flex-col p-8 pr-20">
+            <span className="mb-2 font-mono text-[11px] uppercase tracking-[0.28em] text-white/55">
               Step {step.number}
             </span>
-            <h3 className="font-serif text-[clamp(32px,4vw,48px)] font-medium leading-[1.06] tracking-tight text-bone">
+            <h3 className="font-serif text-[clamp(32px,4vw,48px)] font-medium leading-[1.06] tracking-tight text-white">
               {step.title}
             </h3>
-            <p className="mt-3 max-w-[22ch] text-sm font-light leading-[1.6] text-bone/60">
+            <p className="mt-4 max-w-[26ch] text-[15px] font-light leading-[1.65] text-white/80">
               {step.tagline}
             </p>
 
@@ -187,14 +187,14 @@ function FlipCard({ step }: { step: Step }) {
         >
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
 
-          <div className="relative flex h-full flex-col p-8">
-            <span className="mb-1 font-mono text-[10px] uppercase tracking-[0.28em] text-muted">
+          <div className="relative flex h-full flex-col p-8 pr-20">
+            <span className="mb-2 font-mono text-[11px] uppercase tracking-[0.28em] text-muted">
               Step {step.number}
             </span>
-            <h3 className="mb-6 font-serif text-[clamp(22px,2.8vw,30px)] font-medium leading-[1.1] tracking-tight text-accent">
+            <h3 className="mb-5 font-serif text-[clamp(24px,2.8vw,32px)] font-medium leading-[1.1] tracking-tight text-accent">
               {step.title}
             </h3>
-            <p className="text-sm font-light leading-[1.8] text-bone-dim">
+            <p className="flex-1 text-[15px] font-light leading-[1.75] text-bone-dim">
               {step.description}
             </p>
 
