@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Brand } from "./brand";
 import { CalButton } from "./cal-button";
@@ -9,6 +10,7 @@ import { useTranslations } from "@/lib/i18n/context";
 
 export function Nav() {
   const t = useTranslations();
+  const pathname = usePathname();
   const links = [
     { href: "/services", label: t.nav.services },
     { href: "/case-studies", label: t.nav.works },
@@ -67,12 +69,21 @@ export function Nav() {
 
     window.addEventListener("keydown", onKeyDown);
     const firstLink = menuRef.current?.querySelector<HTMLElement>("a[href]");
-    firstLink?.focus();
+    firstLink?.focus({ preventScroll: true });
 
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [menuOpen]);
 
   const close = () => setMenuOpen(false);
+
+  const goHome = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    close();
+    if (pathname !== "/") return;
+
+    e.preventDefault();
+    document.getElementById("hero")?.scrollIntoView({ behavior: "smooth" });
+    window.history.replaceState(null, "", "/#hero");
+  };
 
   return (
     <>
@@ -84,7 +95,11 @@ export function Nav() {
             : "bg-gradient-to-b from-ink/85 via-ink/35 to-transparent py-5 backdrop-blur-[2px]"
         }`}
       >
-        <Link href="/" className="transition-opacity hover:opacity-80" onClick={close}>
+        <Link
+          href="/#hero"
+          className="transition-opacity hover:opacity-80"
+          onClick={goHome}
+        >
           <Brand />
         </Link>
 
@@ -153,29 +168,33 @@ export function Nav() {
             : "pointer-events-none opacity-0"
         }`}
       >
-        <div className="flex flex-1 flex-col items-center justify-center gap-7">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={close}
-              tabIndex={menuOpen ? 0 : -1}
-              className="font-serif text-[clamp(32px,9vw,44px)] font-medium tracking-tight text-bone transition-opacity hover:opacity-60"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <div className="mt-4">
-            <CalButton
-              onClick={close}
-              className="btn-fill cursor-pointer rounded-[32px] border-none px-[28px] py-[15px] text-sm font-medium transition-all active:scale-95"
-            >
-              {t.common.bookConsult}
-            </CalButton>
+        <div
+          className="flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-contain px-6 pb-6 pt-[calc(env(safe-area-inset-top,0px)+5.5rem)]"
+        >
+          <div className="mx-auto flex w-full max-w-md flex-col items-center gap-6 py-4">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={close}
+                tabIndex={menuOpen ? 0 : -1}
+                className="font-serif text-[clamp(28px,8vw,40px)] font-medium tracking-tight text-bone transition-opacity hover:opacity-60"
+              >
+                {link.label}
+              </Link>
+            ))}
+            <div className="mt-2">
+              <CalButton
+                onClick={close}
+                className="btn-fill cursor-pointer rounded-[32px] border-none px-[28px] py-[15px] text-sm font-medium transition-all active:scale-95"
+              >
+                {t.common.bookConsult}
+              </CalButton>
+            </div>
           </div>
         </div>
 
-        <p className="pb-10 text-center font-mono text-[10px] uppercase tracking-[0.22em] text-muted">
+        <p className="shrink-0 pb-[max(2.5rem,env(safe-area-inset-bottom))] text-center font-mono text-[10px] uppercase tracking-[0.22em] text-muted">
           {t.nav.mobileTagline}
         </p>
       </div>

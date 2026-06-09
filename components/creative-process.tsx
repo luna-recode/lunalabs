@@ -104,24 +104,35 @@ const steps: Step[] = [
   },
 ];
 
+const faceStyle = {
+  backfaceVisibility: "hidden" as const,
+  WebkitBackfaceVisibility: "hidden" as const,
+};
+
 function FlipCard({ step }: { step: Step }) {
   const [flipped, setFlipped] = useState(false);
 
   return (
-    <div style={{ perspective: "1200px" }} className="h-[480px]">
+    <div
+      style={{ perspective: "1200px", WebkitPerspective: "1200px" }}
+      className="h-[480px] [transform-style:preserve-3d]"
+    >
       <div
         style={{
           transformStyle: "preserve-3d",
+          WebkitTransformStyle: "preserve-3d",
           transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
           transition: "transform 0.7s ease-in-out",
         }}
-        className="relative h-full w-full"
+        className="relative h-full w-full [transform-style:preserve-3d]"
       >
         {/* ── Front ── */}
         <div
           style={{
-            backfaceVisibility: "hidden",
-            background: step.gradient,
+            ...faceStyle,
+            transform: "rotateY(0deg) translateZ(1px)",
+            backgroundColor: "#121a2e",
+            backgroundImage: step.gradient,
             pointerEvents: flipped ? "none" : "auto",
           }}
           className="absolute inset-0 overflow-hidden rounded-2xl border border-white/10"
@@ -168,8 +179,8 @@ function FlipCard({ step }: { step: Step }) {
         {/* ── Back ── */}
         <div
           style={{
-            backfaceVisibility: "hidden",
-            transform: "rotateY(180deg)",
+            ...faceStyle,
+            transform: "rotateY(180deg) translateZ(1px)",
             pointerEvents: flipped ? "auto" : "none",
           }}
           className="absolute inset-0 overflow-hidden rounded-2xl border border-line bg-card"
@@ -235,9 +246,7 @@ export function CreativeProcess() {
         {/* Cards */}
         <div className="mt-[clamp(48px,7vh,72px)] grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step) => (
-            <ScrollReveal key={step.number}>
-              <FlipCard step={step} />
-            </ScrollReveal>
+            <FlipCard key={step.number} step={step} />
           ))}
         </div>
       </div>
