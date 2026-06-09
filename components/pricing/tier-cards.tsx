@@ -129,7 +129,7 @@ export function TierCards() {
               className={`w-full cursor-pointer rounded-[32px] px-6 py-[14px] text-sm font-medium transition-all ${
                 tier.recommended
                   ? "btn-fill border-none hover:-translate-y-0.5"
-                  : "border border-line bg-transparent text-bone hover:border-accent hover:bg-accent/[0.06]"
+                  : "btn-outline hover:-translate-y-0.5"
               }`}
             >
               {tier.recommended ? t.common.bookConsult : t.pricing.talkAboutTier}
@@ -158,7 +158,7 @@ export function TierCards() {
         </div>
         <Link
           href="/#contact"
-          className="shrink-0 cursor-pointer rounded-[32px] border border-line bg-transparent px-6 py-[13px] text-sm font-medium text-bone transition-all hover:border-accent hover:bg-accent/[0.06]"
+          className="btn-outline shrink-0 cursor-pointer rounded-[32px] px-6 py-[13px] text-sm font-medium transition-all hover:-translate-y-0.5"
         >
           {t.pricing.undecidedCta}
         </Link>

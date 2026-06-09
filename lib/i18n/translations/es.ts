@@ -12,7 +12,8 @@ export const es: Translations = {
   nav: {
     services: "Servicios",
     works: "Casos de estudio",
-    websites: "Sitios web",
+    launch: "Launch",
+    faq: "FAQ",
     pricing: "Precios",
     blog: "Blog",
     about: "Nosotros",

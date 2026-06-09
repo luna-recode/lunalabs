@@ -58,7 +58,8 @@ export type Translations = {
   nav: {
     services: string;
     works: string;
-    websites: string;
+    launch: string;
+    faq: string;
     pricing: string;
     blog: string;
     about: string;

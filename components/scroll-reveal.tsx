@@ -15,7 +15,11 @@ export function ScrollReveal({ children, className = "" }: ScrollRevealProps) {
     if (!el) return;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reducedMotion) {
+
+    // Elements already in the viewport on mount (above-fold) are made visible
+    // immediately, preventing a flash of invisible content on first paint.
+    const rect = el.getBoundingClientRect();
+    if (reducedMotion || rect.top < window.innerHeight) {
       el.classList.add("in");
       return;
     }

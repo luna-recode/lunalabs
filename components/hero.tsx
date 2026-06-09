@@ -98,7 +98,7 @@ export function Hero() {
           </CalButton>
           <Link
             href="/case-studies"
-            className="cursor-pointer rounded-[32px] border border-line bg-transparent px-[26px] py-[15px] text-sm font-normal text-bone transition-all hover:border-accent hover:bg-accent/[0.06]"
+            className="btn-outline cursor-pointer rounded-[32px] px-[26px] py-[15px] text-sm font-medium transition-all hover:-translate-y-0.5"
           >
             {t.common.viewWork}
           </Link>

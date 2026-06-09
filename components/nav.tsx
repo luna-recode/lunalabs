@@ -12,9 +12,10 @@ export function Nav() {
   const links = [
     { href: "/services", label: t.nav.services },
     { href: "/case-studies", label: t.nav.works },
-    { href: "/launch", label: t.nav.websites },
+    { href: "/launch", label: t.nav.launch },
     { href: "/pricing", label: t.nav.pricing },
     { href: "/blog", label: t.nav.blog },
+    { href: "/faq", label: t.nav.faq },
     { href: "/contact", label: t.nav.contact },
   ];
 

@@ -1,3 +1,6 @@
+import { cache } from "react";
+import { client } from "@/lib/sanity/client";
+
 export type CaseStudyMetric = {
   label: string;
   value: string;
@@ -163,9 +166,29 @@ const CASE_STUDIES_QUERY = `*[_type == "caseStudy"] | order(publishedAt desc) {
   publishedAt,
 }`;
 
-export async function fetchCaseStudies(): Promise<CaseStudy[]> {
+const SINGLE_CASE_STUDY_QUERY = `*[_type == "caseStudy" && slug.current == $slug][0] {
+  "slug": slug.current,
+  "brand": slug.current,
+  client,
+  location,
+  tier,
+  tagline,
+  summary,
+  challenge,
+  approach,
+  results,
+  deliverables,
+  "metrics": metrics[] { label, value, before, after },
+  croExplanation,
+  uxExplanation,
+  relatedServices,
+  "image": image.asset->url,
+  liveUrl,
+  publishedAt,
+}`;
+
+export const fetchCaseStudies = cache(async (): Promise<CaseStudy[]> => {
   try {
-    const { client } = await import("@/lib/sanity/client");
     const data = await client.fetch<CaseStudy[]>(
       CASE_STUDIES_QUERY,
       {},
@@ -176,15 +199,26 @@ export async function fetchCaseStudies(): Promise<CaseStudy[]> {
     // Sanity unavailable — fall back to static data
   }
   return caseStudies.filter((s) => !s.placeholder);
-}
+});
 
-export async function fetchCaseStudy(
+// Fetches a single document by slug — avoids pulling the full collection
+// just to resolve one page. React.cache deduplicates calls within a render.
+export const fetchCaseStudy = cache(async (
   slug: string,
-): Promise<CaseStudy | undefined> {
-  const data = await fetchCaseStudies();
+): Promise<CaseStudy | undefined> => {
   const baseSlug = slug.replace(/-revenue-increase$/, "");
-  return data.find((c) => c.slug === baseSlug);
-}
+  try {
+    const data = await client.fetch<CaseStudy | null>(
+      SINGLE_CASE_STUDY_QUERY,
+      { slug: baseSlug },
+      { next: { tags: ["caseStudy"] } },
+    );
+    if (data) return data;
+  } catch {
+    // Sanity unavailable — fall back to static data
+  }
+  return caseStudies.find((c) => c.slug === baseSlug && !c.placeholder);
+});
 
 export async function fetchAllCaseStudySlugs(): Promise<string[]> {
   const data = await fetchCaseStudies();

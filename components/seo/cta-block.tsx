@@ -44,7 +44,7 @@ export function CtaBlock({
             {secondaryHref && secondaryLabel && (
               <Link
                 href={secondaryHref}
-                className="rounded-[32px] border border-line px-[26px] py-[15px] text-sm font-normal text-bone transition-all hover:border-accent hover:bg-accent/[0.06]"
+                className="btn-outline rounded-[32px] px-[26px] py-[15px] text-sm font-medium transition-all hover:-translate-y-0.5"
               >
                 {secondaryLabel}
               </Link>

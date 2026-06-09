@@ -198,6 +198,27 @@ em.reframe-em {
   background: var(--gold-gradient);
 }
 
+/* Secondary CTA — visible on light and video backgrounds */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--elevated);
+  border: 2px solid var(--accent);
+  color: var(--accent-dim);
+  box-shadow:
+    0 4px 16px -6px rgba(33, 64, 143, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  transition: all 0.25s;
+}
+
+.btn-outline:hover {
+  background: var(--card);
+  border-color: var(--accent-dim);
+  color: var(--bone);
+  box-shadow: 0 8px 22px -8px rgba(33, 64, 143, 0.3);
+}
+
 /* Scroll cue */
 .scroll-bar {
   animation: drop 1.8s infinite;

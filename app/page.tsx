@@ -3,7 +3,7 @@ import { FinalCta } from "@/components/final-cta";
 import { Footer } from "@/components/footer";
 import { Hero } from "@/components/hero";
 import { Nav } from "@/components/nav";
-import { Proof } from "@/components/proof";
+import { CreativeProcess } from "@/components/creative-process";
 import { Reframe } from "@/components/reframe";
 import { HomeSeoContent } from "@/components/seo/home-seo-content";
 import { Stack } from "@/components/stack";
@@ -29,8 +29,8 @@ export default async function Home() {
         <Reframe />
         <Work studies={studies} />
         <Stack />
-        <Proof />
-        <HomeSeoContent />
+        <CreativeProcess />
+        <HomeSeoContent studies={studies} />
         <FinalCta />
       </main>
       <Footer />

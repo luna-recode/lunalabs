@@ -1,14 +1,20 @@
 import type { MetadataRoute } from "next";
-import { getAllBlogSlugs } from "@/lib/content/blog-data";
-import { getAllCaseStudySlugs } from "@/lib/content/case-studies-data";
+import { fetchAllBlogSlugs } from "@/lib/content/blog-data";
+import { fetchAllCaseStudySlugs } from "@/lib/content/case-studies-data";
 import { getAllIndustrySlugs } from "@/lib/content/industries-data";
 import { getAllLandingPageSlugs } from "@/lib/content/landing-pages-data";
 import { getAllServiceSlugs } from "@/lib/content/services-data";
 import { SITE } from "@/lib/seo/site";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = SITE.url;
   const now = new Date();
+
+  // Fetch Sanity-sourced slugs in parallel with the static ones
+  const [blogSlugs, caseStudySlugs] = await Promise.all([
+    fetchAllBlogSlugs(),
+    fetchAllCaseStudySlugs(),
+  ]);
 
   const staticPages = [
     "",
@@ -20,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/book-audit",
     "/case-studies",
     "/blog",
+    "/faq",
     "/terms",
     "/privacy",
     "/accessibility",
@@ -37,14 +44,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  const caseStudyPages = getAllCaseStudySlugs().map((slug) => ({
+  const caseStudyPages = caseStudySlugs.map((slug) => ({
     url: `${base}/case-studies/${slug}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
-  const blogPages = getAllBlogSlugs().map((slug) => ({
+  const blogPages = blogSlugs.map((slug) => ({
     url: `${base}/blog/${slug}`,
     lastModified: now,
     changeFrequency: "monthly" as const,

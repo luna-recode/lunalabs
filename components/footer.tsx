@@ -62,7 +62,7 @@ export function Footer() {
                 <br />
                 <em className="italic">{t.footer.headingEmphasis}</em>
               </p>
-              <CalButton className="cursor-pointer rounded-[30px] border border-line bg-transparent px-5 py-[11px] text-[13px] font-medium text-bone transition-all hover:border-accent hover:bg-accent/[0.06]">
+              <CalButton className="btn-outline cursor-pointer rounded-[30px] px-5 py-[11px] text-[13px] font-medium transition-all hover:-translate-y-px">
                 {t.common.bookConsult}
               </CalButton>
             </div>

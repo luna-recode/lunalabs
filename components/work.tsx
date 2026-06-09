@@ -21,22 +21,39 @@ function WorkCard({ study, index }: { study: CaseStudy; index: number }) {
         <img
           src={study.image}
           alt={`${study.client} storefront`}
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
         />
       ) : (
         <div
-          className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.03]"
+          className="pointer-events-none absolute inset-0 transition-transform duration-700 group-hover:scale-[1.03]"
           style={{ background: gradient }}
           aria-hidden
         />
       )}
 
       <div
-        className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black/70 via-black/20 to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black/70 via-black/20 to-transparent"
         aria-hidden
       />
 
-      {!study.placeholder && (
+      {!study.placeholder && study.liveUrl && (
+        <a
+          href={study.liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Visit ${study.client} website`}
+          className="absolute inset-x-0 top-0 bottom-[68px] z-[1] flex flex-col justify-end p-5 transition-opacity hover:opacity-90"
+        >
+          <p className="mb-0.5 font-mono text-[9px] uppercase tracking-[0.2em] text-white/60">
+            {study.location}
+          </p>
+          <p className="font-serif text-[18px] font-medium leading-tight text-white">
+            {study.client}
+          </p>
+        </a>
+      )}
+
+      {!study.placeholder && !study.liveUrl && (
         <div className="absolute bottom-[68px] left-5 right-5 z-[1]">
           <p className="mb-0.5 font-mono text-[9px] uppercase tracking-[0.2em] text-white/60">
             {study.location}
@@ -65,10 +82,7 @@ function WorkCard({ study, index }: { study: CaseStudy; index: number }) {
           </div>
         ) : (
           <Link
-            href={study.liveUrl ?? `/case-studies/${study.id}`}
-            {...(study.liveUrl
-              ? { target: "_blank", rel: "noopener noreferrer" }
-              : {})}
+            href={`/case-studies/${study.id}`}
             className="flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 py-3 text-[13px] font-medium text-white backdrop-blur-md transition-all hover:bg-white/[0.18]"
           >
             View Case Study

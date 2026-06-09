@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { CtaBlock } from "@/components/seo/cta-block";
 import { PageShell } from "@/components/seo/page-shell";
@@ -72,10 +73,12 @@ export default async function CaseStudiesPage() {
                     {/* Image */}
                     <div className="relative aspect-[16/10] overflow-hidden bg-surface">
                       {study.image ? (
-                        <img
+                        <Image
                           src={study.image}
                           alt={`${study.client} project`}
-                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                         />
                       ) : (
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_30%,rgba(156,193,238,0.18),transparent_55%),linear-gradient(160deg,rgba(239,216,154,0.10),transparent_50%)]">

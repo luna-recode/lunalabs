@@ -76,7 +76,7 @@ export function CarePlan() {
                   {t.pricing.carePitchNote}
                 </p>
               </div>
-              <CalButton className="mt-8 w-full cursor-pointer rounded-[32px] border border-line bg-transparent px-6 py-[14px] text-sm font-medium text-bone transition-all hover:border-accent hover:bg-accent/[0.06] md:mt-6 md:w-auto md:self-start">
+              <CalButton className="btn-outline mt-8 w-full cursor-pointer rounded-[32px] px-6 py-[14px] text-sm font-medium transition-all hover:-translate-y-0.5 md:mt-6 md:w-auto md:self-start">
                 {t.pricing.askAboutCare}
               </CalButton>
             </div>

@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { services } from "@/lib/content/services-data";
-import { caseStudies } from "@/lib/content/case-studies-data";
+import type { CaseStudy } from "@/lib/works-data";
 import { SITE } from "@/lib/seo/site";
 
-export function HomeSeoContent() {
-  const activeStudies = caseStudies.filter((s) => !s.placeholder);
+export function HomeSeoContent({ studies }: { studies: CaseStudy[] }) {
+  const activeStudies = studies.filter((s) => !s.placeholder);
 
   return (
     <>
@@ -67,94 +67,80 @@ export function HomeSeoContent() {
         </div>
       </section>
 
+      {/* ── Services — sticky scroll stack ── */}
       <section
         aria-labelledby="services-overview-heading"
-        className="border-t border-line px-[clamp(20px,5vw,64px)] py-[clamp(64px,10vh,100px)]"
+        className="border-t border-line px-[clamp(20px,5vw,64px)]"
       >
         <div className="mx-auto max-w-[1200px]">
-          <ScrollReveal>
-            <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.28em] text-muted">
-              Services
-            </p>
-            <h2
-              id="services-overview-heading"
-              className="mb-8 font-serif text-[clamp(28px,4vw,48px)] font-medium leading-[1.06] tracking-tight"
-            >
-              Ecommerce services built for revenue
-            </h2>
-          </ScrollReveal>
-          <ul className="grid gap-4 sm:grid-cols-2">
-            {services.map((service) => (
-              <li key={service.slug}>
-                <Link
-                  href={`/services/${service.slug}`}
-                  className="group block h-full rounded-lg border border-line bg-card p-6 transition-colors hover:border-accent/40"
-                >
-                  <h3 className="font-serif text-xl font-medium tracking-tight group-hover:text-accent">
-                    {service.title}
-                  </h3>
-                  <p className="mt-2 text-sm font-light leading-[1.6] text-bone-dim">
-                    {service.intro.slice(0, 140)}…
-                  </p>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-6">
-            <Link
-              href="/services"
-              className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent transition-opacity hover:opacity-70"
-            >
-              View all services →
-            </Link>
-          </div>
-        </div>
-      </section>
+          <div className="flex flex-col lg:flex-row lg:items-start lg:gap-[clamp(40px,6vw,80px)]">
 
-      <section
-        aria-labelledby="metrics-heading"
-        className="border-t border-line px-[clamp(20px,5vw,64px)] py-[clamp(64px,10vh,100px)]"
-      >
-        <div className="mx-auto max-w-[1200px]">
-          <ScrollReveal>
-            <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.28em] text-muted">
-              Proof
-            </p>
-            <h2
-              id="metrics-heading"
-              className="mb-8 font-serif text-[clamp(28px,4vw,48px)] font-medium leading-[1.06] tracking-tight"
-            >
-              What conversion-focused design delivers
-            </h2>
-            <ul className="grid gap-4 sm:grid-cols-3">
-              {[
-                {
-                  metric: "↑ CVR",
-                  label: "Higher conversion rate from optimized product pages and checkout",
-                },
-                {
-                  metric: "↑ AOV",
-                  label: "Increased average order value through shipping thresholds and offers",
-                },
-                {
-                  metric: "↑ Recovery",
-                  label: "Recovered revenue from abandoned-cart and welcome email flows",
-                },
-              ].map((item) => (
-                <li
-                  key={item.metric}
-                  className="rounded-lg border border-line bg-card px-5 py-6"
+            {/* Left: sticky copy */}
+            <div className="py-[clamp(64px,10vh,100px)] lg:sticky lg:top-[120px] lg:w-[38%]">
+              <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.28em] text-muted">
+                Services
+              </p>
+              <h2
+                id="services-overview-heading"
+                className="font-serif text-[clamp(32px,4.5vw,56px)] font-medium leading-[1.06] tracking-tight"
+              >
+                Revenue tools for{" "}
+                <em className="italic text-accent">every stage.</em>
+              </h2>
+              <p className="mt-5 max-w-[36ch] text-base font-light leading-[1.7] text-bone-dim">
+                Whether you need a full storefront build, targeted
+                optimization, or a campaign-ready landing page — each service
+                is built around one metric: revenue.
+              </p>
+              <Link
+                href="/services"
+                className="mt-8 inline-block font-mono text-[11px] uppercase tracking-[0.2em] text-accent transition-opacity hover:opacity-70"
+              >
+                View all services →
+              </Link>
+            </div>
+
+            {/* Right: stacking cards */}
+            <div className="flex-1 pb-[clamp(64px,10vh,100px)] lg:pt-[clamp(64px,10vh,100px)]">
+              {services.map((service, i) => (
+                <Link
+                  key={service.slug}
+                  href={`/services/${service.slug}`}
+                  className="group block overflow-hidden rounded-2xl border border-line bg-card shadow-[0_24px_64px_-16px_rgba(0,0,0,0.5)] transition-all duration-300 hover:border-accent/30 hover:shadow-[0_32px_80px_-16px_rgba(0,0,0,0.65)]"
+                  style={{
+                    position: "sticky" as const,
+                    top: `${120 + i * 16}px`,
+                    zIndex: i + 1,
+                    marginBottom: i < services.length - 1 ? "180px" : "165px",
+                  }}
                 >
-                  <p className="font-serif text-[clamp(28px,3.5vw,40px)] font-medium tracking-tight text-accent">
-                    {item.metric}
-                  </p>
-                  <p className="mt-2 text-sm font-light leading-[1.6] text-bone-dim">
-                    {item.label}
-                  </p>
-                </li>
+                  {/* PNG placeholder */}
+                  <div className="flex items-center justify-center bg-gradient-to-b from-surface/80 to-ink/20 py-[clamp(40px,7vh,64px)]">
+                    <div className="relative flex h-[180px] w-[180px] items-center justify-center overflow-hidden rounded-full border border-white/[0.08] bg-ink/50 shadow-[inset_0_2px_8px_rgba(0,0,0,0.4)]">
+                      <div className="absolute inset-3 rounded-full border border-dashed border-white/[0.10]" />
+                      <span className="font-mono text-[9px] uppercase tracking-[0.24em] text-white/20">
+                        Image
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Text */}
+                  <div className="border-t border-line px-8 py-7">
+                    <h3 className="font-serif text-[clamp(22px,2.8vw,32px)] font-medium leading-[1.1] tracking-tight text-bone transition-colors group-hover:text-accent">
+                      {service.title}
+                    </h3>
+                    <p className="mt-3 line-clamp-2 text-sm font-light leading-[1.75] text-bone-dim">
+                      {service.intro}
+                    </p>
+                    <span className="mt-5 inline-block font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
+                      Learn more →
+                    </span>
+                  </div>
+                </Link>
               ))}
-            </ul>
-          </ScrollReveal>
+            </div>
+
+          </div>
         </div>
       </section>
 
@@ -178,12 +164,12 @@ export function HomeSeoContent() {
             <ul className="space-y-6">
               {activeStudies.map((study) => (
                 <li
-                  key={study.slug}
+                  key={study.id}
                   className="rounded-lg border border-line bg-card p-6"
                 >
                   <h3 className="font-serif text-2xl font-medium tracking-tight">
                     <Link
-                      href={`/case-studies/${study.slug}`}
+                      href={`/case-studies/${study.id}`}
                       className="transition-colors hover:text-accent"
                     >
                       {study.client}
@@ -194,13 +180,13 @@ export function HomeSeoContent() {
                   </p>
                   <div className="mt-4 flex flex-wrap gap-4">
                     <Link
-                      href={`/case-studies/${study.slug}`}
+                      href={`/case-studies/${study.id}`}
                       className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent hover:opacity-70"
                     >
                       View case study →
                     </Link>
                     <Link
-                      href={`/case-studies/${study.slug}-revenue-increase`}
+                      href={`/case-studies/${study.id}-revenue-increase`}
                       className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted hover:text-accent"
                     >
                       Revenue impact →

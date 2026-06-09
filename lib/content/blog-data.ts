@@ -1,3 +1,6 @@
+import { cache } from "react";
+import { client } from "@/lib/sanity/client";
+
 export type BlogPost = {
   slug: string;
   title: string;
@@ -222,9 +225,22 @@ const BLOG_POSTS_QUERY = `*[_type == "blogPost"] | order(publishedAt desc) {
   "faqs": faqs[] { question, answer },
 }`;
 
-export async function fetchBlogPosts(): Promise<BlogPost[]> {
+const SINGLE_BLOG_POST_QUERY = `*[_type == "blogPost" && slug.current == $slug][0] {
+  "slug": slug.current,
+  title,
+  metaTitle,
+  metaDescription,
+  excerpt,
+  publishedAt,
+  modifiedAt,
+  readingTime,
+  relatedServices,
+  "sections": sections[] { heading, content },
+  "faqs": faqs[] { question, answer },
+}`;
+
+export const fetchBlogPosts = cache(async (): Promise<BlogPost[]> => {
   try {
-    const { client } = await import("@/lib/sanity/client");
     const data = await client.fetch<BlogPost[]>(
       BLOG_POSTS_QUERY,
       {},
@@ -235,14 +251,25 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
     // Sanity unavailable — fall back to static data
   }
   return blogPosts;
-}
+});
 
-export async function fetchBlogPost(
+// Fetches a single document by slug — avoids pulling the full collection
+// just to resolve one page. React.cache deduplicates calls within a render.
+export const fetchBlogPost = cache(async (
   slug: string,
-): Promise<BlogPost | undefined> {
-  const posts = await fetchBlogPosts();
-  return posts.find((p) => p.slug === slug);
-}
+): Promise<BlogPost | undefined> => {
+  try {
+    const data = await client.fetch<BlogPost | null>(
+      SINGLE_BLOG_POST_QUERY,
+      { slug },
+      { next: { tags: ["blogPost"] } },
+    );
+    if (data) return data;
+  } catch {
+    // Sanity unavailable — fall back to static data
+  }
+  return blogPosts.find((p) => p.slug === slug);
+});
 
 export async function fetchAllBlogSlugs(): Promise<string[]> {
   const posts = await fetchBlogPosts();

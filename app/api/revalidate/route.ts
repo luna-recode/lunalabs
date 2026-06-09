@@ -1,11 +1,21 @@
+import { timingSafeEqual } from "crypto";
 import { revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 
-// Sanity sends a POST with the document body.
-// We validate the shared secret and flush the right cache tag.
 export async function POST(req: NextRequest) {
   const secret = req.nextUrl.searchParams.get("secret");
-  if (secret !== process.env.SANITY_REVALIDATE_SECRET) {
+  const expected = process.env.SANITY_REVALIDATE_SECRET ?? "";
+
+  // Timing-safe comparison prevents brute-force character-by-character attacks.
+  // Both buffers must be the same length for timingSafeEqual to work correctly.
+  const secretBuf = Buffer.from(secret ?? "");
+  const expectedBuf = Buffer.from(expected);
+  const valid =
+    expected.length > 0 &&
+    secretBuf.length === expectedBuf.length &&
+    timingSafeEqual(secretBuf, expectedBuf);
+
+  if (!valid) {
     return NextResponse.json({ message: "Invalid secret" }, { status: 401 });
   }
 
@@ -22,7 +32,6 @@ export async function POST(req: NextRequest) {
   } else if (type === "blogPost") {
     revalidateTag("blogPost", {});
   } else {
-    // Unknown type — revalidate everything just in case
     revalidateTag("caseStudy", {});
     revalidateTag("blogPost", {});
   }

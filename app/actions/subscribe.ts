@@ -6,13 +6,17 @@ import { headers } from "next/headers";
 import { translations } from "@/lib/i18n/translations";
 import type { Locale } from "@/lib/i18n/types";
 
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 const schema = z.object({
   email:   z.string().email().max(254),
   locale:  z.enum(["en", "es"]).optional(),
   website: z.string().max(0).optional(), // honeypot — must be empty
 });
 
-// Max 5 subscribe attempts per IP per 10 minutes
+// Max 5 subscribe attempts per IP per 10 minutes.
+// NOTE: resets on serverless cold starts — replace with @upstash/ratelimit
+// once UPSTASH_REDIS_REST_URL / _TOKEN env vars are provisioned.
 const subscribeRateMap = new Map<string, number[]>();
 const SUBSCRIBE_LIMIT = 5;
 const SUBSCRIBE_WINDOW_MS = 10 * 60 * 1000;
@@ -40,7 +44,6 @@ export async function subscribeEmail(
   const locale = getLocale(formData.get("locale"));
   const t = translations[locale].forms;
 
-  // Rate limit by IP
   const ip = (await headers()).get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
   if (isRateLimited(ip)) {
     return { status: "error", message: "Too many requests. Please wait a few minutes." };
@@ -52,20 +55,24 @@ export async function subscribeEmail(
     website: formData.get("website"),
   });
 
-  // Honeypot: silent reject for bots
   if (result.success && result.data.website) {
-    return { status: "success", message: t.subscribeSuccess };
+    return { status: "success", message: t.subscribeSuccess }; // silent honeypot reject
   }
 
   if (!result.success) {
     return { status: "error", message: t.subscribeInvalidError };
   }
 
+  const audienceId = process.env.RESEND_AUDIENCE_ID;
+  if (!audienceId) {
+    console.error("RESEND_AUDIENCE_ID is not set — cannot subscribe contact.");
+    return { status: "error", message: t.subscribeGenericError };
+  }
+
   try {
-    const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.contacts.create({
       email: result.data.email,
-      audienceId: process.env.RESEND_AUDIENCE_ID!,
+      audienceId,
       unsubscribed: false,
     });
     return { status: "success", message: t.subscribeSuccess };
