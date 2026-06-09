@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Outfit, Space_Mono } from "next/font/google";
+import { BtnShine } from "@/components/btn-shine";
 import { EmailPopup } from "@/components/email-popup";
 import { LocaleProvider } from "@/lib/i18n/context";
 import { SkipLink } from "@/components/skip-link";
@@ -58,6 +59,7 @@ export default function RootLayout({
           <SkipLink />
           {children}
           <EmailPopup />
+          <BtnShine />
         </LocaleProvider>
       </body>
     </html>

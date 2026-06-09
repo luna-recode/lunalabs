@@ -40,7 +40,9 @@ export function FinalCta() {
         </ScrollReveal>
 
         <ScrollReveal>
-          <ContactForm />
+          <div className="rounded-2xl border border-white/10 bg-white/[0.09] p-8 backdrop-blur-md">
+            <ContactForm />
+          </div>
         </ScrollReveal>
       </div>
     </section>

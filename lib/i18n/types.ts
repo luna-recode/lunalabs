@@ -4,6 +4,7 @@ export type BuildTier = {
   id: string;
   number: string;
   name: string;
+  badge?: string;
   price: string;
   priceNote: string;
   tagline: string;

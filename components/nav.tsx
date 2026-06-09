@@ -10,7 +10,7 @@ import { useTranslations } from "@/lib/i18n/context";
 export function Nav() {
   const t = useTranslations();
   const links = [
-    { href: "/#works", label: t.nav.works },
+    { href: "/works", label: t.nav.works },
     { href: "/pricing", label: t.nav.pricing },
     { href: "/#contact", label: t.nav.contact },
   ];

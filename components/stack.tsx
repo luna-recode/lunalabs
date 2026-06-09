@@ -12,7 +12,7 @@ const toolAssets = [
   {
     logo: "/klaviyo-icon.svg",
     logoClass: "h-10 w-auto",
-    filterClass: "invert",
+    filterClass: "",
   },
   {
     logo: "/google_analytics-icon.svg",
@@ -26,8 +26,8 @@ export function Stack() {
 
   return (
     <section
-      id="works"
-      aria-labelledby="works-heading"
+      id="stack"
+      aria-labelledby="stack-heading"
       className="relative border-y border-line px-[clamp(20px,5vw,64px)] py-[clamp(70px,11vh,120px)]"
     >
       <ScrollReveal className="mb-[clamp(46px,7vh,72px)] flex flex-col items-center gap-4 text-center">
@@ -35,7 +35,7 @@ export function Stack() {
           {t.stack.eyebrow}
         </span>
         <h2
-          id="works-heading"
+          id="stack-heading"
           className="max-w-[18ch] font-serif text-[clamp(24px,3.4vw,42px)] font-medium leading-[1.12]"
         >
           {t.stack.heading}

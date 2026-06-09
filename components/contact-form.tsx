@@ -5,7 +5,7 @@ import { submitContact, type ContactState } from "@/app/actions/contact";
 import { useLocale, useTranslations } from "@/lib/i18n/context";
 
 const inputClass =
-  "w-full rounded-lg border border-line bg-transparent px-4 py-3 text-sm text-bone placeholder:text-muted transition-colors focus:border-accent/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent";
+  "w-full rounded-lg border border-white/15 bg-white/[0.06] px-4 py-3 text-sm text-bone placeholder:text-muted transition-colors focus:border-accent/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent";
 
 const labelClass = "mb-1.5 block font-mono text-[10px] uppercase tracking-[0.18em] text-muted";
 
@@ -22,7 +22,7 @@ export function ContactForm() {
       <div
         role="status"
         aria-live="polite"
-        className="flex h-full min-h-[320px] flex-col items-center justify-center rounded-lg border border-line bg-bone/[0.03] px-8 py-12 text-center"
+        className="flex h-full min-h-[320px] flex-col items-center justify-center px-8 py-12 text-center"
       >
         <span className="mb-4 font-mono text-[11px] uppercase tracking-[0.28em] text-muted">
           {t.forms.sent}

@@ -133,7 +133,7 @@ export const en: Translations = {
   pricing: {
     metaTitle: "Pricing — Luna Labs",
     metaDescription:
-      "Four rungs, each one a conversion lever. Essential, Growth, and Scale builds — plus a Care Plan to keep the engine running.",
+      "Four rungs, each one a conversion lever. Launch, Essential, and Growth builds — plus a Care Plan to keep the engine running.",
     heroEyebrow: "Pricing & positioning",
     heroTitleLine1: "Four rungs.",
     heroTitleLine2: "Each one a conversion lever.",
@@ -176,8 +176,28 @@ export const en: Translations = {
     collapse: "Collapse",
     buildTiers: [
       {
-        id: "essential",
+        id: "launch",
         number: "01",
+        name: "Launch",
+        badge: "New",
+        price: "from $1,200",
+        priceNote: "one-time build",
+        tagline: "A single, conversion-minded page — fast.",
+        lead: "Design & Dev",
+        timeline: "~1 week",
+        pitch:
+          "For boutique drops, waitlist pages, B2B, restaurants, and local businesses that need a sharp presence — one page, done right, live in a week.",
+        includes: [
+          "Custom-designed responsive page",
+          "Contact form → email + Notion",
+          "Cal.com booking embed",
+          "On-page SEO + analytics",
+          "Domain setup",
+        ],
+      },
+      {
+        id: "essential",
+        number: "02",
         name: "Essential",
         price: "$1,750–2,000",
         priceNote: "one-time build",
@@ -200,7 +220,7 @@ export const en: Translations = {
       },
       {
         id: "growth",
-        number: "02",
+        number: "03",
         name: "Growth",
         price: "~$3,800",
         priceNote: "one-time build",
@@ -218,28 +238,6 @@ export const en: Translations = {
           "First-order offer + free-shipping threshold nudge to lift AOV",
           "One conversion-focused campaign / landing page",
           "GA4 + clear launch report — results visible from week one",
-        ],
-      },
-      {
-        id: "scale",
-        number: "03",
-        name: "Scale",
-        price: "~$7,000",
-        priceNote: "one-time build",
-        tagline:
-          "Build a full growth engine — every touchpoint optimized, traffic driven deliberately, and a habit of testing so the numbers keep climbing.",
-        lead: "Whole team",
-        timeline: "4–6 weeks",
-        pitch:
-          "Moves conversion, AOV, and traffic at once — and installs the testing loop that compounds returns over time.",
-        includes: [
-          "Everything in Growth",
-          "Full flow suite: welcome, cart, browse-abandon, post-purchase, win-back, VIP",
-          "Conversion-optimized collection pages + paid-traffic landing pages",
-          "A/B test setup on hero and product page",
-          "First month of paid social: ad creative + campaign structure",
-          "UGC / influencer-seeding playbook",
-          "60–90 day optimization window with reporting",
         ],
       },
     ],

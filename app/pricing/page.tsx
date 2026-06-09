@@ -11,7 +11,7 @@ import { Nav } from "@/components/nav";
 export const metadata: Metadata = {
   title: "Pricing — Luna Labs",
   description:
-    "Four rungs, each one a conversion lever. Essential, Growth, and Scale builds — plus a Care Plan to keep the engine running.",
+    "Four rungs, each one a conversion lever. Launch, Essential, and Growth builds — plus a Care Plan to keep the engine running.",
 };
 
 export default function PricingPage() {

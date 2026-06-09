@@ -133,7 +133,7 @@ export const es: Translations = {
   pricing: {
     metaTitle: "Precios — Luna Labs",
     metaDescription:
-      "Cuatro niveles, cada uno una palanca de conversión. Builds Essential, Growth y Scale — más un Care Plan para mantener el motor en marcha.",
+      "Cuatro niveles, cada uno una palanca de conversión. Builds Launch, Essential y Growth — más un Care Plan para mantener el motor en marcha.",
     heroEyebrow: "Precios y posicionamiento",
     heroTitleLine1: "Cuatro niveles.",
     heroTitleLine2: "Cada uno, una palanca de conversión.",
@@ -176,8 +176,28 @@ export const es: Translations = {
     collapse: "Contraer",
     buildTiers: [
       {
-        id: "essential",
+        id: "launch",
         number: "01",
+        name: "Launch",
+        badge: "Nuevo",
+        price: "desde $1,200",
+        priceNote: "implementación única",
+        tagline: "Una sola página, pensada para convertir — rápido.",
+        lead: "Design & Dev",
+        timeline: "~1 semana",
+        pitch:
+          "Para drops de boutique, páginas de waitlist, B2B, restaurantes y negocios locales que necesitan una presencia impecable — una página, bien hecha, live en una semana.",
+        includes: [
+          "Página responsive con diseño personalizado",
+          "Formulario de contacto → email + Notion",
+          "Cal.com booking embed",
+          "SEO on-page + analytics",
+          "Configuración de dominio",
+        ],
+      },
+      {
+        id: "essential",
+        number: "02",
         name: "Essential",
         price: "$1,750–2,000",
         priceNote: "implementación única",
@@ -200,7 +220,7 @@ export const es: Translations = {
       },
       {
         id: "growth",
-        number: "02",
+        number: "03",
         name: "Growth",
         price: "~$3,800",
         priceNote: "implementación única",
@@ -218,28 +238,6 @@ export const es: Translations = {
           "Oferta de primera compra + umbral de envío gratis para subir AOV",
           "Una campaña / landing page enfocada en conversión",
           "GA4 + reporte claro de lanzamiento — resultados visibles desde la semana uno",
-        ],
-      },
-      {
-        id: "scale",
-        number: "03",
-        name: "Scale",
-        price: "~$7,000",
-        priceNote: "implementación única",
-        tagline:
-          "Construye un motor de crecimiento completo — cada touchpoint optimizado, tráfico impulsado con intención y un hábito de testing para que los números sigan subiendo.",
-        lead: "Whole team",
-        timeline: "4–6 semanas",
-        pitch:
-          "Mueve conversión, AOV y tráfico a la vez — e instala el loop de testing que compone retornos con el tiempo.",
-        includes: [
-          "Todo lo de Growth",
-          "Suite completa de flujos: bienvenida, carrito, browse-abandon, post-compra, win-back, VIP",
-          "Páginas de colección optimizadas para conversión + landing pages para tráfico pagado",
-          "Setup de A/B test en hero y página de producto",
-          "Primer mes de paid social: creativos + estructura de campaña",
-          "Playbook de UGC / influencer seeding",
-          "Ventana de optimización de 60–90 días con reportes",
         ],
       },
     ],

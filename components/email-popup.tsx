@@ -22,11 +22,11 @@ export function EmailPopup() {
       setVisible(true);
     };
 
-    const timer = setTimeout(trigger, 4000);
+    const timer = setTimeout(trigger, 10000);
 
     const onScroll = () => {
       const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-      if (pct >= 0.4) trigger();
+      if (pct >= 1.0) trigger();
     };
     window.addEventListener("scroll", onScroll, { passive: true });
 
@@ -38,7 +38,7 @@ export function EmailPopup() {
 
   useEffect(() => {
     if (state?.status !== "success") return;
-    const timer = setTimeout(() => setVisible(false), 2500);
+    const timer = setTimeout(() => setVisible(false), 10000);
     return () => clearTimeout(timer);
   }, [state]);
 
