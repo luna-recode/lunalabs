@@ -25,6 +25,8 @@ export type CaseStudy = {
   uxExplanation: string;
   relatedServices: string[];
   image?: string;
+  beforeImage?: string;
+  afterImage?: string;
   liveUrl?: string;
   placeholder?: boolean;
   publishedAt?: string;
@@ -162,6 +164,8 @@ const CASE_STUDIES_QUERY = `*[_type == "caseStudy"] | order(publishedAt desc) {
   uxExplanation,
   relatedServices,
   "image": image.asset->url,
+  "beforeImage": beforeImage.asset->url,
+  "afterImage": afterImage.asset->url,
   liveUrl,
   publishedAt,
 }`;
@@ -183,6 +187,8 @@ const SINGLE_CASE_STUDY_QUERY = `*[_type == "caseStudy" && slug.current == $slug
   uxExplanation,
   relatedServices,
   "image": image.asset->url,
+  "beforeImage": beforeImage.asset->url,
+  "afterImage": afterImage.asset->url,
   liveUrl,
   publishedAt,
 }`;

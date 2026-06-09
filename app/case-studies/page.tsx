@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { BlogStrip } from "@/components/blog-strip";
+import { BrowserChrome } from "@/components/device-frame";
+import { FeaturedCaseStudy } from "@/components/featured-case-study";
 import { CtaBlock } from "@/components/seo/cta-block";
 import { PageShell } from "@/components/seo/page-shell";
+import { fetchBlogPosts } from "@/lib/content/blog-data";
 import { fetchCaseStudies } from "@/lib/content/case-studies-data";
 import { createPageMetadata } from "@/lib/seo/metadata";
 import {
@@ -19,8 +23,14 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default async function CaseStudiesPage() {
-  const studies = await fetchCaseStudies();
+  const [studies, posts] = await Promise.all([
+    fetchCaseStudies(),
+    fetchBlogPosts(),
+  ]);
   const visible = studies.filter((s) => !s.placeholder);
+  // With a small portfolio a 3-col grid looks empty — feature each study
+  // full-width instead, and switch to the grid once there are 3+.
+  const useFeaturedLayout = visible.length > 0 && visible.length < 3;
 
   return (
     <PageShell
@@ -52,7 +62,7 @@ export default async function CaseStudiesPage() {
         </div>
       </header>
 
-      {/* ── Grid ── */}
+      {/* ── Studies ── */}
       <section
         aria-label="Case studies"
         className="px-[clamp(20px,5vw,64px)] py-[clamp(64px,10vh,100px)]"
@@ -62,6 +72,12 @@ export default async function CaseStudiesPage() {
             <p className="text-center text-sm text-muted">
               No case studies yet — check back soon.
             </p>
+          ) : useFeaturedLayout ? (
+            <div className="space-y-[clamp(64px,10vh,110px)]">
+              {visible.map((study) => (
+                <FeaturedCaseStudy key={study.slug} study={study} />
+              ))}
+            </div>
           ) : (
             <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {visible.map((study) => (
@@ -70,8 +86,13 @@ export default async function CaseStudiesPage() {
                     href={`/case-studies/${study.slug}`}
                     className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-card shadow-[0_14px_30px_-22px_rgba(33,64,143,0.25)] transition-shadow hover:shadow-[0_20px_40px_-18px_rgba(33,64,143,0.38)]"
                   >
-                    {/* Image */}
-                    <div className="relative aspect-[16/10] overflow-hidden bg-surface">
+                    {/* Image in browser frame */}
+                    <BrowserChrome
+                      url={study.liveUrl
+                        ?.replace(/^https?:\/\//, "")
+                        .replace(/\/$/, "")}
+                    />
+                    <div className="relative aspect-[16/10] overflow-hidden border-b border-line bg-surface">
                       {study.image ? (
                         <Image
                           src={study.image}
@@ -92,7 +113,7 @@ export default async function CaseStudiesPage() {
                       )}
                       {/* Tier badge */}
                       {study.tier && (
-                        <span className="absolute left-4 top-4 rounded-full border border-line bg-card/80 px-3 py-1 font-mono text-[9px] uppercase tracking-[0.2em] text-muted backdrop-blur-sm">
+                        <span className="absolute left-4 top-4 rounded-full border border-line bg-card/80 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em] text-muted backdrop-blur-sm">
                           {study.tier}
                         </span>
                       )}
@@ -129,7 +150,7 @@ export default async function CaseStudiesPage() {
                               <p className="font-serif text-[clamp(18px,2vw,22px)] font-medium text-accent">
                                 {m.value}
                               </p>
-                              <p className="mt-0.5 truncate font-mono text-[9px] uppercase tracking-[0.12em] text-muted">
+                              <p className="mt-0.5 truncate font-mono text-[11px] uppercase tracking-[0.12em] text-muted">
                                 {m.label}
                               </p>
                             </div>
@@ -153,6 +174,8 @@ export default async function CaseStudiesPage() {
           )}
         </div>
       </section>
+
+      <BlogStrip posts={posts} />
 
       <CtaBlock
         heading="Want results like these?"

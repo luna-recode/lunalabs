@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BeforeAfterSlider } from "@/components/before-after-slider";
+import { BlogStrip } from "@/components/blog-strip";
+import { DeviceFrame } from "@/components/device-frame";
 import { ContentSection } from "@/components/seo/content-section";
 import { CtaBlock } from "@/components/seo/cta-block";
 import { InternalLinks } from "@/components/seo/internal-links";
 import { PageHero } from "@/components/seo/page-hero";
 import { PageShell } from "@/components/seo/page-shell";
+import { fetchBlogPosts } from "@/lib/content/blog-data";
 import {
   fetchAllCaseStudySlugs,
   fetchCaseStudy,
@@ -48,10 +53,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CaseStudyPage({ params }: Props) {
   const { slug } = await params;
-  const study = await fetchCaseStudy(slug);
+  const [study, posts] = await Promise.all([
+    fetchCaseStudy(slug),
+    fetchBlogPosts(),
+  ]);
   if (!study) notFound();
 
   const isRevenue = isRevenueIncreaseSlug(slug);
+  const hasSlider = Boolean(study.beforeImage && study.afterImage);
 
   const relatedLinks = study.relatedServices
     .map((s) => {
@@ -98,6 +107,45 @@ export default async function CaseStudyPage({ params }: Props) {
         }
         intro={isRevenue ? study.results : study.summary}
       />
+
+      {(hasSlider || study.image) && (
+        <section
+          aria-label={hasSlider ? "Before and after comparison" : "Project screenshot"}
+          className="px-[clamp(20px,5vw,64px)] pb-[clamp(48px,8vh,80px)]"
+        >
+          <div className="mx-auto max-w-[1000px]">
+            {hasSlider ? (
+              <>
+                <BeforeAfterSlider
+                  before={study.beforeImage!}
+                  after={study.afterImage!}
+                  alt={`${study.client} storefront`}
+                />
+                <p className="mt-4 text-center font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
+                  Drag to compare
+                </p>
+              </>
+            ) : (
+              <DeviceFrame
+                url={study.liveUrl
+                  ?.replace(/^https?:\/\//, "")
+                  .replace(/\/$/, "")}
+              >
+                <div className="relative aspect-[16/10] bg-surface">
+                  <Image
+                    src={study.image!}
+                    alt={`${study.client} storefront`}
+                    fill
+                    sizes="(min-width: 1024px) 1000px, 100vw"
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              </DeviceFrame>
+            )}
+          </div>
+        </section>
+      )}
 
       {!isRevenue && (
         <>
@@ -196,6 +244,7 @@ export default async function CaseStudyPage({ params }: Props) {
       </section>
 
       <InternalLinks heading="Related services" links={relatedLinks} />
+      <BlogStrip posts={posts} heading="Related reading" />
       <CtaBlock
         heading="Want similar results for your brand?"
         body="Book a free revenue audit and we will map the conversion build for your store."
