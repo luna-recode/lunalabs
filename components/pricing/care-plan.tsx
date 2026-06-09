@@ -38,7 +38,7 @@ export function CarePlan() {
                 }`}
               >
                 <p className="font-serif text-[clamp(28px,3vw,36px)] font-medium">{tier.price}</p>
-                <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
+                <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
                   {t.pricing.perMonthMin}
                 </p>
                 <p className="mt-3 text-sm text-bone-dim">{tier.label}</p>
@@ -48,7 +48,7 @@ export function CarePlan() {
 
           <div className="grid grid-cols-1 gap-0 md:grid-cols-[1fr_1.2fr]">
             <div className="border-b border-line p-7 md:border-b-0 md:border-r md:border-line">
-              <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+              <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
                 {t.pricing.whatsIncluded}
               </p>
               <ul className="space-y-2.5">
@@ -66,7 +66,7 @@ export function CarePlan() {
 
             <div className="flex flex-col justify-between p-7">
               <div>
-                <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
                   {t.pricing.thePitch}
                 </p>
                 <p className="text-sm italic leading-[1.65] text-bone-dim">

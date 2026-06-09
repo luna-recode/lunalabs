@@ -51,27 +51,35 @@ export function Hero() {
     <header
       id="hero"
       ref={sectionRef}
-      className="relative flex min-h-screen items-end overflow-hidden"
+      className="relative flex min-h-screen flex-col justify-between overflow-hidden md:flex-row md:items-end md:justify-start"
     >
-      {!reducedMotion && (
-        <video
-          ref={videoRef}
-          className="absolute inset-0 z-0 h-full w-full object-cover"
-          src="/hero-video.mp4"
-          muted
-          loop
-          playsInline
-          preload="metadata"
+      {/* Mobile: in-flow media panel above the text; md+: full-bleed background video */}
+      <div className="relative h-[42vh] w-full shrink-0 bg-[url('/hero-poster.jpg')] bg-cover bg-center md:absolute md:inset-0 md:z-0 md:h-full md:bg-none">
+        {!reducedMotion && (
+          <video
+            ref={videoRef}
+            className="absolute inset-0 h-full w-full object-cover"
+            src="/hero-video.mp4"
+            poster="/hero-poster.jpg"
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-hidden
+            tabIndex={-1}
+          />
+        )}
+        <div
+          className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-ink md:hidden"
           aria-hidden
-          tabIndex={-1}
         />
-      )}
+      </div>
 
-      <div className="hero-bg absolute inset-0 z-[1] opacity-50" />
-      <div className="absolute inset-0 z-[2] bg-gradient-to-b from-ink/30 via-ink/20 to-ink/90" />
+      <div className="hero-bg absolute inset-0 z-[1] hidden opacity-50 md:block" />
+      <div className="absolute inset-0 z-[2] hidden bg-gradient-to-b from-ink/30 via-ink/20 to-ink/90 md:block" />
 
-      <div className="relative z-[3] mx-auto w-full max-w-[1500px] px-[clamp(20px,5vw,64px)] pb-[clamp(96px,12vh,120px)]">
-        <div className={`animate-rise-delay-5 mb-[26px] flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.16em] text-accent-dim sm:text-[11px] sm:tracking-[0.32em] ${reducedMotion ? "" : motionClass}`}>
+      <div className="relative z-[3] mx-auto w-full max-w-[1500px] px-[clamp(20px,5vw,64px)] pb-[clamp(96px,12vh,120px)] pt-6 md:pt-0">
+        <div className={`animate-rise-delay-5 mb-[26px] flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.16em] text-accent-dim sm:tracking-[0.32em] ${reducedMotion ? "" : motionClass}`}>
           <span className="h-px w-[34px] bg-accent-dim" aria-hidden />
           {t.hero.eyebrow}
         </div>
@@ -85,7 +93,7 @@ export function Hero() {
           {t.hero.body}
         </p>
 
-        <p className={`animate-rise-delay-4 mt-5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted ${reducedMotion ? "" : motionClass}`}>
+        <p className={`animate-rise-delay-4 mt-5 font-mono text-[11px] uppercase tracking-[0.18em] text-muted ${reducedMotion ? "" : motionClass}`}>
           {t.hero.recentWork}{" "}
           <Link href="/case-studies/dra-yesly-garcia" className="text-accent transition-colors hover:text-bone">
             {t.hero.recentWorkClient}
@@ -105,7 +113,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="absolute bottom-[26px] left-1/2 z-[3] flex -translate-x-1/2 flex-col items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-muted">
+      <div className="absolute bottom-[26px] left-1/2 z-[3] flex -translate-x-1/2 flex-col items-center gap-2 font-mono text-[11px] uppercase tracking-[0.25em] text-muted">
         <span>{t.common.scroll}</span>
         <span className="scroll-bar h-[34px] w-px bg-gradient-to-b from-muted to-transparent" aria-hidden />
       </div>

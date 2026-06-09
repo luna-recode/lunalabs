@@ -194,7 +194,7 @@ export function Nav() {
           </div>
         </div>
 
-        <p className="shrink-0 pb-[max(2.5rem,env(safe-area-inset-bottom))] text-center font-mono text-[10px] uppercase tracking-[0.22em] text-muted">
+        <p className="shrink-0 pb-[max(2.5rem,env(safe-area-inset-bottom))] text-center font-mono text-[11px] uppercase tracking-[0.22em] text-muted">
           {t.nav.mobileTagline}
         </p>
       </div>

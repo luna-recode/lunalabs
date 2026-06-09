@@ -59,7 +59,7 @@ export function SubscribeForm() {
         <p
           role="alert"
           aria-live="assertive"
-          className="mt-2 text-center font-mono text-[10px] text-red-400"
+          className="mt-2 text-center font-mono text-[11px] text-red-400"
         >
           <span className="font-medium">{t.common.errorPrefix}</span>
           {state.message}

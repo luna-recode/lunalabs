@@ -113,7 +113,7 @@ export default async function ServicePage({ params }: Props) {
                 key={step.step}
                 className="rounded-lg border border-line bg-card p-5"
               >
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+                <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
                   Step {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="mt-2 font-serif text-xl font-medium tracking-tight">
