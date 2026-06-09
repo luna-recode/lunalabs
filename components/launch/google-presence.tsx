@@ -45,6 +45,13 @@ export function GooglePresence() {
           </div>
         </ScrollReveal>
       </div>
+
+      <ScrollReveal className="mx-auto mt-[clamp(40px,7vh,64px)] max-w-[1200px]">
+        <p className="border-t border-line pt-8 text-center font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
+          Included in every build — Google Business Profile · Online booking
+          (Cal.com) · GA4 analytics · On-page SEO
+        </p>
+      </ScrollReveal>
     </section>
   );
 }
