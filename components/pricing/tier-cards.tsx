@@ -43,7 +43,7 @@ export function TierCards() {
               </span>
               {(tier.recommended || tier.badge) && (
                 <span
-                  className={`flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.2em] ${
+                  className={`flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.2em] ${
                     tier.recommended ? "text-gold" : "text-accent-dim"
                   }`}
                 >
@@ -72,7 +72,7 @@ export function TierCards() {
               >
                 {tier.price}
               </p>
-              <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
+              <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
                 {tier.priceNote}
               </p>
             </div>

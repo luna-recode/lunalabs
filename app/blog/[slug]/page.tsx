@@ -95,13 +95,13 @@ export default async function BlogPostPage({ params }: Props) {
           <header>
             <Link
               href="/blog"
-              className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted hover:text-accent"
+              className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted hover:text-accent"
             >
               ← Back to blog
             </Link>
             <time
               dateTime={post.publishedAt}
-              className="mt-6 block font-mono text-[10px] uppercase tracking-[0.2em] text-muted"
+              className="mt-6 block font-mono text-[11px] uppercase tracking-[0.2em] text-muted"
             >
               {new Date(post.publishedAt).toLocaleDateString("en-US", {
                 year: "numeric",

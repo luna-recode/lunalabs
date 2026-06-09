@@ -49,7 +49,7 @@ export default function ContactPage() {
             </h2>
             <ul className="space-y-4 text-base font-light text-bone-dim">
               <li>
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+                <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
                   Email
                 </span>
                 <br />
@@ -61,7 +61,7 @@ export default function ContactPage() {
                 </a>
               </li>
               <li>
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+                <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
                   Location
                 </span>
                 <br />

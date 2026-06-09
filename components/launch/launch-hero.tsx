@@ -58,6 +58,7 @@ export function LaunchHero() {
           ref={videoRef}
           className="absolute inset-0 z-0 h-full w-full object-cover"
           src="/hero-video.mp4"
+          poster="/hero-poster.jpg"
           muted
           loop
           playsInline
@@ -72,7 +73,7 @@ export function LaunchHero() {
 
       <div className="relative z-[3] mx-auto w-full max-w-[1500px] px-[clamp(20px,5vw,64px)] pb-[clamp(96px,12vh,120px)]">
         <div
-          className={`animate-rise-delay-5 mb-[26px] flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.16em] text-accent-dim sm:text-[11px] sm:tracking-[0.32em] ${reducedMotion ? "" : motionClass}`}
+          className={`animate-rise-delay-5 mb-[26px] flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.16em] text-accent-dim sm:tracking-[0.32em] ${reducedMotion ? "" : motionClass}`}
         >
           <span className="h-px w-[34px] bg-accent-dim" aria-hidden />
           Local business · Los Angeles, CA
@@ -111,7 +112,7 @@ export function LaunchHero() {
         </div>
       </div>
 
-      <div className="absolute bottom-[26px] left-1/2 z-[3] flex -translate-x-1/2 flex-col items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-muted">
+      <div className="absolute bottom-[26px] left-1/2 z-[3] flex -translate-x-1/2 flex-col items-center gap-2 font-mono text-[11px] uppercase tracking-[0.25em] text-muted">
         <span>{t.common.scroll}</span>
         <span
           className="scroll-bar h-[34px] w-px bg-gradient-to-b from-muted to-transparent"

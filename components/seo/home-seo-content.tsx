@@ -132,7 +132,7 @@ export function HomeSeoContent({ studies }: { studies: CaseStudy[] }) {
                     <p className="mt-3 line-clamp-2 text-sm font-light leading-[1.75] text-bone-dim">
                       {service.intro}
                     </p>
-                    <span className="mt-5 inline-block font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
+                    <span className="mt-5 inline-block font-mono text-[11px] uppercase tracking-[0.2em] text-accent">
                       Learn more →
                     </span>
                   </div>

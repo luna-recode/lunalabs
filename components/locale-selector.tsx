@@ -87,7 +87,7 @@ export function LocaleSelector() {
                 >
                   <span>{item.nativeLabel}</span>
                   {selected && (
-                    <span aria-hidden className="font-mono text-[10px] uppercase tracking-[0.16em]">
+                    <span aria-hidden className="font-mono text-[11px] uppercase tracking-[0.16em]">
                       ✓
                     </span>
                   )}

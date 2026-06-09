@@ -12,9 +12,9 @@ const fieldStyles = {
 } as const;
 
 const labelStyles = {
-  glass: "mb-1.5 block font-mono text-[10px] uppercase tracking-[0.18em] text-muted",
+  glass: "mb-1.5 block font-mono text-[11px] uppercase tracking-[0.18em] text-muted",
   outlined:
-    "mb-1.5 block font-mono text-[10px] uppercase tracking-[0.18em] text-bone-dim",
+    "mb-1.5 block font-mono text-[11px] uppercase tracking-[0.18em] text-bone-dim",
 } as const;
 
 /* 4.5:1+ on each variant's background: red-400 on dark glass, red-700 on light */

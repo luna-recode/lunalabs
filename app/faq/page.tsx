@@ -109,7 +109,7 @@ export default function FaqPage() {
       {/* ── Header ── */}
       <header className="border-b border-line px-[clamp(20px,5vw,64px)] pb-[clamp(48px,8vh,72px)] pt-[clamp(130px,18vh,180px)]">
         <div className="mx-auto max-w-[1200px]">
-          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.28em] text-muted">
+          <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.28em] text-muted">
             FAQ
           </p>
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">

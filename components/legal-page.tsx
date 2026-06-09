@@ -50,13 +50,13 @@ export function LegalPage({ page }: { page: LegalPageKey }) {
             aria-label={content.contents}
             className="mb-16 rounded-lg border border-line bg-card px-8 py-7 shadow-[0_14px_30px_-22px_rgba(33,64,143,0.4)]"
           >
-            <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.28em] text-muted">
+            <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.28em] text-muted">
               {content.contents}
             </p>
             <ol className="space-y-2">
               {content.sections.map((section, index) => (
                 <li key={section.id} className="flex items-baseline gap-3">
-                  <span className="font-mono text-[10px] text-muted">
+                  <span className="font-mono text-[11px] text-muted">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <a
@@ -74,7 +74,7 @@ export function LegalPage({ page }: { page: LegalPageKey }) {
             {content.sections.map((section, index) => (
               <div key={section.id} id={section.id} className="scroll-mt-28">
                 <div className="mb-4 flex items-center gap-4">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <div className="h-px flex-1 bg-line" />
@@ -98,7 +98,7 @@ export function LegalPage({ page }: { page: LegalPageKey }) {
           </div>
 
           <div className="mt-16 rounded-lg border border-line bg-card px-8 py-6 shadow-[0_14px_30px_-22px_rgba(33,64,143,0.4)]">
-            <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.24em] text-muted">
+            <p className="mb-1 font-mono text-[11px] uppercase tracking-[0.24em] text-muted">
               {content.alsoWorthReading}
             </p>
             <Link

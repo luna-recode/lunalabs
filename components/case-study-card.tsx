@@ -9,11 +9,11 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
       <div className="grid grid-cols-1 items-start gap-[clamp(40px,7vw,90px)] md:grid-cols-[0.9fr_1.1fr]">
         <ScrollReveal>
           <div className="mb-7 flex items-center gap-3">
-            <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-muted">
+            <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-muted">
               {study.tier}
             </span>
             <span className="h-px flex-1 bg-line" aria-hidden />
-            <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-muted">
+            <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-muted">
               {study.number}
             </span>
           </div>
@@ -53,7 +53,7 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
                   <p className="font-serif text-[clamp(22px,2.8vw,32px)] font-medium tracking-tight text-accent">
                     {m.value}
                   </p>
-                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                  <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
                     {m.label}
                   </p>
                 </div>
@@ -108,7 +108,7 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
                 >
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_20%,rgba(156,193,238,0.16),transparent_35%),linear-gradient(160deg,rgba(239,216,154,0.08),transparent_45%)]" />
                   <div className="relative z-[1] flex items-center justify-between">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+                    <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
                       {label}
                     </span>
                     <span className="h-2 w-2 rounded-full bg-accent" aria-hidden />

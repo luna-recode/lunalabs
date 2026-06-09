@@ -34,7 +34,7 @@ export default async function BlogPage() {
       {/* ── Header ── */}
       <header className="border-b border-line px-[clamp(20px,5vw,64px)] pb-[clamp(48px,8vh,72px)] pt-[clamp(130px,18vh,180px)]">
         <div className="mx-auto max-w-[1200px]">
-          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.28em] text-muted">
+          <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.28em] text-muted">
             Blog
           </p>
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -70,7 +70,7 @@ export default async function BlogPage() {
                   <div className="flex flex-1 flex-col p-6">
                     <time
                       dateTime={post.publishedAt}
-                      className="mb-4 block font-mono text-[10px] uppercase tracking-[0.2em] text-muted"
+                      className="mb-4 block font-mono text-[11px] uppercase tracking-[0.2em] text-muted"
                     >
                       {new Date(post.publishedAt).toLocaleDateString("en-US", {
                         year: "numeric",
@@ -88,7 +88,7 @@ export default async function BlogPage() {
                     </p>
 
                     <div className="mt-auto pt-6">
-                      <span className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-accent transition-opacity group-hover:opacity-70">
+                      <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-accent transition-opacity group-hover:opacity-70">
                         Read article
                         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
                           <path d="M2.5 9.5l7-7M9.5 9.5V2.5H2.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>

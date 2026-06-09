@@ -43,7 +43,7 @@ export function FinalCta() {
               Book a revenue audit →
             </Link>
           </div>
-          <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
+          <p className="mt-5 font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
             {t.finalCta.formNote}
           </p>
         </ScrollReveal>

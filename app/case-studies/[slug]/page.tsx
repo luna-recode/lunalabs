@@ -138,7 +138,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 <p className="font-serif text-[clamp(24px,3vw,36px)] font-medium text-accent">
                   {metric.value}
                 </p>
-                <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
                   {metric.label}
                 </p>
                 {metric.before && metric.after && (
