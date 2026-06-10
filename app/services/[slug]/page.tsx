@@ -43,7 +43,7 @@ export default async function ServicePage({ params }: Props) {
   if (!service) notFound();
 
   const relatedLinks = [
-    ...service.relatedServices
+    ...service.relatedCategories
       .filter((s) => s !== slug)
       .map((s) => {
         const related = getService(s);
@@ -51,7 +51,7 @@ export default async function ServicePage({ params }: Props) {
           ? {
               href: `/services/${s}`,
               label: related.title,
-              description: related.intro.slice(0, 100) + "…",
+              description: related.thesis,
             }
           : null;
       })
@@ -86,7 +86,21 @@ export default async function ServicePage({ params }: Props) {
         faqSchema(service.faqs),
       ]}
     >
-      <PageHero h1={service.h1} intro={service.intro} />
+      <PageHero eyebrow={`[${service.number}]`} h1={service.h1} intro={service.intro} />
+
+      <ContentSection heading="What's included" id="included">
+        <ul className="space-y-2">
+          {service.bullets.map((bullet) => (
+            <li
+              key={bullet}
+              className="flex items-center gap-3 text-sm font-light text-bone-dim"
+            >
+              <span className="h-px w-5 shrink-0 bg-accent/50" aria-hidden />
+              {bullet}
+            </li>
+          ))}
+        </ul>
+      </ContentSection>
 
       <ContentSection heading="The problem" id="problem">
         <p>{service.problem}</p>

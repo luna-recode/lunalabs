@@ -1,12 +1,11 @@
 "use server";
 
-import { Resend } from "resend";
-import { z } from "zod";
 import { headers } from "next/headers";
+import { z } from "zod";
 import { translations } from "@/lib/i18n/translations";
 import type { Locale } from "@/lib/i18n/types";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { isRateLimited } from "@/lib/rate-limit";
+import { getResendClient } from "@/lib/resend";
 
 const schema = z.object({
   email:   z.string().email().max(254),
@@ -14,19 +13,8 @@ const schema = z.object({
   website: z.string().max(0).optional(), // honeypot — must be empty
 });
 
-// Max 5 subscribe attempts per IP per 10 minutes.
-// NOTE: resets on serverless cold starts — replace with @upstash/ratelimit
-// once UPSTASH_REDIS_REST_URL / _TOKEN env vars are provisioned.
-const subscribeRateMap = new Map<string, number[]>();
 const SUBSCRIBE_LIMIT = 5;
 const SUBSCRIBE_WINDOW_MS = 10 * 60 * 1000;
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const times = (subscribeRateMap.get(ip) ?? []).filter(t => now - t < SUBSCRIBE_WINDOW_MS);
-  subscribeRateMap.set(ip, [...times, now]);
-  return times.length >= SUBSCRIBE_LIMIT;
-}
 
 export type SubscribeState = {
   status: "success" | "error";
@@ -45,7 +33,7 @@ export async function subscribeEmail(
   const t = translations[locale].forms;
 
   const ip = (await headers()).get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
-  if (isRateLimited(ip)) {
+  if (isRateLimited("subscribe", ip, { limit: SUBSCRIBE_LIMIT, windowMs: SUBSCRIBE_WINDOW_MS })) {
     return { status: "error", message: "Too many requests. Please wait a few minutes." };
   }
 
@@ -70,7 +58,7 @@ export async function subscribeEmail(
   }
 
   try {
-    await resend.contacts.create({
+    await getResendClient().contacts.create({
       email: result.data.email,
       audienceId,
       unsubscribed: false,

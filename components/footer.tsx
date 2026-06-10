@@ -67,8 +67,8 @@ export function Footer() {
                 {t.common.bookConsult}
               </CalButton>
             </div>
-            <Link href="/" className="w-fit transition-opacity hover:opacity-70">
-              <Brand />
+            <Link href="/#hero" className="w-fit transition-opacity hover:opacity-70">
+              <Brand variant="light" />
             </Link>
             <Image
               src="/shopify-logo.svg"

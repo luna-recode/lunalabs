@@ -1,105 +1,199 @@
-export type ServicePage = {
+export type ServiceCategory = {
   slug: string;
+  number: string;
   title: string;
   metaTitle: string;
   metaDescription: string;
   h1: string;
   intro: string;
+  thesis: string;
+  description: string;
+  bullets: string[];
   problem: string;
   solution: string;
   process: { step: string; description: string }[];
   outcomes: { metric: string; label: string }[];
   faqs: { question: string; answer: string }[];
+  relatedCategories: string[];
   relatedCaseStudies: string[];
-  relatedServices: string[];
 };
 
-export const services: ServicePage[] = [
+export const serviceCategories: ServiceCategory[] = [
   {
-    slug: "conversion-websites",
-    title: "Conversion Websites",
-    metaTitle:
-      "Conversion Website Design for Ecommerce Brands | Shopify CRO",
+    slug: "build",
+    number: "01",
+    title: "Build & Development",
+    metaTitle: "Shopify Store Build & Web Development for Creative Brands",
     metaDescription:
-      "Luna Labs builds conversion-focused websites for Shopify brands — structured for trust, speed, and checkout completion. Turn traffic into revenue.",
-    h1: "Conversion websites built to turn traffic into revenue",
+      "Luna Labs builds Shopify stores, migrates platforms, and sets up domains and technical infrastructure — so your audience has somewhere real to buy.",
+    h1: "Build & development for brands ready to sell online",
     intro:
-      "A conversion website is an ecommerce storefront engineered for conversion rate optimization — not just aesthetics. Luna Labs designs Shopify sites where every page, product layout, and checkout step is built to reduce friction and increase completed purchases.",
+      "You have the audience. We build the store — Shopify architecture, platform migration, professional websites, and the domain and technical layer that makes it all work.",
+    thesis:
+      "Your audience is real — your store should be too.",
+    description:
+      "We build revenue-ready storefronts from scratch, migrate brands off Square or Wix, and handle the technical setup most agencies skip: domains, DNS, analytics containers, and launch infrastructure.",
+    bullets: [
+      "Shopify Store Build",
+      "Platform Migration",
+      "Professional & Service Websites",
+      "Domain & Technical Setup",
+    ],
     problem:
-      "Most Shopify stores look acceptable but leak revenue at every step: unclear value propositions, weak trust signals, slow mobile performance, and checkout flows that abandon buyers before they pay.",
+      "Creative brands spend years building an audience on Instagram or TikTok but have nowhere credible to send them — a link-in-bio that goes nowhere, a Square shop that doesn't match the brand, or no store at all.",
     solution:
-      "We rebuild the storefront as an ecommerce revenue system — custom design, conversion-ready product pages, mobile-first performance, and on-page trust signals that move visitors from browse to buy.",
+      "Luna Labs delivers full Shopify builds, clean platform migrations, and professional websites with custom domains, mobile-first design, and checkout flows that don't leak sales on day one.",
     process: [
       {
-        step: "Audit",
+        step: "Discovery",
         description:
-          "We map conversion leaks across homepage, collection, product, and checkout pages using GA4 and session behavior.",
+          "We map your audience, catalog, revenue goals, and current platform gaps before writing a line of code.",
       },
       {
         step: "Architecture",
         description:
-          "We define page hierarchy, messaging, and CRO elements — reviews, guarantees, shipping clarity, and urgency without gimmicks.",
+          "Collection structure, page hierarchy, domain strategy, and technical setup planned around how your buyers actually shop.",
       },
       {
         step: "Build",
         description:
-          "Custom Shopify storefront with mobile-first optimization, structured data, and semantic HTML for search and AI visibility.",
+          "Custom Shopify storefront or professional website — product upload, merchandising, mobile QA, and analytics wired from launch.",
+      },
+      {
+        step: "Launch",
+        description:
+          "Domain connected, redirects in place, tracking live, and a clear handoff so you can manage the store independently.",
+      },
+    ],
+    outcomes: [
+      { metric: "Live", label: "Storefront on custom domain" },
+      { metric: "↑", label: "Brand credibility at checkout" },
+      { metric: "0→1", label: "Revenue infrastructure" },
+    ],
+    faqs: [
+      {
+        question: "Can you migrate from Square, Wix, or Etsy to Shopify?",
+        answer:
+          "Yes. Platform migration is included in our Essential tier — product catalog, collection structure, and a storefront that finally matches your brand.",
+      },
+      {
+        question: "Do you build non-Shopify websites?",
+        answer:
+          "Yes. For professional and service businesses — doctors, consultants, studios — we build fast Next.js sites with booking, maps, contact flows, and SEO built in.",
+      },
+      {
+        question: "How long does a new store build take?",
+        answer:
+          "Most Essential builds launch in 1–2 weeks. Growth builds with email flows and additional pages take 2–3 weeks.",
+      },
+    ],
+    relatedCategories: ["design", "conversion"],
+    relatedCaseStudies: ["nocturne-shadows", "dra-yesly-garcia"],
+  },
+  {
+    slug: "design",
+    number: "02",
+    title: "Design & Experience",
+    metaTitle: "Storefront Design & UX for Shopify Brands | Luna Labs",
+    metaDescription:
+      "Revenue-focused storefront redesign, product page optimization, collection architecture, and campaign landing pages — design that converts, not just impresses.",
+    h1: "Design & experience built to convert, not just impress",
+    intro:
+      "A beautiful store that doesn't convert is an expensive gallery. We redesign storefronts, optimize product pages, architect collections, and build campaign landing pages with one lens: revenue.",
+    thesis:
+      "Design should move visitors toward a purchase — not just win a mood board.",
+    description:
+      "We refresh outdated storefronts, sharpen product page hierarchy, segment collections by buyer type, and build single-focus landing pages for drops and paid campaigns.",
+    bullets: [
+      "Storefront Redesign",
+      "Product Page Optimization",
+      "Collection & Catalog Architecture",
+      "Campaign Landing Pages",
+    ],
+    problem:
+      "Stores outgrow their original design — inconsistent branding, buried pricing, confusing navigation, and product pages that look good in a screenshot but don't close sales.",
+    solution:
+      "Luna Labs delivers a conversion-minded design system: clear product hierarchy, immediate pricing, segmented collections, and landing pages matched to the ad or email that sent the traffic.",
+    process: [
+      {
+        step: "Audit",
+        description:
+          "We review your current UX, brand expression, and where visitors drop off — homepage through checkout.",
+      },
+      {
+        step: "Design system",
+        description:
+          "Typography, components, product cards, and page templates built for your brand and buyer types.",
+      },
+      {
+        step: "Rebuild",
+        description:
+          "Storefront redesign or targeted page builds — mobile-first, with trust signals and clear CTAs on every template.",
       },
       {
         step: "Launch & measure",
         description:
-          "Pre-launch QA, analytics setup, and a baseline conversion report so improvements are measurable from week one.",
+          "Before/after baseline from GA4 so design improvements are tied to conversion, not opinion.",
       },
     ],
     outcomes: [
-      { metric: "↑", label: "Conversion rate lift" },
-      { metric: "↓", label: "Checkout abandonment" },
-      { metric: "↑", label: "Mobile purchase rate" },
+      { metric: "↑", label: "Product page clarity" },
+      { metric: "↑", label: "Brand perception" },
+      { metric: "↓", label: "Browse-to-buy friction" },
     ],
     faqs: [
       {
-        question: "What is a conversion website?",
+        question: "Is a redesign different from a new store build?",
         answer:
-          "A conversion website is an ecommerce storefront designed around conversion rate optimization — clear messaging, trust signals, fast load times, and friction-free checkout — so more visitors become paying customers.",
+          "Yes. A redesign refreshes an existing store — new design system, updated templates, better hierarchy. A build is for brands starting from zero or migrating platforms.",
       },
       {
-        question: "How is this different from a Shopify theme?",
+        question: "When do I need a campaign landing page?",
         answer:
-          "A theme changes appearance. A conversion website changes revenue mechanics — product page structure, social proof placement, checkout flow, and recovery systems that themes do not include.",
+          "When traffic arrives with specific intent — a product drop, paid ad, or email promo. Sending that traffic to a generic homepage dilutes conversion.",
       },
       {
-        question: "How long does a conversion website build take?",
+        question: "How do you handle dark or niche aesthetics?",
         answer:
-          "Most Essential builds launch in 1–2 weeks. Growth builds with email flows and CRO landing pages take 2–3 weeks.",
+          "We preserve brand identity while keeping pricing, navigation, and CTAs commercially clear — mood and usability are not mutually exclusive.",
       },
     ],
-    relatedCaseStudies: ["dra-yesly-garcia"],
-    relatedServices: ["ecommerce-optimization", "landing-page-design"],
+    relatedCategories: ["build", "conversion"],
+    relatedCaseStudies: ["nocturne-shadows"],
   },
   {
-    slug: "ecommerce-optimization",
-    title: "Ecommerce Optimization",
-    metaTitle:
-      "Ecommerce Optimization & Shopify CRO Services",
+    slug: "conversion",
+    number: "03",
+    title: "Conversion & Revenue",
+    metaTitle: "Shopify CRO & Conversion Optimization Services | Luna Labs",
     metaDescription:
-      "Improve Shopify conversion rates with ecommerce optimization — abandoned-cart recovery, trust signals, AOV lifts, and checkout flow fixes that compound revenue.",
-    h1: "Ecommerce optimization for Shopify stores that already have traffic",
+      "Conversion rate optimization, checkout recovery, and email/SMS automation for Shopify brands — turn existing traffic into revenue without more ad spend.",
+    h1: "Conversion & revenue for stores that already have traffic",
     intro:
-      "Ecommerce optimization is the practice of improving an existing Shopify store's conversion rate, average order value, and customer lifetime value — without requiring more ad spend or influencer traffic.",
+      "More followers won't fix a leaking funnel. We optimize conversion paths, recover abandoned carts, and wire Klaviyo flows that turn existing visitors into paying customers.",
+    thesis:
+      "You don't need more traffic — you need more of what you already have to convert.",
+    description:
+      "We audit your full purchase journey, fix checkout friction, deploy abandoned-cart and post-purchase email flows, and run monthly CRO experiments measured against a real baseline.",
+    bullets: [
+      "Conversion Rate Optimization (CRO)",
+      "Checkout & Cart Recovery",
+      "Email & SMS Automation",
+    ],
     problem:
-      "Brands with real audiences still leave revenue on the table: no abandoned-cart recovery, weak product page proof, no AOV strategy, and no systematic CRO testing.",
+      "Brands with real audiences still lose revenue at every step — weak trust signals, no cart recovery, unclear shipping, and checkout flows that abandon buyers before they pay.",
     solution:
-      "Luna Labs implements ecommerce revenue systems — Klaviyo automations, on-page trust signals, shipping threshold nudges, and monthly CRO experiments that compound over time.",
+      "Luna Labs implements revenue systems: on-page CRO, Klaviyo welcome and abandoned-cart flows, shipping threshold nudges, and checkout simplification — all measured from week one.",
     process: [
       {
         step: "Revenue audit",
         description:
-          "We identify the highest-impact leaks: cart abandonment, low AOV, weak email capture, and underperforming product pages.",
+          "We identify the highest-impact leaks across homepage, collection, product, cart, and checkout using GA4 and session behavior.",
       },
       {
         step: "Quick wins",
         description:
-          "Trust signals, checkout simplification, and first-order offers deployed in the first sprint.",
+          "Trust signals, shipping clarity, first-order offers, and checkout fixes deployed in the first sprint.",
       },
       {
         step: "Recovery systems",
@@ -113,158 +207,111 @@ export const services: ServicePage[] = [
       },
     ],
     outcomes: [
+      { metric: "↑", label: "Conversion rate" },
       { metric: "↑", label: "Recovered cart revenue" },
-      { metric: "↑", label: "Average order value" },
-      { metric: "↑", label: "Email-attributed revenue" },
+      { metric: "↑", label: "Email-attributed sales" },
     ],
     faqs: [
-      {
-        question: "What is ecommerce optimization?",
-        answer:
-          "Ecommerce optimization is the systematic improvement of a store's conversion rate, average order value, and customer retention through CRO, email recovery, and checkout improvements.",
-      },
       {
         question: "Do I need more traffic before optimizing?",
         answer:
           "No. If you have an audience — even a few thousand followers — optimization captures revenue from traffic you already have. More traffic without optimization just scales the leak.",
       },
       {
-        question: "What tools does Luna Labs use for optimization?",
+        question: "What tools do you use for conversion work?",
         answer:
-          "Shopify for storefront, Klaviyo for email/SMS recovery, and GA4 for conversion tracking and experiment reporting.",
+          "Shopify for the storefront, Klaviyo for email and SMS recovery, and GA4 for conversion tracking and experiment reporting.",
+      },
+      {
+        question: "How is CRO different from a redesign?",
+        answer:
+          "CRO fixes how your store earns — funnel leaks, recovery flows, checkout friction. A redesign fixes how it looks and is structured. Many projects need both, but they are different jobs.",
       },
     ],
-    relatedCaseStudies: ["dra-yesly-garcia"],
-    relatedServices: ["conversion-websites", "website-redesign"],
+    relatedCategories: ["design", "growth"],
+    relatedCaseStudies: ["nocturne-shadows", "dra-yesly-garcia"],
   },
   {
-    slug: "landing-page-design",
-    title: "Landing Page Design",
-    metaTitle:
-      "High-Converting Landing Page Design for Ecommerce Campaigns",
+    slug: "growth",
+    number: "04",
+    title: "Growth & Ongoing",
+    metaTitle: "Ongoing Ecommerce Growth, Analytics & Revenue Care | Luna Labs",
     metaDescription:
-      "Landing page design built for campaign conversion — single-focus pages for product drops, paid social, and email campaigns that turn clicks into purchases.",
-    h1: "Landing page design for campaigns that need to convert on first visit",
+      "Analytics setup, SEO foundation, and ongoing revenue care for Shopify brands — monthly CRO, email campaigns, and performance reporting that compounds.",
+    h1: "Growth & ongoing care that compounds over time",
     intro:
-      "Landing page performance is measured by one metric: conversion rate. Luna Labs designs single-focus pages for product launches, paid social campaigns, and email promotions — built to convert cold and warm traffic in one session.",
+      "Launch is day one, not the finish line. We set up analytics and SEO foundations, then run ongoing revenue care — email calendars, CRO experiments, and monthly reporting.",
+    thesis:
+      "Revenue systems need maintenance — not just a launch day.",
+    description:
+      "We configure GA4 and GTM, establish SEO and indexing foundations, and offer monthly care plans with email campaigns, store edits, CRO tests, and clear performance reports.",
+    bullets: [
+      "Analytics & Performance Reporting",
+      "SEO Foundation",
+      "Ongoing Revenue Care",
+    ],
     problem:
-      "Sending campaign traffic to a generic homepage dilutes intent. Visitors arrive with a specific offer in mind and leave because the page does not match the ad, email, or post that sent them.",
+      "Most brands launch and stall — no baseline metrics, no indexing strategy, no email calendar, and no one running monthly experiments to keep revenue growing.",
     solution:
-      "We build campaign-specific landing pages with matched messaging, social proof, a single CTA, and mobile-first load performance — so every click has a clear path to purchase.",
+      "Luna Labs sets up tracking from day one and offers ongoing care: scheduled email/SMS campaigns, one CRO experiment per month, store updates, and a performance report you can actually read.",
     process: [
       {
-        step: "Intent mapping",
+        step: "Instrumentation",
         description:
-          "We align page messaging with the ad, email, or post that drives traffic — headline, offer, and proof match the source.",
+          "GA4, GTM, conversion events, and Search Console — a baseline before any optimization begins.",
       },
       {
-        step: "Structure",
+        step: "SEO foundation",
         description:
-          "Single-column flow: hero → proof → offer → FAQ → CTA. No navigation distractions.",
+          "Meta tags, OG previews, sitemap, structured data, and indexing setup so the store is discoverable.",
       },
       {
-        step: "Build & test",
+        step: "Care plan",
         description:
-          "Responsive page with fast load, on-page SEO, and analytics events for conversion tracking.",
+          "Monthly email calendar, CRO experiment, store edits, and a performance report on revenue, conversion, and list growth.",
       },
       {
         step: "Iterate",
         description:
-          "Post-launch CRO adjustments based on scroll depth, click-through, and conversion data.",
+          "Each month builds on the last — compounding improvements instead of one-off fixes.",
       },
     ],
     outcomes: [
-      { metric: "↑", label: "Campaign conversion rate" },
-      { metric: "↓", label: "Cost per acquisition" },
-      { metric: "↑", label: "Landing page performance score" },
+      { metric: "↑", label: "Measurable month-over-month growth" },
+      { metric: "↑", label: "Email list & attributed revenue" },
+      { metric: "↓", label: "Guesswork in decisions" },
     ],
     faqs: [
       {
-        question: "What makes a high-converting landing page?",
+        question: "What is included in ongoing revenue care?",
         answer:
-          "Message match with the traffic source, a single clear CTA, social proof above the fold, fast mobile load, and no navigation that pulls visitors away from the offer.",
+          "Email/SMS campaign calendar, one CRO experiment per month with reported results, a block of store edits, and a performance report covering revenue, conversion, and list growth.",
       },
       {
-        question: "When should I use a landing page instead of my homepage?",
+        question: "Do I need growth services if I just launched?",
         answer:
-          "Use a landing page for paid ads, product drops, email promotions, and any campaign where visitors arrive with a specific intent that your homepage does not address directly.",
+          "Analytics and SEO foundation should be set up at launch. Ongoing care makes sense once the store is live and you want compounding improvements without hiring in-house.",
       },
       {
-        question: "How fast can a landing page launch?",
+        question: "Can you manage paid ads as part of care?",
         answer:
-          "Our Launch tier delivers a conversion-minded single page in approximately one week.",
+          "Yes, at the $1,100/mo care tier and above. Ad spend is billed separately — we manage and optimize against your goals.",
       },
     ],
+    relatedCategories: ["conversion", "build"],
     relatedCaseStudies: ["dra-yesly-garcia"],
-    relatedServices: ["conversion-websites", "ecommerce-optimization"],
-  },
-  {
-    slug: "website-redesign",
-    title: "Website Redesign",
-    metaTitle:
-      "Revenue-Focused Website Redesign for Shopify Brands",
-    metaDescription:
-      "Website redesign that changes how your store earns — not just how it looks. Luna Labs rebuilds Shopify storefronts for conversion rate optimization and revenue growth.",
-    h1: "Website redesign focused on revenue, not just aesthetics",
-    intro:
-      "A revenue-focused website redesign rebuilds your Shopify storefront around conversion rate optimization — new information architecture, updated brand expression, and the CRO mechanics that a cosmetic refresh never touches.",
-    problem:
-      "Stores outgrow their original design: outdated UX, broken mobile experience, inconsistent branding, and no connection between how the site looks and how it performs.",
-    solution:
-      "Luna Labs delivers a full storefront redesign with custom design system, conversion-ready templates, platform migration if needed, and launch analytics so the before/after is measurable.",
-    process: [
-      {
-        step: "Discovery",
-        description:
-          "Brand audit, competitor review, and conversion baseline from current analytics.",
-      },
-      {
-        step: "Design system",
-        description:
-          "Typography, color, component library, and page templates built for your brand and conversion goals.",
-      },
-      {
-        step: "Rebuild",
-        description:
-          "Custom Shopify storefront with up to 5 core pages, product merchandising, and mobile-first QA.",
-      },
-      {
-        step: "Migration & launch",
-        description:
-          "Platform migration, domain setup, SEO redirects, and a launch report with conversion benchmarks.",
-      },
-    ],
-    outcomes: [
-      { metric: "↑", label: "Brand perception" },
-      { metric: "↑", label: "Conversion rate" },
-      { metric: "↑", label: "Time on site" },
-    ],
-    faqs: [
-      {
-        question: "Is a website redesign worth it for a small brand?",
-        answer:
-          "Yes, when the redesign targets revenue mechanics — not just visual refresh. A store that finally looks like the brand and does not lose sales at checkout pays for itself in recovered revenue.",
-      },
-      {
-        question: "Can you migrate from Square, Wix, or Etsy to Shopify?",
-        answer:
-          "Yes. Our Essential tier includes platform migration, product upload, and merchandising for your launch catalog.",
-      },
-      {
-        question: "How do you measure redesign success?",
-        answer:
-          "GA4 baseline before launch, conversion rate and revenue tracking from week one, and monthly reporting on key metrics.",
-      },
-    ],
-    relatedCaseStudies: ["dra-yesly-garcia"],
-    relatedServices: ["conversion-websites", "ecommerce-optimization"],
   },
 ];
 
+/** @deprecated Use serviceCategories — kept for imports that expect `services` */
+export const services = serviceCategories;
+
+export type ServicePage = ServiceCategory;
+
 export function getService(slug: string) {
-  return services.find((s) => s.slug === slug);
+  return serviceCategories.find((s) => s.slug === slug);
 }
 
 export function getAllServiceSlugs() {
-  return services.map((s) => s.slug);
+  return serviceCategories.map((s) => s.slug);
 }

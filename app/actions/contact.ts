@@ -1,13 +1,16 @@
 "use server";
 
-import { Resend } from "resend";
-import { z } from "zod";
 import { headers } from "next/headers";
+import { z } from "zod";
 import { sendContactConfirmation } from "@/lib/email/contact-confirmation";
 import { translations } from "@/lib/i18n/translations";
 import type { Locale } from "@/lib/i18n/types";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { isRateLimited } from "@/lib/rate-limit";
+import {
+  contactFromAddress,
+  contactToAddress,
+  getResendClient,
+} from "@/lib/resend";
 
 const schema = z.object({
   name:      z.string().min(1).max(100),
@@ -20,19 +23,8 @@ const schema = z.object({
   website:   z.string().max(0).optional(), // honeypot — must be empty
 });
 
-// Simple in-process rate limiter: max 3 submissions per IP per 10 minutes.
-// NOTE: resets on serverless cold starts — replace with @upstash/ratelimit
-// once UPSTASH_REDIS_REST_URL / _TOKEN env vars are provisioned.
-const contactRateMap = new Map<string, number[]>();
 const CONTACT_LIMIT = 3;
 const CONTACT_WINDOW_MS = 10 * 60 * 1000;
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const times = (contactRateMap.get(ip) ?? []).filter(t => now - t < CONTACT_WINDOW_MS);
-  contactRateMap.set(ip, [...times, now]);
-  return times.length >= CONTACT_LIMIT;
-}
 
 function escapeHtml(s: string): string {
   return s
@@ -60,7 +52,7 @@ export async function submitContact(
   const t = translations[locale].forms;
 
   const ip = (await headers()).get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
-  if (isRateLimited(ip)) {
+  if (isRateLimited("contact", ip, { limit: CONTACT_LIMIT, windowMs: CONTACT_WINDOW_MS })) {
     return { status: "error", message: "Too many requests. Please wait a few minutes." };
   }
 
@@ -75,11 +67,12 @@ export async function submitContact(
   }
 
   const { name, email, phone, brand, followers, message } = result.data;
+  const resend = getResendClient();
 
   try {
     await resend.emails.send({
-      from: `Luna Labs <${process.env.CONTACT_FROM_EMAIL ?? "hello@bylunalabs.com"}>`,
-      to: process.env.CONTACT_TO_EMAIL ?? "hello@bylunalabs.com",
+      from: contactFromAddress(),
+      to: contactToAddress(),
       replyTo: email,
       subject: `New inquiry — ${escapeHtml(brand)} (${escapeHtml(name)})`,
       html: `
