@@ -9,10 +9,14 @@ import type { Locale } from "@/lib/i18n/types";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const schema = z.object({
-  email:   z.string().email().max(254),
-  locale:  z.enum(["en", "es"]).optional(),
-  website: z.string().max(0).optional(), // honeypot — must be empty
+  email:  z.string().email().max(254),
+  locale: z.enum(["en", "es"]).optional(),
 });
+
+// Bots fill forms instantly — humans need at least a couple of seconds.
+// Lower than the contact form's threshold: this is a single field that a
+// returning user with browser autofill can legitimately submit quickly.
+const MIN_FILL_MS = 2000;
 
 // Max 5 subscribe attempts per IP per 10 minutes.
 // NOTE: resets on serverless cold starts — replace with @upstash/ratelimit
@@ -49,15 +53,24 @@ export async function subscribeEmail(
     return { status: "error", message: "Too many requests. Please wait a few minutes." };
   }
 
-  const result = schema.safeParse({
-    email:   formData.get("email"),
-    locale:  formData.get("locale"),
-    website: formData.get("website"),
-  });
-
-  if (result.success && result.data.website) {
-    return { status: "success", message: t.subscribeSuccess }; // silent honeypot reject
+  // Bot checks run before validation so bots always see a fake success and
+  // never learn they were rejected: a filled honeypot field, or a submission
+  // faster than any human could fill the form.
+  const honeypot = formData.get("company_ref");
+  const renderedAt = Number(formData.get("form_ts"));
+  if (honeypot || !renderedAt || Date.now() - renderedAt < MIN_FILL_MS) {
+    console.warn("Bot submission silently rejected", {
+      form: "subscribe",
+      ip,
+      honeypot: Boolean(honeypot),
+    });
+    return { status: "success", message: t.subscribeSuccess };
   }
+
+  const result = schema.safeParse({
+    email:  formData.get("email"),
+    locale: formData.get("locale"),
+  });
 
   if (!result.success) {
     return { status: "error", message: t.subscribeInvalidError };

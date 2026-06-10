@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { subscribeEmail, type SubscribeState } from "@/app/actions/subscribe";
 import { useLocale, useTranslations } from "@/lib/i18n/context";
 
@@ -11,6 +11,8 @@ export function SubscribeForm() {
     subscribeEmail,
     null,
   );
+  // Render timestamp for the server-side time trap — bots submit instantly.
+  const [formTs] = useState(() => Date.now());
 
   if (state?.status === "success") {
     return (
@@ -27,7 +29,8 @@ export function SubscribeForm() {
   return (
     <form action={formAction} className="w-full max-w-[400px]">
       <input type="hidden" name="locale" value={locale} />
-      <input name="website" tabIndex={-1} aria-hidden="true" autoComplete="off" className="absolute opacity-0 pointer-events-none" />
+      <input name="company_ref" tabIndex={-1} aria-hidden="true" autoComplete="off" className="absolute opacity-0 pointer-events-none" />
+      <input type="hidden" name="form_ts" value={formTs} suppressHydrationWarning />
       <label htmlFor="subscribe-email" className="sr-only">
         {t.forms.subscribeEmail}
       </label>

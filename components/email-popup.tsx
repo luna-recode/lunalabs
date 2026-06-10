@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { subscribeEmail, type SubscribeState } from "@/app/actions/subscribe";
 import { useLocale, useTranslations } from "@/lib/i18n/context";
@@ -19,6 +18,8 @@ export function EmailPopup() {
     subscribeEmail,
     null,
   );
+  // Render timestamp for the server-side time trap — bots submit instantly.
+  const [formTs] = useState(() => Date.now());
 
   useEffect(() => {
     // Never show on the Studio route
@@ -117,7 +118,8 @@ export function EmailPopup() {
 
               <form action={formAction} className="mt-6">
                 <input type="hidden" name="locale" value={locale} />
-                <input name="website" tabIndex={-1} aria-hidden="true" autoComplete="off" className="absolute opacity-0 pointer-events-none" />
+                <input name="company_ref" tabIndex={-1} aria-hidden="true" autoComplete="off" className="absolute opacity-0 pointer-events-none" />
+                <input type="hidden" name="form_ts" value={formTs} suppressHydrationWarning />
                 <div className="flex overflow-hidden rounded-xl border border-line bg-surface transition-colors focus-within:border-accent/40">
                   <input
                     type="email"

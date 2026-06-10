@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { submitContact, type ContactState } from "@/app/actions/contact";
 import { useLocale, useTranslations } from "@/lib/i18n/context";
 
@@ -36,6 +36,8 @@ export function ContactForm({ variant = "glass" }: ContactFormProps) {
     submitContact,
     null,
   );
+  // Render timestamp for the server-side time trap — bots submit instantly.
+  const [formTs] = useState(() => Date.now());
 
   if (state?.status === "success") {
     return (
@@ -57,8 +59,11 @@ export function ContactForm({ variant = "glass" }: ContactFormProps) {
   return (
     <form action={formAction} className="space-y-4" noValidate>
       <input type="hidden" name="locale" value={locale} />
-      {/* Honeypot — hidden from real users, bots fill it and get silently rejected */}
-      <input name="website" tabIndex={-1} aria-hidden="true" autoComplete="off" className="absolute opacity-0 pointer-events-none" />
+      {/* Honeypot — hidden from real users, bots fill it and get silently rejected.
+          Named so browser autofill never touches it (a real field name like
+          "website" risks silently rejecting users with autofill extensions). */}
+      <input name="company_ref" tabIndex={-1} aria-hidden="true" autoComplete="off" className="absolute opacity-0 pointer-events-none" />
+      <input type="hidden" name="form_ts" value={formTs} suppressHydrationWarning />
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>

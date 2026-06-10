@@ -17,8 +17,10 @@ const schema = z.object({
   followers: z.string().max(50).optional(),
   message:   z.string().min(1).max(5000),
   locale:    z.enum(["en", "es"]).optional(),
-  website:   z.string().max(0).optional(), // honeypot — must be empty
 });
+
+// Bots fill forms instantly — humans need at least a few seconds.
+const MIN_FILL_MS = 3000;
 
 // Simple in-process rate limiter: max 3 submissions per IP per 10 minutes.
 // NOTE: resets on serverless cold starts — replace with @upstash/ratelimit
@@ -64,11 +66,21 @@ export async function submitContact(
     return { status: "error", message: "Too many requests. Please wait a few minutes." };
   }
 
-  const result = schema.safeParse(Object.fromEntries(formData));
-
-  if (result.success && result.data.website) {
-    return { status: "success", message: t.contactSuccess }; // silent honeypot reject
+  // Bot checks run before validation so bots always see a fake success and
+  // never learn they were rejected: a filled honeypot field, or a submission
+  // faster than any human could fill the form.
+  const honeypot = formData.get("company_ref");
+  const renderedAt = Number(formData.get("form_ts"));
+  if (honeypot || !renderedAt || Date.now() - renderedAt < MIN_FILL_MS) {
+    console.warn("Bot submission silently rejected", {
+      form: "contact",
+      ip,
+      honeypot: Boolean(honeypot),
+    });
+    return { status: "success", message: t.contactSuccess };
   }
+
+  const result = schema.safeParse(Object.fromEntries(formData));
 
   if (!result.success) {
     return { status: "error", message: t.contactRequiredError };
