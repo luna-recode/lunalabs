@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { LunaLabsLogo } from "./luna-labs-logo";
 import { useActionState, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { subscribeEmail, type SubscribeState } from "@/app/actions/subscribe";
@@ -88,13 +88,10 @@ export function EmailPopup() {
         </button>
 
         <div className="p-8">
-          <Image
-            src="/luna-labs-moon.svg"
-            alt=""
-            aria-hidden
-            width={40}
+          <LunaLabsLogo
+            className="mb-5 text-bone"
             height={40}
-            className="mb-5"
+            aria-hidden
           />
 
           {state?.status === "success" ? (

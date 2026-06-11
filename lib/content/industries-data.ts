@@ -34,7 +34,7 @@ export const industries: IndustryPage[] = [
       "Mobile-first product imagery and tap-friendly navigation",
       "Klaviyo recovery flows for high-consideration purchases",
     ],
-    relatedServices: ["conversion-websites", "ecommerce-optimization"],
+    relatedServices: ["build", "conversion"],
     faqs: [
       {
         question: "How do you improve conversion for fashion brands?",
@@ -65,7 +65,7 @@ export const industries: IndustryPage[] = [
       "Welcome and abandoned-cart Klaviyo automations",
       "Monthly CRO experiments to improve unit economics",
     ],
-    relatedServices: ["landing-page-design", "ecommerce-optimization"],
+    relatedServices: ["design", "conversion"],
     faqs: [
       {
         question: "What CRO metrics matter most for DTC?",
@@ -96,7 +96,7 @@ export const industries: IndustryPage[] = [
       "Checkout optimization within Shopify's native flow",
       "Monthly CRO experiments with GA4 reporting",
     ],
-    relatedServices: ["conversion-websites", "website-redesign"],
+    relatedServices: ["build", "design"],
     faqs: [
       {
         question: "Do you only work with Shopify?",
@@ -127,7 +127,7 @@ export const industries: IndustryPage[] = [
       "Subscription and replenishment flow setup",
       "Influencer traffic landing pages with matched messaging",
     ],
-    relatedServices: ["conversion-websites", "landing-page-design"],
+    relatedServices: ["build", "design"],
     faqs: [
       {
         question: "How do beauty brands improve Shopify conversion?",
@@ -158,7 +158,7 @@ export const industries: IndustryPage[] = [
       "Considered-purchase abandoned-cart sequences",
       "White-glove checkout experience with transparent policies",
     ],
-    relatedServices: ["website-redesign", "conversion-websites"],
+    relatedServices: ["design", "build"],
     faqs: [
       {
         question: "Can luxury brands use conversion optimization without looking cheap?",

@@ -1,4 +1,5 @@
 import type { Resend } from "resend";
+import { contactFromAddress, contactToAddress } from "@/lib/resend";
 
 const CAL_LINK = "https://cal.com/lunalabs/free-consult";
 
@@ -36,9 +37,9 @@ export async function sendContactConfirmation(
   const firstName = firstNameOrThere(name);
 
   await resend.emails.send({
-    from: "Luna Labs <hello@bylunalabs.com>",
+    from: contactFromAddress(),
     to: email,
-    replyTo: "hello@bylunalabs.com",
+    replyTo: contactToAddress(),
     subject: "Got it — we'll be in touch within 24 hours",
     text: buildConfirmationBody(firstName),
   });

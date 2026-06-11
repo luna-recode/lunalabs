@@ -1,30 +1,13 @@
-import Image from "next/image";
+import { LunaLabsLogo } from "./luna-labs-logo";
 
 type BrandProps = {
   size?: "default" | "sm";
+  variant?: "default" | "light";
 };
 
-export function Brand({ size = "default" }: BrandProps) {
-  const px = size === "sm" ? 28 : 36;
-  const textSize = size === "sm" ? "text-lg" : "text-2xl";
-  const labelSize = size === "sm" ? "text-[9px]" : "text-[11px]";
+export function Brand({ size = "default", variant = "default" }: BrandProps) {
+  const height = size === "sm" ? 28 : 36;
+  const colorClass = variant === "light" ? "text-white" : "text-bone";
 
-  return (
-    <div className={`flex items-center gap-2.5 font-serif tracking-wide ${textSize}`}>
-      <Image
-        src="/luna-labs-moon.svg"
-        alt="Luna Labs mark"
-        width={px}
-        height={px}
-        className="shrink-0"
-        priority
-      />
-      Luna
-      <b
-        className={`self-center font-mono font-medium uppercase tracking-[0.34em] text-accent-dim ${labelSize}`}
-      >
-        Labs
-      </b>
-    </div>
-  );
+  return <LunaLabsLogo className={`shrink-0 ${colorClass}`} height={height} />;
 }

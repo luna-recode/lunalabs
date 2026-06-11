@@ -66,24 +66,24 @@ export default function AboutPage() {
         <p>
           Our work spans{" "}
           <Link
-            href="/services/conversion-websites"
+            href="/services/build"
             className="text-accent underline-offset-2 hover:underline"
           >
-            conversion websites
+            store builds
           </Link>
           ,{" "}
           <Link
-            href="/services/ecommerce-optimization"
+            href="/services/conversion"
             className="text-accent underline-offset-2 hover:underline"
           >
-            ecommerce optimization
+            conversion optimization
           </Link>
           , and{" "}
           <Link
-            href="/services/landing-page-design"
+            href="/services/design"
             className="text-accent underline-offset-2 hover:underline"
           >
-            landing page design
+            storefront design
           </Link>{" "}
           — all on Shopify with Klaviyo recovery and GA4 measurement.
         </p>

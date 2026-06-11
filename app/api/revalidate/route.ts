@@ -1,21 +1,14 @@
-import { timingSafeEqual } from "crypto";
 import { revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
+import { verifySecret } from "@/lib/security/verify-secret";
 
 export async function POST(req: NextRequest) {
-  const secret = req.nextUrl.searchParams.get("secret");
   const expected = process.env.SANITY_REVALIDATE_SECRET ?? "";
+  const provided =
+    req.headers.get("x-revalidate-secret") ??
+    req.nextUrl.searchParams.get("secret");
 
-  // Timing-safe comparison prevents brute-force character-by-character attacks.
-  // Both buffers must be the same length for timingSafeEqual to work correctly.
-  const secretBuf = Buffer.from(secret ?? "");
-  const expectedBuf = Buffer.from(expected);
-  const valid =
-    expected.length > 0 &&
-    secretBuf.length === expectedBuf.length &&
-    timingSafeEqual(secretBuf, expectedBuf);
-
-  if (!valid) {
+  if (!verifySecret(provided, expected)) {
     return NextResponse.json({ message: "Invalid secret" }, { status: 401 });
   }
 

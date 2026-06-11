@@ -27,7 +27,7 @@ export const blogPosts: BlogPost[] = [
       "Conversion rate optimization on Shopify starts with fixing the pages you already have — not buying more traffic.",
     publishedAt: "2025-12-01",
     readingTime: "8 min",
-    relatedServices: ["ecommerce-optimization", "conversion-websites"],
+    relatedServices: ["conversion", "build"],
     sections: [
       {
         heading: "What is Shopify conversion rate optimization?",
@@ -79,7 +79,7 @@ export const blogPosts: BlogPost[] = [
       "A CRO strategy is not a one-time redesign. It is a system of audits, fixes, and measured experiments.",
     publishedAt: "2025-12-15",
     readingTime: "7 min",
-    relatedServices: ["ecommerce-optimization", "landing-page-design"],
+    relatedServices: ["conversion", "design"],
     sections: [
       {
         heading: "Define your CRO baseline",
@@ -121,7 +121,7 @@ export const blogPosts: BlogPost[] = [
       "Every item on this checklist directly affects landing page performance and campaign ROI.",
     publishedAt: "2026-01-10",
     readingTime: "6 min",
-    relatedServices: ["landing-page-design", "conversion-websites"],
+    relatedServices: ["design", "build"],
     sections: [
       {
         heading: "Message match with traffic source",
@@ -168,7 +168,7 @@ export const blogPosts: BlogPost[] = [
       "Website design that increases sales prioritizes conversion mechanics over visual trends.",
     publishedAt: "2026-02-01",
     readingTime: "7 min",
-    relatedServices: ["conversion-websites", "website-redesign"],
+    relatedServices: ["build", "design"],
     sections: [
       {
         heading: "Design for the purchase decision",

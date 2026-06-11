@@ -29,7 +29,7 @@ export function HomeSeoContent({ studies }: { studies: CaseStudy[] }) {
                 <strong className="font-medium text-bone">{SITE.name}</strong>{" "}
                 is an ecommerce web design agency that builds{" "}
                 <Link
-                  href="/services/ecommerce-optimization"
+                  href="/services/conversion"
                   className="text-accent underline-offset-2 hover:underline"
                 >
                   conversion rate optimization
@@ -41,24 +41,24 @@ export function HomeSeoContent({ studies }: { studies: CaseStudy[] }) {
               <p>
                 Our work covers{" "}
                 <Link
-                  href="/services/conversion-websites"
+                  href="/services/build"
                   className="text-accent underline-offset-2 hover:underline"
                 >
-                  conversion websites
+                  Shopify store builds
                 </Link>
                 ,{" "}
                 <Link
-                  href="/services/landing-page-design"
+                  href="/services/design"
                   className="text-accent underline-offset-2 hover:underline"
                 >
-                  landing page performance
+                  storefront design
                 </Link>
                 , and{" "}
                 <Link
-                  href="/services/ecommerce-optimization"
+                  href="/services/growth"
                   className="text-accent underline-offset-2 hover:underline"
                 >
-                  ecommerce revenue systems
+                  ongoing revenue care
                 </Link>{" "}
                 including Klaviyo recovery and checkout optimization.
               </p>
@@ -130,7 +130,7 @@ export function HomeSeoContent({ studies }: { studies: CaseStudy[] }) {
                       {service.title}
                     </h3>
                     <p className="mt-3 line-clamp-2 text-sm font-light leading-[1.75] text-bone-dim">
-                      {service.intro}
+                      {service.thesis}
                     </p>
                     <span className="mt-5 inline-block font-mono text-[11px] uppercase tracking-[0.2em] text-accent">
                       Learn more →

@@ -1,5 +1,6 @@
 import { cache } from "react";
 import { client } from "@/lib/sanity/client";
+import { withSafeLiveUrl } from "@/lib/security/safe-url";
 
 export type CaseStudyMetric = {
   label: string;
@@ -66,7 +67,7 @@ export const caseStudies: CaseStudy[] = [
       "Every page drives toward patient contact with minimal friction — a sticky WhatsApp button on all screens, one-tap pre-filled messages, Cal.com slots for virtual appointments, and Google Maps links at every clinic touchpoint. Verified patient reviews are surfaced on the homepage so new families see social proof before they book.",
     uxExplanation:
       "The site is mobile-first and built entirely in Spanish for Nicaragua's patient base. A credentials timeline, services breakdown, four-city location directory, FAQ for new families, and a medical blog give parents the clarity they need — with fast loads, optimized images, and rich link previews when shared on WhatsApp or Facebook.",
-    relatedServices: ["conversion-websites", "website-redesign", "landing-page-design"],
+    relatedServices: ["build", "growth"],
     liveUrl: "https://drayeslygarcia.com",
     publishedAt: "2026-01-15",
   },
@@ -200,7 +201,7 @@ export const fetchCaseStudies = cache(async (): Promise<CaseStudy[]> => {
       {},
       { next: { tags: ["caseStudy"] } },
     );
-    if (data && data.length > 0) return data;
+    if (data && data.length > 0) return data.map(withSafeLiveUrl);
   } catch {
     // Sanity unavailable — fall back to static data
   }
@@ -219,7 +220,7 @@ export const fetchCaseStudy = cache(async (
       { slug: baseSlug },
       { next: { tags: ["caseStudy"] } },
     );
-    if (data) return data;
+    if (data) return withSafeLiveUrl(data);
   } catch {
     // Sanity unavailable — fall back to static data
   }

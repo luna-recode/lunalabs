@@ -8,6 +8,9 @@ export default defineConfig({
   title: "Luna Labs",
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "mugt2oz4",
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production",
-  plugins: [structureTool(), visionTool()],
+  plugins: [
+    structureTool(),
+    ...(process.env.NODE_ENV === "development" ? [visionTool()] : []),
+  ],
   schema: { types: schemaTypes },
 });
