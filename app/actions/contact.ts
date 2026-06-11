@@ -2,9 +2,8 @@
 
 import { headers } from "next/headers";
 import { z } from "zod";
-import { escapeHtml, sendTemplateEmail } from "@/lib/email/render";
+import { EMAIL_EVENTS, fireEmailEvent } from "@/lib/email/events";
 import { contactSegmentId, upsertContactIntoSegment } from "@/lib/email/segments";
-import { contactConfirmationEmail } from "@/lib/email/templates/contact-confirmation";
 import { translations } from "@/lib/i18n/translations";
 import type { Locale } from "@/lib/i18n/types";
 import { isRateLimited } from "@/lib/rate-limit";
@@ -29,6 +28,15 @@ const MIN_FILL_MS = 3000;
 
 const CONTACT_LIMIT = 3;
 const CONTACT_WINDOW_MS = 10 * 60 * 1000;
+
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
 
 export type ContactState = {
   status: "success" | "error";
@@ -93,31 +101,31 @@ export async function submitContact(
       `,
     });
 
-    // Confirmation + audience add are best-effort: the inquiry already
+    // Audience add + confirmation are best-effort: the inquiry already
     // reached us, so neither failing should surface an error to the user.
+    // Order matters: the contact must exist before the event fires, because
+    // the "Contact confirmation" automation in Resend resolves the event
+    // against the contact record and sends the confirmation template.
+    const [firstName, ...rest] = name.trim().split(/\s+/);
     try {
-      await sendTemplateEmail(resend, email, contactConfirmationEmail(name));
-    } catch (error) {
-      console.error("Failed to send contact confirmation email:", error);
-    }
-
-    const segmentId = contactSegmentId();
-    if (segmentId) {
-      const [firstName, ...rest] = name.trim().split(/\s+/);
-      try {
+      const segmentId = contactSegmentId();
+      if (segmentId) {
         await upsertContactIntoSegment(resend, {
           email,
           segmentId,
           firstName,
           lastName: rest.join(" ") || undefined,
         });
-      } catch (error) {
-        console.error("Failed to add inquiry to contact audience:", error);
+      } else {
+        console.warn(
+          "RESEND_CONTACT_SEGMENT_ID is not set — inquiry not added to contact audience.",
+        );
       }
-    } else {
-      console.warn(
-        "RESEND_CONTACT_SEGMENT_ID is not set — inquiry not added to contact audience.",
-      );
+      await fireEmailEvent(resend, EMAIL_EVENTS.contactSubmitted, email, {
+        firstName,
+      });
+    } catch (error) {
+      console.error("Contact confirmation automation failed:", error);
     }
 
     return { status: "success", message: t.contactSuccess };

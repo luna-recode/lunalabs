@@ -2,10 +2,8 @@
 
 import { headers } from "next/headers";
 import { z } from "zod";
-import { sendTemplateEmail } from "@/lib/email/render";
+import { EMAIL_EVENTS, fireEmailEvent } from "@/lib/email/events";
 import { newsletterSegmentId, upsertContactIntoSegment } from "@/lib/email/segments";
-import { newsletterWelcomeEmail } from "@/lib/email/templates/newsletter-welcome";
-import { newsletterWelcomeBackEmail } from "@/lib/email/templates/newsletter-welcome-back";
 import { translations } from "@/lib/i18n/translations";
 import type { Locale } from "@/lib/i18n/types";
 import { isRateLimited } from "@/lib/rate-limit";
@@ -82,18 +80,19 @@ export async function subscribeEmail(
   try {
     const outcome = await upsertContactIntoSegment(resend, { email, segmentId });
 
-    // First-timers get the welcome email, returning unsubscribers get the
-    // welcome-back; an existing subscriber resubmitting gets nothing extra.
-    // The subscription itself succeeded, so a failed send must not fail it.
+    // First-timers trigger the welcome automation, returning unsubscribers
+    // the welcome-back one; an existing subscriber resubmitting triggers
+    // nothing. The emails themselves live in Resend (Automations/Templates).
+    // The subscription succeeded, so a failed event must not fail it.
     if (outcome !== "already-member") {
-      const template =
+      const event =
         outcome === "resubscribed"
-          ? newsletterWelcomeBackEmail()
-          : newsletterWelcomeEmail();
+          ? EMAIL_EVENTS.newsletterResubscribed
+          : EMAIL_EVENTS.newsletterSubscribed;
       try {
-        await sendTemplateEmail(resend, email, template);
+        await fireEmailEvent(resend, event, email);
       } catch (error) {
-        console.error("Failed to send newsletter welcome email:", error);
+        console.error("Failed to fire newsletter welcome event:", error);
       }
     }
 

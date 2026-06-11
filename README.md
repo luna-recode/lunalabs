@@ -131,26 +131,42 @@ remove any of it:**
   Upstash is provisioned — marked in the code)
 - Zod validation + HTML escaping on everything user-supplied
 
-### Email automations (`lib/email/`)
+### Email automations — modeled in Resend, not in code
 
-Both forms feed Resend **segments** (Resend's successor to audiences) and
-trigger a templated email:
+Email copy and flow logic live in the **Resend dashboard** (Templates +
+Automations), seeded by `scripts/setup-resend.mjs`. The app only does two
+things per form submission (`lib/email/`):
 
-- **Subscribe form** → newsletter segment + welcome email (blog CTA).
-  Resubscribing after an unsubscribe sends a "welcome back" instead; an
-  already-subscribed email gets **no** second welcome (dedupe is in
-  `lib/email/segments.ts#upsertContactIntoSegment`).
-- **Contact form** → contact segment (with first/last name) + a confirmation
-  email pointing at the case studies. Segment adds and confirmations are
-  best-effort: they log on failure but never fail the form for the user.
+1. **Upserts the contact into a segment** —
+   `lib/email/segments.ts#upsertContactIntoSegment` handles dedupe (returns
+   `created | joined | resubscribed | already-member`).
+2. **Fires an event** — `lib/email/events.ts`. Resend automations react:
 
-Templates live in `lib/email/templates/` — one file per email exporting a
-function that returns `{ subject, html, text }`. To change copy, edit the
-`SUBJECT`/`PREHEADER` consts and paragraphs in the template (keep `html` and
-`text` in sync). To add a template, copy an existing one, build the body with
-the helpers in `lib/email/render.ts` (`renderEmailLayout`, `emailParagraph`,
-`emailButton`), and send it with `sendTemplateEmail`. List-style emails get
-`unsubscribeFooterNote()`; transactional receipts don't.
+| Event | Fired when | Automation sends template |
+| ----- | ---------- | ------------------------- |
+| `newsletter.subscribed` | new newsletter signup | `newsletter-welcome` |
+| `newsletter.resubscribed` | unsubscriber returns | `newsletter-welcome-back` |
+| `contact.submitted` | contact form sent | `contact-confirmation` |
+
+An already-subscribed email fires **no** event (no duplicate welcomes). All
+of it is best-effort: failures log but never fail the form for the user. The
+internal "new inquiry" notification email stays in `app/actions/contact.ts`
+(it carries the message body).
+
+- **Change email copy:** Resend dashboard → Templates → edit → publish. No
+  deploy. Variables use `{{{NAME}}}`; `FIRST_NAME`/`RESEND_UNSUBSCRIBE_URL`
+  are auto-filled per contact, `GREETING_NAME` is mapped from the event
+  payload by the Contact confirmation automation.
+- **Change flow** (add a delay, a follow-up email, a condition): dashboard →
+  Automations → edit the graph.
+- **Add a new email:** add it to `TEMPLATES`/`AUTOMATIONS` in
+  `scripts/setup-resend.mjs`, run it (`node --env-file=.env.local
+  scripts/setup-resend.mjs` — idempotent, never overwrites existing
+  resources), then fire the new event from a server action via
+  `fireEmailEvent`. Upsert the contact into a segment **before** firing —
+  automations resolve events against the contact record.
+- **Send a newsletter (broadcast):** dashboard → Broadcasts → duplicate
+  "Example — newsletter issue", edit, send to the Newsletter segment.
 
 ### Assets
 
