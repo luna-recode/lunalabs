@@ -28,7 +28,8 @@ to static content), but for full functionality:
 | Variable | Used for |
 | -------- | -------- |
 | `RESEND_API_KEY` | Contact form + subscribe emails |
-| `RESEND_AUDIENCE_ID` | Newsletter subscriber list |
+| `RESEND_NEWSLETTER_SEGMENT_ID` | Newsletter segment (falls back to legacy `RESEND_AUDIENCE_ID`) |
+| `RESEND_CONTACT_SEGMENT_ID` | Segment for contact-form inquiries |
 | `CONTACT_FROM_EMAIL` / `CONTACT_TO_EMAIL` | Contact form sender/recipient (default `hello@bylunalabs.com`) |
 | `SANITY_REVALIDATE_SECRET` | Auth for the `/api/revalidate` webhook from Sanity |
 | `NEXT_PUBLIC_SANITY_PROJECT_ID` / `NEXT_PUBLIC_SANITY_DATASET` | Sanity project (defaults to `mugt2oz4` / `production`) |
@@ -129,6 +130,27 @@ remove any of it:**
 - Per-IP rate limiting (in-process; TODO: swap to `@upstash/ratelimit` when
   Upstash is provisioned — marked in the code)
 - Zod validation + HTML escaping on everything user-supplied
+
+### Email automations (`lib/email/`)
+
+Both forms feed Resend **segments** (Resend's successor to audiences) and
+trigger a templated email:
+
+- **Subscribe form** → newsletter segment + welcome email (blog CTA).
+  Resubscribing after an unsubscribe sends a "welcome back" instead; an
+  already-subscribed email gets **no** second welcome (dedupe is in
+  `lib/email/segments.ts#upsertContactIntoSegment`).
+- **Contact form** → contact segment (with first/last name) + a confirmation
+  email pointing at the case studies. Segment adds and confirmations are
+  best-effort: they log on failure but never fail the form for the user.
+
+Templates live in `lib/email/templates/` — one file per email exporting a
+function that returns `{ subject, html, text }`. To change copy, edit the
+`SUBJECT`/`PREHEADER` consts and paragraphs in the template (keep `html` and
+`text` in sync). To add a template, copy an existing one, build the body with
+the helpers in `lib/email/render.ts` (`renderEmailLayout`, `emailParagraph`,
+`emailButton`), and send it with `sendTemplateEmail`. List-style emails get
+`unsubscribeFooterNote()`; transactional receipts don't.
 
 ### Assets
 

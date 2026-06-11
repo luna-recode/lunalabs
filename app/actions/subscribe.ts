@@ -2,6 +2,10 @@
 
 import { headers } from "next/headers";
 import { z } from "zod";
+import { sendTemplateEmail } from "@/lib/email/render";
+import { newsletterSegmentId, upsertContactIntoSegment } from "@/lib/email/segments";
+import { newsletterWelcomeEmail } from "@/lib/email/templates/newsletter-welcome";
+import { newsletterWelcomeBackEmail } from "@/lib/email/templates/newsletter-welcome-back";
 import { translations } from "@/lib/i18n/translations";
 import type { Locale } from "@/lib/i18n/types";
 import { isRateLimited } from "@/lib/rate-limit";
@@ -64,20 +68,38 @@ export async function subscribeEmail(
     return { status: "error", message: t.subscribeInvalidError };
   }
 
-  const audienceId = process.env.RESEND_AUDIENCE_ID;
-  if (!audienceId) {
-    console.error("RESEND_AUDIENCE_ID is not set — cannot subscribe contact.");
+  const segmentId = newsletterSegmentId();
+  if (!segmentId) {
+    console.error(
+      "RESEND_NEWSLETTER_SEGMENT_ID / RESEND_AUDIENCE_ID is not set — cannot subscribe contact.",
+    );
     return { status: "error", message: t.subscribeGenericError };
   }
 
+  const email = result.data.email;
+  const resend = getResendClient();
+
   try {
-    await getResendClient().contacts.create({
-      email: result.data.email,
-      audienceId,
-      unsubscribed: false,
-    });
+    const outcome = await upsertContactIntoSegment(resend, { email, segmentId });
+
+    // First-timers get the welcome email, returning unsubscribers get the
+    // welcome-back; an existing subscriber resubmitting gets nothing extra.
+    // The subscription itself succeeded, so a failed send must not fail it.
+    if (outcome !== "already-member") {
+      const template =
+        outcome === "resubscribed"
+          ? newsletterWelcomeBackEmail()
+          : newsletterWelcomeEmail();
+      try {
+        await sendTemplateEmail(resend, email, template);
+      } catch (error) {
+        console.error("Failed to send newsletter welcome email:", error);
+      }
+    }
+
     return { status: "success", message: t.subscribeSuccess };
-  } catch {
+  } catch (error) {
+    console.error("Newsletter subscribe failed:", error);
     return { status: "error", message: t.subscribeGenericError };
   }
 }
