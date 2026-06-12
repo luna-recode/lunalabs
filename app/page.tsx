@@ -9,6 +9,7 @@ import { HomeSeoContent } from "@/components/seo/home-seo-content";
 import { Stack } from "@/components/stack";
 import { Work } from "@/components/work";
 import { createPageMetadata } from "@/lib/seo/metadata";
+import { fetchServices } from "@/lib/content/services-data";
 import { fetchWorkStudies } from "@/lib/works-data";
 
 export const metadata: Metadata = createPageMetadata({
@@ -20,7 +21,10 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default async function Home() {
-  const studies = await fetchWorkStudies();
+  const [studies, services] = await Promise.all([
+    fetchWorkStudies(),
+    fetchServices(),
+  ]);
   return (
     <>
       <Nav />
@@ -30,7 +34,7 @@ export default async function Home() {
         <Work studies={studies} />
         <Stack />
         <CreativeProcess />
-        <HomeSeoContent studies={studies} />
+        <HomeSeoContent studies={studies} services={services} />
         <FinalCta />
       </main>
       <Footer />

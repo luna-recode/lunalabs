@@ -24,9 +24,12 @@ export async function POST(req: NextRequest) {
     revalidateTag("caseStudy", {});
   } else if (type === "blogPost") {
     revalidateTag("blogPost", {});
+  } else if (type === "service") {
+    revalidateTag("service", {});
   } else {
     revalidateTag("caseStudy", {});
     revalidateTag("blogPost", {});
+    revalidateTag("service", {});
   }
 
   return NextResponse.json({ revalidated: true, type: type ?? "all" });

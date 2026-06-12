@@ -3,7 +3,7 @@ import { ServicesAccordion } from "@/components/services-accordion";
 import { CtaBlock } from "@/components/seo/cta-block";
 import { FaqSection } from "@/components/seo/faq-section";
 import { PageShell } from "@/components/seo/page-shell";
-import { serviceCategories } from "@/lib/content/services-data";
+import { fetchServices } from "@/lib/content/services-data";
 import { createPageMetadata } from "@/lib/seo/metadata";
 import {
   breadcrumbSchema,
@@ -43,7 +43,9 @@ const servicesFaqs = [
   },
 ];
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const serviceCategories = await fetchServices();
+
   return (
     <PageShell
       schemas={[

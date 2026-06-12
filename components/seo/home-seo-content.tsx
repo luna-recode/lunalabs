@@ -1,10 +1,17 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ScrollReveal } from "@/components/scroll-reveal";
-import { services } from "@/lib/content/services-data";
+import type { ServiceCategory } from "@/lib/content/services-data";
 import type { CaseStudy } from "@/lib/works-data";
 import { SITE } from "@/lib/seo/site";
 
-export function HomeSeoContent({ studies }: { studies: CaseStudy[] }) {
+export function HomeSeoContent({
+  studies,
+  services,
+}: {
+  studies: CaseStudy[];
+  services: ServiceCategory[];
+}) {
   const activeStudies = studies.filter((s) => !s.placeholder);
 
   return (
@@ -114,13 +121,25 @@ export function HomeSeoContent({ studies }: { studies: CaseStudy[] }) {
                     marginBottom: i < services.length - 1 ? "180px" : "165px",
                   }}
                 >
-                  {/* PNG placeholder */}
+                  {/* Card image from Sanity; placeholder circle until one is set */}
                   <div className="flex items-center justify-center bg-gradient-to-b from-surface/80 to-ink/20 py-[clamp(40px,7vh,64px)]">
                     <div className="relative flex h-[180px] w-[180px] items-center justify-center overflow-hidden rounded-full border border-white/[0.08] bg-ink/50 shadow-[inset_0_2px_8px_rgba(0,0,0,0.4)]">
-                      <div className="absolute inset-3 rounded-full border border-dashed border-white/[0.10]" />
-                      <span className="font-mono text-[9px] uppercase tracking-[0.24em] text-white/20">
-                        Image
-                      </span>
+                      {service.image ? (
+                        <Image
+                          src={service.image}
+                          alt={service.title}
+                          fill
+                          sizes="180px"
+                          className="object-cover"
+                        />
+                      ) : (
+                        <>
+                          <div className="absolute inset-3 rounded-full border border-dashed border-white/[0.10]" />
+                          <span className="font-mono text-[9px] uppercase tracking-[0.24em] text-white/20">
+                            Image
+                          </span>
+                        </>
+                      )}
                     </div>
                   </div>
 
