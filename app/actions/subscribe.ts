@@ -39,7 +39,7 @@ export async function subscribeEmail(
   const t = translations[locale].forms;
 
   const ip = (await headers()).get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
-  if (isRateLimited("subscribe", ip, { limit: SUBSCRIBE_LIMIT, windowMs: SUBSCRIBE_WINDOW_MS })) {
+  if (await isRateLimited("subscribe", ip, { limit: SUBSCRIBE_LIMIT, windowMs: SUBSCRIBE_WINDOW_MS })) {
     return { status: "error", message: "Too many requests. Please wait a few minutes." };
   }
 

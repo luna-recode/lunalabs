@@ -55,7 +55,7 @@ export async function submitContact(
   const t = translations[locale].forms;
 
   const ip = (await headers()).get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
-  if (isRateLimited("contact", ip, { limit: CONTACT_LIMIT, windowMs: CONTACT_WINDOW_MS })) {
+  if (await isRateLimited("contact", ip, { limit: CONTACT_LIMIT, windowMs: CONTACT_WINDOW_MS })) {
     return { status: "error", message: "Too many requests. Please wait a few minutes." };
   }
 
