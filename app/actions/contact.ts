@@ -2,7 +2,8 @@
 
 import { headers } from "next/headers";
 import { z } from "zod";
-import { sendContactConfirmation } from "@/lib/email/contact-confirmation";
+import { EMAIL_EVENTS, fireEmailEvent } from "@/lib/email/events";
+import { contactSegmentId, upsertContactIntoSegment } from "@/lib/email/segments";
 import { translations } from "@/lib/i18n/translations";
 import type { Locale } from "@/lib/i18n/types";
 import { isRateLimited } from "@/lib/rate-limit";
@@ -100,10 +101,31 @@ export async function submitContact(
       `,
     });
 
+    // Audience add + confirmation are best-effort: the inquiry already
+    // reached us, so neither failing should surface an error to the user.
+    // Order matters: the contact must exist before the event fires, because
+    // the "Contact confirmation" automation in Resend resolves the event
+    // against the contact record and sends the confirmation template.
+    const [firstName, ...rest] = name.trim().split(/\s+/);
     try {
-      await sendContactConfirmation(resend, email, name);
+      const segmentId = contactSegmentId();
+      if (segmentId) {
+        await upsertContactIntoSegment(resend, {
+          email,
+          segmentId,
+          firstName,
+          lastName: rest.join(" ") || undefined,
+        });
+      } else {
+        console.warn(
+          "RESEND_CONTACT_SEGMENT_ID is not set — inquiry not added to contact audience.",
+        );
+      }
+      await fireEmailEvent(resend, EMAIL_EVENTS.contactSubmitted, email, {
+        firstName,
+      });
     } catch (error) {
-      console.error("Failed to send contact confirmation email:", error);
+      console.error("Contact confirmation automation failed:", error);
     }
 
     return { status: "success", message: t.contactSuccess };

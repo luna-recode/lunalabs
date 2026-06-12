@@ -28,7 +28,8 @@ to static content), but for full functionality:
 | Variable | Used for |
 | -------- | -------- |
 | `RESEND_API_KEY` | Contact form + subscribe emails |
-| `RESEND_AUDIENCE_ID` | Newsletter subscriber list |
+| `RESEND_NEWSLETTER_SEGMENT_ID` | Newsletter segment (falls back to legacy `RESEND_AUDIENCE_ID`) |
+| `RESEND_CONTACT_SEGMENT_ID` | Segment for contact-form inquiries |
 | `CONTACT_FROM_EMAIL` / `CONTACT_TO_EMAIL` | Contact form sender/recipient (default `hello@bylunalabs.com`) |
 | `SANITY_REVALIDATE_SECRET` | Auth for the `/api/revalidate` webhook from Sanity |
 | `NEXT_PUBLIC_SANITY_PROJECT_ID` / `NEXT_PUBLIC_SANITY_DATASET` | Sanity project (defaults to `mugt2oz4` / `production`) |
@@ -129,6 +130,43 @@ remove any of it:**
 - Per-IP rate limiting (in-process; TODO: swap to `@upstash/ratelimit` when
   Upstash is provisioned — marked in the code)
 - Zod validation + HTML escaping on everything user-supplied
+
+### Email automations — modeled in Resend, not in code
+
+Email copy and flow logic live in the **Resend dashboard** (Templates +
+Automations), seeded by `scripts/setup-resend.mjs`. The app only does two
+things per form submission (`lib/email/`):
+
+1. **Upserts the contact into a segment** —
+   `lib/email/segments.ts#upsertContactIntoSegment` handles dedupe (returns
+   `created | joined | resubscribed | already-member`).
+2. **Fires an event** — `lib/email/events.ts`. Resend automations react:
+
+| Event | Fired when | Automation sends template |
+| ----- | ---------- | ------------------------- |
+| `newsletter.subscribed` | new newsletter signup | `newsletter-welcome` |
+| `newsletter.resubscribed` | unsubscriber returns | `newsletter-welcome-back` |
+| `contact.submitted` | contact form sent | `contact-confirmation` |
+
+An already-subscribed email fires **no** event (no duplicate welcomes). All
+of it is best-effort: failures log but never fail the form for the user. The
+internal "new inquiry" notification email stays in `app/actions/contact.ts`
+(it carries the message body).
+
+- **Change email copy:** Resend dashboard → Templates → edit → publish. No
+  deploy. Variables use `{{{NAME}}}`; `FIRST_NAME`/`RESEND_UNSUBSCRIBE_URL`
+  are auto-filled per contact, `GREETING_NAME` is mapped from the event
+  payload by the Contact confirmation automation.
+- **Change flow** (add a delay, a follow-up email, a condition): dashboard →
+  Automations → edit the graph.
+- **Add a new email:** add it to `TEMPLATES`/`AUTOMATIONS` in
+  `scripts/setup-resend.mjs`, run it (`node --env-file=.env.local
+  scripts/setup-resend.mjs` — idempotent, never overwrites existing
+  resources), then fire the new event from a server action via
+  `fireEmailEvent`. Upsert the contact into a segment **before** firing —
+  automations resolve events against the contact record.
+- **Send a newsletter (broadcast):** dashboard → Broadcasts → duplicate
+  "Example — newsletter issue", edit, send to the Newsletter segment.
 
 ### Assets
 
