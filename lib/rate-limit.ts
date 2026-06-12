@@ -40,19 +40,20 @@ function isRateLimitedInProcess(
 
 // ─── Upstash (shared, durable) ────────────────────────────────────────────────
 
-function upstashConfigured(): boolean {
-  return Boolean(
-    process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN,
-  );
+// The REST URL/token come under different names depending on how Upstash was
+// provisioned: UPSTASH_REDIS_REST_* for a direct Upstash setup, or KV_REST_API_*
+// when added through the Vercel Marketplace integration. Accept either.
+function redisCredentials(): { url: string; token: string } | null {
+  const url = process.env.UPSTASH_REDIS_REST_URL ?? process.env.KV_REST_API_URL;
+  const token =
+    process.env.UPSTASH_REDIS_REST_TOKEN ?? process.env.KV_REST_API_TOKEN;
+  return url && token ? { url, token } : null;
 }
 
 let redis: Redis | undefined;
-function getRedis(): Redis {
+function getRedis(creds: { url: string; token: string }): Redis {
   if (!redis) {
-    redis = new Redis({
-      url: process.env.UPSTASH_REDIS_REST_URL!,
-      token: process.env.UPSTASH_REDIS_REST_TOKEN!,
-    });
+    redis = new Redis({ url: creds.url, token: creds.token });
   }
   return redis;
 }
@@ -65,13 +66,14 @@ const limiters = new Map<string, Ratelimit>();
 function getLimiter(
   storeName: string,
   { limit, windowMs }: RateLimitOptions,
+  creds: { url: string; token: string },
 ): Ratelimit {
   const seconds = Math.max(1, Math.ceil(windowMs / 1000));
   const cacheKey = `${storeName}:${limit}:${seconds}`;
   let limiter = limiters.get(cacheKey);
   if (!limiter) {
     limiter = new Ratelimit({
-      redis: getRedis(),
+      redis: getRedis(creds),
       limiter: Ratelimit.slidingWindow(limit, `${seconds} s`),
       prefix: `ratelimit:${storeName}`,
       analytics: false,
@@ -83,19 +85,21 @@ function getLimiter(
 
 /**
  * Returns true if `key` (e.g. an IP) has exceeded `limit` requests within
- * `windowMs` for the given `storeName`. Uses Upstash Redis when
- * UPSTASH_REDIS_REST_URL / _TOKEN are set (shared across all serverless
- * instances), and falls back to an in-process limiter otherwise or if Redis
- * is unreachable.
+ * `windowMs` for the given `storeName`. Uses Upstash Redis when its REST
+ * credentials are set — UPSTASH_REDIS_REST_URL/_TOKEN or the KV_REST_API_URL/
+ * _TOKEN names the Vercel Marketplace integration uses — shared across all
+ * serverless instances, and falls back to an in-process limiter otherwise or
+ * if Redis is unreachable.
  */
 export async function isRateLimited(
   storeName: string,
   key: string,
   options: RateLimitOptions,
 ): Promise<boolean> {
-  if (upstashConfigured()) {
+  const creds = redisCredentials();
+  if (creds) {
     try {
-      const { success } = await getLimiter(storeName, options).limit(key);
+      const { success } = await getLimiter(storeName, options, creds).limit(key);
       return !success;
     } catch (error) {
       console.error("Upstash rate limit failed, falling back in-process:", error);
