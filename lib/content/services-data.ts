@@ -1,3 +1,6 @@
+import { cache } from "react";
+import { client } from "@/lib/sanity/client";
+
 export type ServiceCategory = {
   slug: string;
   number: string;
@@ -16,6 +19,7 @@ export type ServiceCategory = {
   faqs: { question: string; answer: string }[];
   relatedCategories: string[];
   relatedCaseStudies: string[];
+  image?: string;
 };
 
 export const serviceCategories: ServiceCategory[] = [
@@ -314,4 +318,71 @@ export function getService(slug: string) {
 
 export function getAllServiceSlugs() {
   return serviceCategories.map((s) => s.slug);
+}
+
+// ─── Sanity-first async API ───────────────────────────────────────────────────
+// Primary page data (the /services index, each /services/[slug] page, and the
+// homepage cards) goes through these. The sync helpers above stay backed by the
+// static array and are used for lightweight cross-reference lookups (related
+// links from case studies / blog / industries) — same split as case studies.
+
+const SERVICE_PROJECTION = `{
+  "slug": slug.current,
+  number,
+  title,
+  metaTitle,
+  metaDescription,
+  h1,
+  intro,
+  thesis,
+  description,
+  bullets,
+  problem,
+  solution,
+  "process": process[] { step, description },
+  "outcomes": outcomes[] { metric, label },
+  "faqs": faqs[] { question, answer },
+  relatedCategories,
+  relatedCaseStudies,
+  "image": image.asset->url,
+}`;
+
+const SERVICES_QUERY = `*[_type == "service"] | order(number asc) ${SERVICE_PROJECTION}`;
+
+const SINGLE_SERVICE_QUERY = `*[_type == "service" && slug.current == $slug][0] ${SERVICE_PROJECTION}`;
+
+export const fetchServices = cache(async (): Promise<ServiceCategory[]> => {
+  try {
+    const data = await client.fetch<ServiceCategory[]>(
+      SERVICES_QUERY,
+      {},
+      { next: { tags: ["service"] } },
+    );
+    if (data && data.length > 0) return data;
+  } catch {
+    // Sanity unavailable — fall back to static data
+  }
+  return serviceCategories;
+});
+
+// Fetches a single service by slug. React.cache deduplicates calls per render.
+export const fetchService = cache(async (
+  slug: string,
+): Promise<ServiceCategory | undefined> => {
+  try {
+    const data = await client.fetch<ServiceCategory | null>(
+      SINGLE_SERVICE_QUERY,
+      { slug },
+      { next: { tags: ["service"] } },
+    );
+    if (data) return data;
+  } catch {
+    // Sanity unavailable — fall back to static data
+  }
+  return serviceCategories.find((s) => s.slug === slug);
+});
+
+export async function fetchAllServiceSlugs(): Promise<string[]> {
+  const data = await fetchServices();
+  return data.map((s) => s.slug);
 }

@@ -7,7 +7,8 @@ import { InternalLinks } from "@/components/seo/internal-links";
 import { PageHero } from "@/components/seo/page-hero";
 import { PageShell } from "@/components/seo/page-shell";
 import {
-  getAllServiceSlugs,
+  fetchAllServiceSlugs,
+  fetchService,
   getService,
 } from "@/lib/content/services-data";
 import { getCaseStudy } from "@/lib/content/case-studies-data";
@@ -22,12 +23,12 @@ import {
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
-  return getAllServiceSlugs().map((slug) => ({ slug }));
+  return (await fetchAllServiceSlugs()).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const service = getService(slug);
+  const service = await fetchService(slug);
   if (!service) return {};
 
   return createPageMetadata({
@@ -39,13 +40,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ServicePage({ params }: Props) {
   const { slug } = await params;
-  const service = getService(slug);
+  const service = await fetchService(slug);
   if (!service) notFound();
 
   const relatedLinks = [
     ...service.relatedCategories
       .filter((s) => s !== slug)
       .map((s) => {
+        // Cross-reference lookup — static title/thesis is enough here.
         const related = getService(s);
         return related
           ? {

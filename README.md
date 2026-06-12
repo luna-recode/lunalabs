@@ -101,10 +101,18 @@ These were audited and fixed deliberately; don't regress them:
 functions that query Sanity first and fall back to the static data if Sanity
 is unreachable. Pages call the `fetch*()` functions only.
 
-- Editors add/edit case studies and blog posts in `/studio` — no deploy needed.
-  A Sanity webhook hits `/api/revalidate`, which revalidates by cache tag.
+- Editors add/edit **case studies, blog posts, and services** in `/studio` — no
+  deploy needed. A Sanity webhook hits `/api/revalidate`, which revalidates by
+  cache tag (`caseStudy` / `blogPost` / `service`).
 - When adding a CMS field: update the **Sanity schema**, the **GROQ queries**,
   and the **TypeScript type** together (all three live close to each other).
+- Services were migrated from static data into Sanity (`sanity/schemaTypes/service.ts`).
+  The static `serviceCategories` array in `lib/content/services-data.ts` is kept
+  as the offline fallback **and** for lightweight cross-reference lookups
+  (related-service links from case studies / blog / industries use the sync
+  `getService`); primary pages use the async `fetchService(s)`. The homepage
+  service cards render each service's `image` (Sanity), falling back to the
+  dashed "Image" placeholder circle until one is uploaded.
 
 ### i18n
 
@@ -213,6 +221,12 @@ internal "new inquiry" notification email stays in `app/actions/contact.ts`
   in `lib/content/case-studies-data.ts`. Upload `beforeImage` + `afterImage`
   to get the drag comparison slider automatically. The `/case-studies` page
   switches from featured rows to a grid at 3+ studies on its own.
+- **Edit / add a service:** edit the **Service** documents in `/studio` (the
+  four pillars live there). Set `number` to control order and the homepage
+  card image. New services appear on `/services`, `/services/<slug>`, the
+  homepage cards, and the sitemap automatically — no deploy. Keep the static
+  fallback in `lib/content/services-data.ts` roughly in sync so the offline
+  fallback and cross-reference links stay accurate.
 - **Pricing change:** tiers live in the i18n translation files
   (`pricing.buildTiers`) — update **both** `en.ts` and `es.ts`, plus the
   `/launch` pricing section and FAQ if the Launch tier changed.

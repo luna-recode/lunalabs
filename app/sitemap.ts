@@ -3,7 +3,7 @@ import { fetchAllBlogSlugs } from "@/lib/content/blog-data";
 import { fetchAllCaseStudySlugs } from "@/lib/content/case-studies-data";
 import { getAllIndustrySlugs } from "@/lib/content/industries-data";
 import { getAllLandingPageSlugs } from "@/lib/content/landing-pages-data";
-import { getAllServiceSlugs } from "@/lib/content/services-data";
+import { fetchAllServiceSlugs } from "@/lib/content/services-data";
 import { SITE } from "@/lib/seo/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -11,9 +11,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   // Fetch Sanity-sourced slugs in parallel with the static ones
-  const [blogSlugs, caseStudySlugs] = await Promise.all([
+  const [blogSlugs, caseStudySlugs, serviceSlugs] = await Promise.all([
     fetchAllBlogSlugs(),
     fetchAllCaseStudySlugs(),
+    fetchAllServiceSlugs(),
   ]);
 
   const staticPages = [
@@ -37,7 +38,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: path === "" ? 1 : 0.8,
   }));
 
-  const servicePages = getAllServiceSlugs().map((slug) => ({
+  const servicePages = serviceSlugs.map((slug) => ({
     url: `${base}/services/${slug}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
