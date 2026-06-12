@@ -127,8 +127,11 @@ remove any of it:**
 - Honeypot field `company_ref` (hidden; named so autofill never touches it)
 - Time trap `form_ts` (render timestamp; too-fast submissions rejected)
 - Both reject with a **fake success** — never tell bots they failed
-- Per-IP rate limiting (in-process; TODO: swap to `@upstash/ratelimit` when
-  Upstash is provisioned — marked in the code)
+- Per-IP rate limiting via `lib/rate-limit.ts` — Upstash Redis (shared across
+  serverless instances) when `UPSTASH_REDIS_REST_URL` / `_TOKEN` are set, with a
+  best-effort in-process limiter as automatic fallback (local dev, previews, or
+  if Redis is unreachable). Provision Upstash via the Vercel Marketplace
+  integration, which injects the env vars automatically.
 - Zod validation + HTML escaping on everything user-supplied
 
 ### Email automations — modeled in Resend, not in code
