@@ -65,7 +65,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  // Google Analytics 4. The Measurement ID is a public value (it ships to the
+  // browser), so it's safe to commit as the default; NEXT_PUBLIC_GA_ID still
+  // overrides it. Only load it in real production so local dev and Vercel
+  // preview deploys stay out of the production analytics.
+  const gaId = process.env.NEXT_PUBLIC_GA_ID ?? "G-5GXLY62ZQZ";
+  const enableGA =
+    process.env.NODE_ENV === "production" &&
+    process.env.NEXT_PUBLIC_VERCEL_ENV !== "preview";
 
   return (
     <html
@@ -83,7 +90,7 @@ export default function RootLayout({
         <Analytics />
         <SpeedInsights />
       </body>
-      {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
+      {enableGA && gaId ? <GoogleAnalytics gaId={gaId} /> : null}
     </html>
   );
 }
