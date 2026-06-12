@@ -46,7 +46,7 @@ function studioBasicAuth(request: NextRequest): NextResponse | null {
   return null;
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   if (!request.nextUrl.pathname.startsWith("/studio")) {
     return NextResponse.next();
   }
